@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
-import "solmate/src/auth/Owned.sol";
+import "openzeppelin/interfaces/IERC3156FlashBorrower.sol";
+import "solmate/auth/Owned.sol";
 import {UnstoppableVault, ERC20} from "../unstoppable/UnstoppableVault.sol";
 
 /**

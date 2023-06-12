@@ -18,19 +18,13 @@ contract ReceiverUnstoppable is Owned, IERC3156FlashBorrower {
         pool = UnstoppableVault(poolAddress);
     }
 
-    function onFlashLoan(
-        address initiator,
-        address token,
-        uint256 amount,
-        uint256 fee,
-        bytes calldata
-    ) external returns (bytes32) {
-        if (
-            initiator != address(this) ||
-            msg.sender != address(pool) ||
-            token != address(pool.asset()) ||
-            fee != 0
-        ) revert UnexpectedFlashLoan();
+    function onFlashLoan(address initiator, address token, uint256 amount, uint256 fee, bytes calldata)
+        external
+        returns (bytes32)
+    {
+        if (initiator != address(this) || msg.sender != address(pool) || token != address(pool.asset()) || fee != 0) {
+            revert UnexpectedFlashLoan();
+        }
 
         ERC20(token).approve(address(pool), amount);
 

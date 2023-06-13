@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "solmate/utils/FixedPointMathLib.sol";
-import "solmate/utils/ReentrancyGuard.sol";
-import {SafeTransferLib, ERC4626, ERC20} from "solmate/mixins/ERC4626.sol";
-import "solmate/auth/Owned.sol";
+import "solmate/src/utils/FixedPointMathLib.sol";
+import "solmate/src/utils/ReentrancyGuard.sol";
+import {SafeTransferLib, ERC4626, ERC20} from "solmate/src/mixins/ERC4626.sol";
+import "solmate/src/auth/Owned.sol";
 import {IERC3156FlashBorrower, IERC3156FlashLender} from "openzeppelin/interfaces/IERC3156.sol";
 
 /**

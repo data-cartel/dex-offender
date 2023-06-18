@@ -6,6 +6,7 @@
 pub mod damn_valuable_token;
 pub mod erc20;
 pub mod erc4626;
+pub mod fallback;
 pub mod fixed_point_math_lib;
 pub mod ierc3156;
 pub mod ierc3156_flash_borrower;

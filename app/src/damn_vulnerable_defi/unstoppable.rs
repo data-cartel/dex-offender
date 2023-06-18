@@ -7,11 +7,15 @@ use bindings::damn_valuable_token::DamnValuableToken;
 use bindings::receiver_unstoppable::ReceiverUnstoppable;
 use bindings::unstoppable_vault::UnstoppableVault;
 
-struct Unstoppable;
+pub struct DamnVulnerableDeFiLevel1 {
+    pub vault: UnstoppableVault<SignerMiddleware<Provider<Http>, LocalWallet>>,
+    pub token: DamnValuableToken<SignerMiddleware<Provider<Http>, LocalWallet>>,
+    pub receiver: ReceiverUnstoppable<SignerMiddleware<Provider<Http>, LocalWallet>>,
+}
 
 #[async_trait]
-impl Level for Unstoppable {
-    async fn set_up(&self, offenders: DexOffenders) -> eyre::Result<()> {
+impl Level for DamnVulnerableDeFiLevel1 {
+    async fn set_up(offenders: &DexOffenders) -> eyre::Result<DamnVulnerableDeFiLevel1> {
         let DexOffenders { deployer, player, some_user } = offenders;
 
         let tokens_in_vault = to_scaled_u256(1_000_000);
@@ -56,12 +60,10 @@ impl Level for Unstoppable {
             assert_eq!(flash_fee, to_scaled_u256(50_000));
         }
 
-        let player: Address = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266".parse()?;
-
-        token.transfer(player, initial_player_token_balance).send().await?.await?;
+        token.transfer(player.address(), initial_player_token_balance).send().await?.await?;
 
         {
-            let balance = token.balance_of(player).await?;
+            let balance = token.balance_of(player.address()).await?;
             assert_eq!(balance, initial_player_token_balance);
         }
 
@@ -69,14 +71,16 @@ impl Level for Unstoppable {
         let receiver = receiver.send().await?;
         receiver.execute_flash_loan(flash_loan_amount).send().await?.await?;
 
-        Ok(())
+        let level = DamnVulnerableDeFiLevel1 { vault, token, receiver };
+
+        Ok(level)
     }
 
-    async fn solve(&self, player: DexOffender) -> eyre::Result<()> {
-        todo!("Solve me")
+    async fn solve(&self, _player: &DexOffender) -> eyre::Result<()> {
+        todo!("Solve me!")
     }
 
-    async fn validate(&self) -> eyre::Result<()> {
+    async fn validate(self, _offenders: &DexOffenders) -> eyre::Result<DamnVulnerableDeFiLevel1> {
         unimplemented!("Validate function not implemented for this level")
     }
 }

@@ -3,7 +3,7 @@ use ethers::prelude::*;
 
 use dex_offenders::{DexOffender, DexOffenders};
 
-pub(crate) fn to_scaled_u256<U>(amount: U) -> U256
+pub fn to_scaled_u256<U>(amount: U) -> U256
 where
     U: Into<U256>,
 {
@@ -11,26 +11,27 @@ where
 }
 
 #[async_trait]
-trait Level {
-    async fn set_up(&self, offenders: DexOffenders) -> eyre::Result<()>;
+pub trait Level {
+    async fn set_up(offenders: &DexOffenders) -> eyre::Result<Self>
+    where
+        Self: Sized;
 
-    async fn solve(&self, player: DexOffender) -> eyre::Result<()>;
+    async fn solve(&self, player: &DexOffender) -> eyre::Result<()>;
 
-    async fn validate(&self) -> eyre::Result<()>;
+    async fn validate(self, offenders: &DexOffenders) -> eyre::Result<Self>
+    where
+        Self: Sized;
 }
 
-pub(crate) mod damn_vulnerable_defi;
-pub(crate) mod dex_offenders;
+pub mod damn_vulnerable_defi;
+pub mod dex_offenders;
+pub mod ethernaut;
 
 #[cfg(test)]
-pub(crate) async fn test_level<L: Level>(level: L) -> eyre::Result<()> {
+pub async fn test_level<L: Level>() -> eyre::Result<L> {
     let offenders = DexOffenders::init_with_anvil()?;
-    level.set_up(offenders.clone()).await?;
 
-    let player = offenders.player;
-    level.solve(player).await?;
-
-    level.validate().await?;
-
-    Ok(())
+    let level = L::set_up(&offenders).await?;
+    level.solve(&offenders.player).await?;
+    level.validate(&offenders).await
 }

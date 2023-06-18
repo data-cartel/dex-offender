@@ -1,19 +1,18 @@
-use crate::to_scaled_u256;
 use ethers::prelude::*;
 use ethers::utils::Anvil;
 use std::sync::Arc;
 
-pub(crate) type DexOffender = Arc<SignerMiddleware<Provider<Http>, LocalWallet>>;
+pub type DexOffender = Arc<SignerMiddleware<Provider<Http>, LocalWallet>>;
 
 #[derive(Debug, Clone)]
-pub(crate) struct DexOffenders {
-    pub(crate) deployer: DexOffender,
-    pub(crate) player: DexOffender,
-    pub(crate) some_user: DexOffender,
+pub struct DexOffenders {
+    pub deployer: DexOffender,
+    pub player: DexOffender,
+    pub some_user: DexOffender,
 }
 
 impl DexOffenders {
-    pub(crate) fn init_without_anvil() -> eyre::Result<DexOffenders> {
+    pub fn init_without_anvil() -> eyre::Result<DexOffenders> {
         let provider = Provider::<Http>::try_from("http://localhost:8545")?;
 
         let deployer: LocalWallet =
@@ -26,12 +25,12 @@ impl DexOffenders {
 
         let some_user: LocalWallet =
             "0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a".parse()?;
-        let some_user = mk_offender(provider.clone(), some_user, Chain::AnvilHardhat)?;
+        let some_user = mk_offender(provider, some_user, Chain::AnvilHardhat)?;
 
         Ok(DexOffenders { deployer, player, some_user })
     }
 
-    pub(crate) fn init_with_anvil() -> eyre::Result<DexOffenders> {
+    pub fn init_with_anvil() -> eyre::Result<DexOffenders> {
         let anvil = Anvil::new().spawn();
 
         let provider = Provider::<Http>::try_from(anvil.endpoint())?;
@@ -42,7 +41,7 @@ impl DexOffenders {
 
         let deployer = mk_offender(provider.clone(), deployer, anvil.chain_id())?;
         let player = mk_offender(provider.clone(), player, anvil.chain_id())?;
-        let some_user = mk_offender(provider.clone(), some_user, anvil.chain_id())?;
+        let some_user = mk_offender(provider, some_user, anvil.chain_id())?;
 
         Ok(DexOffenders { deployer, player, some_user })
     }

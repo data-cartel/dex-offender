@@ -36,10 +36,6 @@
                       --overwrite
                   '';
 
-                  scripts.test.exec = ''
-                    forge test --root "$(git rev-parse --show-toplevel)/contracts"
-                  '';
-
                   enterShell = ''
                     export PATH="$PATH:$PWD/.devenv/profile/bin"
                   '';

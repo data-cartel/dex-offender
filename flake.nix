@@ -23,6 +23,8 @@
                   # https://devenv.sh/reference/options/
                   packages = [];
 
+                  difftastic.enable = true;
+
                   scripts.bind.exec = let
                     contractsPath = "$(git rev-parse --show-toplevel)/contracts";
                   in ''

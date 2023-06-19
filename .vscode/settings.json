@@ -6,5 +6,6 @@
     "editor.defaultFormatter": "JuanBlanco.solidity"
   },
   // "solidity.compileUsingRemoteVersion": "v0.8.0",
-  "solidity.formatter": "forge"
+  "solidity.formatter": "forge",
+  "editor.wordWrap": "off"
 }

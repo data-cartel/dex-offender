@@ -71,13 +71,13 @@ impl Level for EthernautLevel1 {
         let contract = Fallback::new(self.contract_address, deployer.clone());
 
         println!("Checking that you claimed ownership of the contract...");
+        let owner = contract.owner().await?;
+        assert_eq!(owner, offender.address());
+
+        println!("Checking that you reduced its balance to 0...");
         let contract_balance =
             deployer.get_balance(self.contract_address, None).await?;
         assert_eq!(contract_balance, U256::from(0));
-
-        println!("Checking that you reduced its balance to 0...");
-        let owner = contract.owner().await?;
-        assert_eq!(owner, offender.address());
 
         Ok(self)
     }

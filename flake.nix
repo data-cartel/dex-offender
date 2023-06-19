@@ -37,11 +37,11 @@
                   '';
 
                   scripts.test.exec = ''
-                    cargo test -p dex_offender -- --nocapture
+                    cargo test -p ctfs -- --nocapture
                   '';
 
                   scripts.watch-test.exec = ''
-                    cargo watch -x 'test -p dex_offender -- --nocapture'
+                    cargo watch -x 'test -p ctfs -- --nocapture'
                   '';
 
                   enterShell = ''

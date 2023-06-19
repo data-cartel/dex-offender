@@ -5,16 +5,13 @@ use crate::roles::*;
 use crate::{to_ether, Level};
 use bindings::fallback::Fallback;
 
-/*
-*/
-
 pub struct EthernautLevel1 {
     pub contract_address: Address,
 }
 
 #[async_trait]
 impl Level for EthernautLevel1 {
-    async fn set_up(roles: &Roles) -> eyre::Result<EthernautLevel1> {
+    async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender, some_user: _ } = roles;
 
         println!("Deploying the Fallback contract...");

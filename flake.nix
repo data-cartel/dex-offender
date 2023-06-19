@@ -36,6 +36,14 @@
                       --overwrite
                   '';
 
+                  scripts.test.exec = ''
+                    cargo test -p dex_offender -- --nocapture
+                  '';
+
+                  scripts.watch-test.exec = ''
+                    cargo watch -x 'test -p dex_offender -- --nocapture'
+                  '';
+
                   enterShell = ''
                     export PATH="$PATH:$PWD/.devenv/profile/bin"
                   '';

@@ -5,51 +5,45 @@
     devenv.url = "github:cachix/devenv";
   };
 
-  outputs = { self, nixpkgs, devenv, systems, ... } @ inputs:
-    let
-      forEachSystem = nixpkgs.lib.genAttrs (import systems);
-    in
-    {
-      devShells = forEachSystem
-        (system:
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-          in
-          {
-            default = devenv.lib.mkShell {
-              inherit inputs pkgs;
-              modules = [
-                {
-                  # https://devenv.sh/reference/options/
-                  packages = [];
+  outputs = { self, nixpkgs, devenv, systems, ... }@inputs:
+    let forEachSystem = nixpkgs.lib.genAttrs (import systems);
+    in {
+      devShells = forEachSystem (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in {
+          default = devenv.lib.mkShell {
+            inherit inputs pkgs;
+            modules = [{
+              # https://devenv.sh/reference/options/
+              packages = [ ];
 
-                  difftastic.enable = true;
+              difftastic.enable = true;
 
-                  scripts.bind.exec = let
-                    contractsPath = "$(git rev-parse --show-toplevel)/contracts";
-                  in ''
-                    forge build --root ${contractsPath}
-                    forge bind \
-                      --bindings-path ./bindings \
-                      --root ${contractsPath} \
-                      --crate-name bindings \
-                      --overwrite
-                  '';
+              scripts.fullcheck.exec = ''
+                forge build
+                forge bind -b ./bindings --crate-name bindings --overwrite
+                cargo test -p solutions -- --nocapture
+              '';
 
-                  scripts.test.exec = ''
-                    cargo test -p ctfs -- --nocapture
-                  '';
+              # enterShell = ''
+              #   export PATH="$PATH:$PWD/.devenv/profile/bin"
+              # '';
 
-                  scripts.watch-test.exec = ''
-                    cargo watch -x 'test -p ctfs -- --nocapture'
-                  '';
+              languages.nix.enable = true;
 
-                  enterShell = ''
-                    export PATH="$PATH:$PWD/.devenv/profile/bin"
-                  '';
-                }
-              ];
-            };
-          });
+              pre-commit.hooks.nixfmt.enable = true;
+              pre-commit.hooks.rebuild-contracts-and-check-solutions = {
+                enable = true;
+
+                name = "Re-generating contract bindings and running tests";
+                entry = "fullcheck";
+                files = "\\.(rs|sol|toml)$";
+
+                pass_filenames = false;
+                raw = { verbose = true; };
+              };
+            }];
+          };
+        });
     };
 }

@@ -5,3 +5,4 @@ Cargo.lock
 
 .direnv
 .devenv
+.pre-commit-config.yaml

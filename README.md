@@ -11,22 +11,20 @@ anvil
 ### Run tests
 
 ```sh
-cargo test -p ctfs -- --nocapture
+cargo test -p solutions -- --nocapture
 ```
 
 ### Build contracts
 
 ```sh
-forge build --root ./contracts
+forge build
 ```
 
 ### Create Rust bindings for contracts
 
 ```sh
-forge bind --root ./contracts \
-  --bindings-path ./bindings \
-  --crate-name bindings \
-  --overwrite
+forge build
+forge bind -b ./bindings --crate-name bindings --overwrite
 ```
 
 ## Anvil

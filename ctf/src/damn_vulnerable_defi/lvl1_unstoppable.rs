@@ -2,12 +2,12 @@ use async_trait::async_trait;
 use ethers::prelude::*;
 
 use crate::roles::*;
-use crate::{to_ether, Level};
+use crate::{to_ether, Challenge};
 use bindings::damn_valuable_token::DamnValuableToken;
 use bindings::receiver_unstoppable::ReceiverUnstoppable;
 use bindings::unstoppable_vault::UnstoppableVault;
 
-pub struct DamnVulnerableDeFiLevel1 {
+pub struct DamnVulnerableDeFiChallenge1 {
     pub vault: UnstoppableVault<SignerMiddleware<Provider<Http>, LocalWallet>>,
     pub token: DamnValuableToken<SignerMiddleware<Provider<Http>, LocalWallet>>,
     pub receiver:
@@ -15,8 +15,10 @@ pub struct DamnVulnerableDeFiLevel1 {
 }
 
 #[async_trait]
-impl Level for DamnVulnerableDeFiLevel1 {
-    async fn set_up(roles: &Roles) -> eyre::Result<DamnVulnerableDeFiLevel1> {
+impl Challenge for DamnVulnerableDeFiChallenge1 {
+    async fn set_up(
+        roles: &Roles,
+    ) -> eyre::Result<DamnVulnerableDeFiChallenge1> {
         let Roles { deployer, offender, some_user } = roles;
 
         let tokens_in_vault = to_ether(1_000_000);
@@ -82,9 +84,9 @@ impl Level for DamnVulnerableDeFiLevel1 {
         let receiver = receiver.send().await?;
         receiver.execute_flash_loan(flash_loan_amount).send().await?.await?;
 
-        let level = DamnVulnerableDeFiLevel1 { vault, token, receiver };
+        let challenge = DamnVulnerableDeFiChallenge1 { vault, token, receiver };
 
-        Ok(level)
+        Ok(challenge)
     }
 
     const DESCRIPTION: &'static str = "Damn Vulnerable DeFi
@@ -98,14 +100,10 @@ impl Level for DamnVulnerableDeFiLevel1 {
     You start with 10 DVT tokens in balance.
     ";
 
-    async fn solve(&self, _offender: Actor) -> eyre::Result<()> {
-        todo!("Solve me!")
-    }
-
     async fn check(
         self,
         _offender: Roles,
-    ) -> eyre::Result<DamnVulnerableDeFiLevel1> {
-        unimplemented!("check function not implemented for this level")
+    ) -> eyre::Result<DamnVulnerableDeFiChallenge1> {
+        unimplemented!("check function not implemented for this challenge")
     }
 }

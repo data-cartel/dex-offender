@@ -1,2 +1,2 @@
 [workspace]
-members = ["bindings", "ctfs"]
+members = ["bindings", "ctf", "solutions"]

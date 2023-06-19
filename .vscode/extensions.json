@@ -1,5 +1,10 @@
 {
   "recommendations": [
-    "juanblanco.solidity"
+    "juanblanco.solidity",
+    "usernamehw.errorlens",
+    "rust-lang.rust-analyzer",
+    "bungcip.better-toml",
+    "serayuzgur.crates",
+    "vadimcn.vscode-lldb"
   ]
 }

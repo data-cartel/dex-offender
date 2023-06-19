@@ -2,7 +2,7 @@ use async_trait::async_trait;
 use ethers::prelude::*;
 
 use crate::roles::*;
-use crate::{to_ether, Level};
+use crate::{to_ether, Challenge};
 use bindings::fallback::Fallback;
 
 pub struct EthernautLevel1 {
@@ -10,7 +10,7 @@ pub struct EthernautLevel1 {
 }
 
 #[async_trait]
-impl Level for EthernautLevel1 {
+impl Challenge for EthernautLevel1 {
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender, some_user: _ } = roles;
 
@@ -41,17 +41,18 @@ impl Level for EthernautLevel1 {
         let owner = contract.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let level = EthernautLevel1 { contract_address: contract.address() };
+        let challenge =
+            EthernautLevel1 { contract_address: contract.address() };
 
-        Ok(level)
+        Ok(challenge)
     }
 
     const DESCRIPTION: &'static str = "Ethernaut
-    Level 1: Fallback
+    Challenge 1: Fallback
 
     Look carefully at the contract's code below.
 
-    You will beat this level if
+    You will beat this challenge if
     1. you claim ownership of the contract
     2. you reduce its balance to 0
 
@@ -61,10 +62,6 @@ impl Level for EthernautLevel1 {
     - Converting to and from wei/ether units (see help() command)
     - Fallback methods
     ";
-
-    async fn solve(&self, _offender: Actor) -> eyre::Result<()> {
-        todo!("Solve me")
-    }
 
     async fn check(self, roles: Roles) -> eyre::Result<EthernautLevel1> {
         let Roles { deployer, offender, some_user: _ } = roles;
@@ -80,17 +77,5 @@ impl Level for EthernautLevel1 {
         assert_eq!(contract_balance, U256::from(0));
 
         Ok(self)
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::test_level;
-
-    #[tokio::test]
-    async fn test() -> eyre::Result<()> {
-        test_level::<EthernautLevel1>().await?;
-        Ok(())
     }
 }

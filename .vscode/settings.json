@@ -1,11 +1,11 @@
 {
-  "solidity.packageDefaultDependenciesContractsDirectory": "src",
+  "solidity.packageDefaultDependenciesContractsDirectory": "contracts",
   "solidity.packageDefaultDependenciesDirectory": "lib",
+  "solidity.monoRepoSupport": true,
   "editor.formatOnSave": true,
   "[solidity]": {
     "editor.defaultFormatter": "JuanBlanco.solidity"
   },
-  // "solidity.compileUsingRemoteVersion": "v0.8.0",
   "solidity.formatter": "forge",
   "editor.wordWrap": "off"
 }

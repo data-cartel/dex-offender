@@ -16,5 +16,4 @@ pub mod owned;
 pub mod receiver_unstoppable;
 pub mod reentrancy_guard;
 pub mod safe_transfer_lib;
-pub mod unstoppable;
 pub mod unstoppable_vault;

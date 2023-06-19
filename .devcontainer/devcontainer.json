@@ -1,15 +1,18 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/rust
 {
-	"name": "Rust",
-	// "image": "mcr.microsoft.com/devcontainers/rust:0-1-bullseye",
+	"name": "DEX Offender",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "."
 	},
+	"postAttachCommand": "anvil",
+	"features": {
+		"ghcr.io/devcontainers/features/nix:1": {}
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"juanblanco.solidity",
 				"usernamehw.errorlens",
 				"rust-lang.rust-analyzer",
 				"bungcip.better-toml",

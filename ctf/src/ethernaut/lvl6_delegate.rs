@@ -8,7 +8,6 @@ use bindings::delegation::Delegation;
 
 pub struct EthernautLevel6 {
     pub delegation_address: Address,
-    delegate_address: Address,
 }
 
 #[async_trait]
@@ -31,10 +30,8 @@ impl Challenge for EthernautLevel6 {
         let owner = delegate.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let challenge = EthernautLevel6 {
-            delegation_address: delegation.address(),
-            delegate_address: delegate.address(),
-        };
+        let challenge =
+            EthernautLevel6 { delegation_address: delegation.address() };
 
         Ok(challenge)
     }

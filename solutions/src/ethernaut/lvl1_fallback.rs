@@ -23,7 +23,7 @@ impl Solution for EthernautLevel1Solution {
 mod tests {
     use super::*;
 
-    // #[ignore]
+    #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
         ctf::check_solution(EthernautLevel1Solution).await

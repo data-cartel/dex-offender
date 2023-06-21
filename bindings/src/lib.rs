@@ -4,7 +4,11 @@
 //! Do not manually edit these files.
 //! These files may be overwritten by the codegen system at any time.
 pub mod coin_flip;
+pub mod coin_flip_exploit;
+pub mod coin_flip_hack;
 pub mod damn_valuable_token;
+pub mod delegate;
+pub mod delegation;
 pub mod erc20;
 pub mod erc4626;
 pub mod fallback;
@@ -16,4 +20,6 @@ pub mod owned;
 pub mod receiver_unstoppable;
 pub mod reentrancy_guard;
 pub mod safe_transfer_lib;
+pub mod telephone;
+pub mod telephone_exploit;
 pub mod unstoppable_vault;

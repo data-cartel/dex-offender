@@ -28,7 +28,7 @@ impl Challenge for EthernautLevel3 {
     }
 
     const DESCRIPTION: &'static str = "Ethernaut
-    Challenge 3: CoinFlip
+    Level 3: CoinFlip
 
     This is a coin flipping game where you need to build up your winning streak by
     guessing the outcome of a coin flip. To complete this challenge you'll need to

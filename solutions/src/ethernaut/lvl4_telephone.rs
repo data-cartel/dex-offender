@@ -1,13 +1,12 @@
 use async_trait::async_trait;
-use bindings::coin_flip::CoinFlip;
-use bindings::coin_flip_exploit::CoinFlipExploit;
+use bindings::telephone_exploit::TelephoneExploit;
 use ctf::*;
 
-struct EthernautLevel3Solution;
+pub struct EthernautLevel4Solution;
 
 #[async_trait]
-impl Solution for EthernautLevel3Solution {
-    type Level = EthernautLevel3;
+impl Solution for EthernautLevel4Solution {
+    type Level = EthernautLevel4;
 
     async fn solve(
         self,
@@ -25,6 +24,6 @@ mod tests {
     // #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
-        ctf::check_solution(EthernautLevel3Solution).await
+        ctf::check_solution(EthernautLevel4Solution).await
     }
 }

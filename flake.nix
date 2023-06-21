@@ -19,29 +19,34 @@
 
               difftastic.enable = true;
 
-              scripts.fullcheck.exec = ''
+              scripts.ctfbind.exec = ''
+                forge build
+                forge bind -b ./bindings --crate-name bindings --overwrite
+              '';
+
+              scripts.ctfcheck.exec = ''
                 forge build
                 forge bind -b ./bindings --crate-name bindings --overwrite
                 cargo test -p solutions -- --nocapture
               '';
 
-              # enterShell = ''
-              #   export PATH="$PATH:$PWD/.devenv/profile/bin"
-              # '';
+              scripts.ctfwatch.exec = ''
+                cargo watch -x 'test -p solutions -- --nocapture'
+              '';
 
               languages.nix.enable = true;
 
               pre-commit.hooks.nixfmt.enable = true;
-              pre-commit.hooks.rebuild-contracts-and-check-solutions = {
-                enable = true;
+              # pre-commit.hooks.rebuild-contracts-and-check-solutions = {
+              #   enable = true;
 
-                name = "Re-generating contract bindings and running tests";
-                entry = "fullcheck";
-                files = "\\.(rs|sol|toml)$";
+              #   name = "Re-generating contract bindings and running tests";
+              #   entry = "ctfcheck";
+              #   files = "\\.(rs|sol|toml)$";
 
-                pass_filenames = false;
-                raw = { verbose = true; };
-              };
+              #   pass_filenames = false;
+              #   raw = { verbose = true; };
+              # };
             }];
           };
         });

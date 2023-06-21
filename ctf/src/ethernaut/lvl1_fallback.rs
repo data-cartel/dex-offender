@@ -48,7 +48,7 @@ impl Challenge for EthernautLevel1 {
     }
 
     const DESCRIPTION: &'static str = "Ethernaut
-    Challenge 1: Fallback
+    Level 1: Fallback
 
     Look carefully at the contract's code below.
 

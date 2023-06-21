@@ -7,5 +7,6 @@
     "editor.defaultFormatter": "JuanBlanco.solidity"
   },
   "solidity.formatter": "forge",
-  "editor.wordWrap": "off"
+  "editor.wordWrap": "off",
+  "solidity.linter": ""
 }

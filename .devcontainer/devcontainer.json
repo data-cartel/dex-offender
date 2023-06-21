@@ -5,7 +5,7 @@
 		"dockerfile": "Dockerfile",
 		"context": "."
 	},
-	"postAttachCommand": "anvil",
+	"postAttachCommand": "anvil --steps-tracing",
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {
 			"version": "latest"

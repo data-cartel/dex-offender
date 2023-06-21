@@ -7,12 +7,15 @@
 	},
 	"postAttachCommand": "anvil",
 	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {
+			"version": "latest"
+		},
 		"ghcr.io/devcontainers/features/nix:1": {}
 	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"juanblanco.solidity",
+				"JuanBlanco.solidity",
 				"usernamehw.errorlens",
 				"rust-lang.rust-analyzer",
 				"bungcip.better-toml",

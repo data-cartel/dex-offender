@@ -34,6 +34,63 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        println!("\n\nDeploying the contract...");
+        let tx = offender
+            .send_transaction(
+                TransactionRequest::new().from(offender.address()).data(vec![
+                    ////////////////////////////
+                    //////   DEPLOYMENT   //////
+                    ////////////////////////////
+                    0x60, 0x80, // PUSH1 0x80
+                    0x60, 0x40, // PUSH1 0x40
+                    0x52, // MSTORE
+                    0x34, // CALLVALUE
+                    0x80, // DUP1
+                    0x15, // ISZERO
+                    0x60, 0x0f, // PUSH1 0xf
+                    0x57, // JUMPI
+                    0x60, 0x00, // PUSH1 0x0
+                    0x80, // DUP1
+                    0xfd, // REVERT
+                    0x5b, // JUMPDEST
+                    0x50, // POP
+                    0x60, 0xa,  // PUSH1 0xa
+                    0x80, // DUP1
+                    0x60, 0x1d, // PUSH1 0x1d
+                    0x60, 0x00, // PUSH1 0x0
+                    0x39, // CODECOPY
+                    0x60, 0x00, // PUSH1 0x0
+                    0xf3, // RETURN
+                    0xfe, // INVALID
+                    ////////////////////////////
+                    //////     RUNTIME    //////
+                    ////////////////////////////
+                    0x60, 0x2a, // PUSH1 0x2a
+                    0x60, 0x0,  // PUSH1 0x0
+                    0x52, // MSTORE
+                    0x60, 0x20, // PUSH1 0x1f
+                    0x60, 0x00, // PUSH1 0x0
+                    0xf3, // RETURN
+                          ////////////////////////////
+                          //////    THE END    ///////
+                          ////////////////////////////
+                ]),
+                None,
+            )
+            .await?
+            .await?;
+
+        let address = tx.unwrap().contract_address.unwrap();
+
+        println!(
+            "Contract address: {}",
+            ethers::utils::to_checksum(&address, None)
+        );
+
+        println!("Setting the solver address...\n\n");
+        let target = MagicNum::new(target.address, offender.to_owned());
+        target.set_solver(address).send().await?.await?;
+
         Ok(())
     }
 }

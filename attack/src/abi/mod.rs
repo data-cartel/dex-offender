@@ -4,4 +4,24 @@
 //! Do not manually edit these files.
 //! These files may be overwritten by the codegen system at
 //! any time.
+pub mod building;
+pub mod coin_flip;
+pub mod coin_flip_exploit;
+pub mod donatexploit;
+pub mod elevator;
+pub mod elevator_exploit;
 pub mod example;
+pub mod force_exploit;
+pub mod gatekeeper_one;
+pub mod gatekeeper_one_clone;
+pub mod gatekeeper_two;
+pub mod gatexploit;
+pub mod gatexploit_two;
+pub mod i_preservation;
+pub mod king;
+pub mod king_exploit;
+pub mod magic_num_exploit;
+pub mod preservation_exploit;
+pub mod reentrance;
+pub mod telephone;
+pub mod telephone_exploit;

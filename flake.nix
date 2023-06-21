@@ -37,16 +37,16 @@
               languages.nix.enable = true;
 
               pre-commit.hooks.nixfmt.enable = true;
-              # pre-commit.hooks.rebuild-contracts-and-check-solutions = {
-              #   enable = true;
+              pre-commit.hooks.rebuild-contracts-and-check-solutions = {
+                enable = true;
 
-              #   name = "Re-generating contract bindings and running tests";
-              #   entry = "ctfcheck";
-              #   files = "\\.(rs|sol|toml)$";
+                name = "Re-generating contract bindings and running tests";
+                entry = "ctfcheck";
+                files = "\\.(rs|sol|toml)$";
 
-              #   pass_filenames = false;
-              #   raw = { verbose = true; };
-              # };
+                pass_filenames = false;
+                raw = { verbose = true; };
+              };
             }];
           };
         });

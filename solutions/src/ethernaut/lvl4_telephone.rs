@@ -13,7 +13,14 @@ impl Solution for EthernautLevel4Solution {
         challenge: &Self::Level,
         offender: Actor,
     ) -> eyre::Result<()> {
-        todo!("Solve me!")
+        TelephoneExploit::deploy(
+            offender.to_owned(),
+            challenge.contract_address,
+        )?
+        .send()
+        .await?;
+
+        Ok(())
     }
 }
 

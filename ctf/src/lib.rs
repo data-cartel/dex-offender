@@ -32,5 +32,15 @@ pub async fn check_solution<S: Solution>(solution: S) -> eyre::Result<()> {
     println!("Checking the solution...");
     challenge.check(roles).await?;
 
+    let congratulations = "
+~~ $$ !! CONGRATULATIONS !! $$ ~~
+
+Y O U P A S S E D T H E L E V E L
+
+##################################
+    ";
+
+    println!("{congratulations}\n");
+
     Ok(())
 }

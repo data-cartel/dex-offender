@@ -14,8 +14,10 @@
           default = devenv.lib.mkShell {
             inherit inputs pkgs;
             modules = [{
-              # https://devenv.sh/reference/options/
-              packages = [ ];
+              packages = [
+                pkgs.jq
+                pkgs.tldr
+              ];
 
               difftastic.enable = true;
 

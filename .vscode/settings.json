@@ -1,4 +1,5 @@
 {
+  "rust-analyzer.check.command": "clippy",
   "solidity.packageDefaultDependenciesContractsDirectory": "contracts",
   "solidity.packageDefaultDependenciesDirectory": "lib",
   "solidity.monoRepoSupport": true,
@@ -7,6 +8,5 @@
     "editor.defaultFormatter": "JuanBlanco.solidity"
   },
   "solidity.formatter": "forge",
-  "editor.wordWrap": "off",
-  "solidity.linter": ""
+  "editor.wordWrap": "off"
 }

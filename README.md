@@ -22,7 +22,7 @@ use ethers::prelude::*; // <----- this is the library that lets us interact
 
 use bindings::fallback::Fallback; // Rust bindings for the smart contract for the level
 
-use ctf::*; /// <---- This is the part of the code that is responsible for 
+use ctf::*; /// <---- This is the part of the code that is responsible for
 //                                    deploying challenges and checking solutions
 
 struct EthernautLevel1Solution; // <-- Create an empty struct representing a level so

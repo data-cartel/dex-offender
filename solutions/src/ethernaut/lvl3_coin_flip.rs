@@ -14,23 +14,7 @@ impl Solution for EthernautLevel3Solution {
         challenge: &Self::Level,
         offender: Actor,
     ) -> eyre::Result<()> {
-        println!("Deploying the exploit contract...");
-        let exploit = CoinFlipExploit::deploy(
-            offender.to_owned(),
-            challenge.contract_address,
-        )?
-        .send()
-        .await?;
-
-        let coin_flip =
-            CoinFlip::new(challenge.contract_address, offender.to_owned());
-
-        while coin_flip.consecutive_wins().await? < 10.into() {
-            println!("Flipping dat coin boiiiiiiiii");
-            exploit.flip().send().await?.await?;
-        }
-
-        Ok(())
+        todo!("Solve me!")
     }
 }
 
@@ -38,7 +22,7 @@ impl Solution for EthernautLevel3Solution {
 mod tests {
     use super::*;
 
-    #[ignore]
+    // #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
         ctf::check_solution(EthernautLevel3Solution).await

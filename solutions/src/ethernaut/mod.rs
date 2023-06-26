@@ -1,4 +1,5 @@
 pub mod lvl1_fallback;
+<<<<<<< HEAD
 pub mod lvl3_coin_flip;
 pub mod lvl4_telephone;
 pub mod lvl6_delegate;
@@ -23,3 +24,8 @@ mod tests {
         Ok(())
     }
 }
+=======
+// pub mod lvl3_coin_flip;     <===== OPA)))
+// pub mod lvl4_telephone;     <===== OPA)))
+// pub mod lvl6_delegate;     <===== OPA)))
+>>>>>>> c32e0e4 (lol)))

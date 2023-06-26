@@ -14,6 +14,6 @@ impl ctf::Solution for Solution {
         challenge: &Self::Level,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
-        todo!("Solve me!")
+        Ebaat))
     }
 }

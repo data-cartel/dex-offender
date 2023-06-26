@@ -1,5 +1,7 @@
 # DEX OFFENDER
 
+Глеб просил добавить в Ридми forge install
+
 A compilation of smart contract wargames (currently only Ethernaut and DamnVulnerableDeFi). You can find the levels in `./contracts/$GAME_NAME` and add your solution to `./solutions/src/$GAME_NAME/lvl*.rs`.
 
 ## Smart contracts

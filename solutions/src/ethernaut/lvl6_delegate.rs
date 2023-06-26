@@ -1,19 +1,18 @@
 use async_trait::async_trait;
-use ctf::*;
 use ethers::prelude::*;
 use ethers::providers::Middleware;
 use ethers::utils::keccak256;
 
-pub struct EthernautLevel6Solution;
+pub struct Solution;
 
 #[async_trait]
-impl Solution for EthernautLevel6Solution {
-    type Level = EthernautLevel6;
+impl ctf::Solution for Solution {
+    type Level = ctf::EthernautLevel6;
 
     async fn solve(
         self,
         challenge: &Self::Level,
-        offender: Actor,
+        offender: ctf::Actor,
     ) -> eyre::Result<()> {
         todo!("Solve me!")
     }
@@ -26,6 +25,6 @@ mod tests {
     #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
-        ctf::check_solution(EthernautLevel6Solution).await
+        ctf::check_solution(Solution).await
     }
 }

@@ -1,18 +1,17 @@
 use async_trait::async_trait;
 use bindings::coin_flip::CoinFlip;
 use bindings::coin_flip_exploit::CoinFlipExploit;
-use ctf::*;
 
-struct EthernautLevel3Solution;
+struct Solution;
 
 #[async_trait]
-impl Solution for EthernautLevel3Solution {
-    type Level = EthernautLevel3;
+impl ctf::Solution for Solution {
+    type Level = ctf::EthernautLevel3;
 
     async fn solve(
         self,
         challenge: &Self::Level,
-        offender: Actor,
+        offender: ctf::Actor,
     ) -> eyre::Result<()> {
         todo!("Solve me!")
     }
@@ -25,6 +24,6 @@ mod tests {
     // #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
-        ctf::check_solution(EthernautLevel3Solution).await
+        ctf::check_solution(Solution).await
     }
 }

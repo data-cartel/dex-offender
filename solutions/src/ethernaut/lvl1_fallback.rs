@@ -2,18 +2,17 @@ use async_trait::async_trait;
 use ethers::prelude::*;
 
 use bindings::fallback::Fallback;
-use ctf::*;
 
-struct EthernautLevel1Solution;
+struct Solution;
 
 #[async_trait]
-impl Solution for EthernautLevel1Solution {
-    type Level = EthernautLevel1;
+impl ctf::Solution for Solution {
+    type Level = ctf::EthernautLevel1;
 
     async fn solve(
         self,
         challenge: &Self::Level,
-        offender: Actor,
+        offender: ctf::Actor,
     ) -> eyre::Result<()> {
         let contract =
             Fallback::new(challenge.contract_address, offender.clone());
@@ -44,6 +43,6 @@ mod tests {
     // #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
-        ctf::check_solution(EthernautLevel1Solution).await
+        ctf::check_solution(Solution).await
     }
 }

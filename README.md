@@ -25,11 +25,11 @@ use bindings::fallback::Fallback; // Rust bindings for the smart contract for th
 use ctf::*; /// <---- This is the part of the code that is responsible for
 //                                    deploying challenges and checking solutions
 
-struct EthernautLevel1Solution; // <-- Create an empty struct representing a level so
+struct Solution; // <-- Create an empty struct representing a level so
 //                           that you have something to implement the Solution trait for
 
 #[async_trait]
-impl Solution for EthernautLevel1Solution {
+impl Solution for Solution {
     type Level = EthernautLevel1; // If you press ctrl+] then VS Code will take you to the
 //                                   definition of this type so you can check what you can
 //                                   use to pass the level. Usually it's just the address
@@ -71,7 +71,7 @@ mod tests {
     // #[ignore] <------ comment out the ignore macro for the test to run
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
-        ctf::check_solution(EthernautLevel1Solution).await
+        ctf::check_solution(Solution).await
     }
 }
 ```

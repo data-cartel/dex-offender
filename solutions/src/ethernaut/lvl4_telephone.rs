@@ -1,17 +1,16 @@
 use async_trait::async_trait;
 use bindings::telephone_exploit::TelephoneExploit;
-use ctf::*;
 
-pub struct EthernautLevel4Solution;
+pub struct Solution;
 
 #[async_trait]
-impl Solution for EthernautLevel4Solution {
-    type Level = EthernautLevel4;
+impl ctf::Solution for Solution {
+    type Level = ctf::EthernautLevel4;
 
     async fn solve(
         self,
         challenge: &Self::Level,
-        offender: Actor,
+        offender: ctf::Actor,
     ) -> eyre::Result<()> {
         todo!("Solve me!")
     }
@@ -24,6 +23,6 @@ mod tests {
     // #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
-        ctf::check_solution(EthernautLevel4Solution).await
+        ctf::check_solution(Solution).await
     }
 }

@@ -13,6 +13,11 @@ pub struct Level6 {
 
 #[async_trait]
 impl Challenge for Level6 {
+    fn from_file() -> eyre::Result<Self> {
+        let ctfs = crate::CTFs::from_file()?;
+        Ok(ctfs.ethernaut.level6)
+    }
+
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 

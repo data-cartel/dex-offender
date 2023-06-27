@@ -5,6 +5,10 @@ use async_trait::async_trait;
 pub trait Challenge {
     const DESCRIPTION: &'static str;
 
+    fn from_file() -> eyre::Result<Self>
+    where
+        Self: Sized;
+
     async fn set_up(roles: &Roles) -> eyre::Result<Self>
     where
         Self: Sized;

@@ -1,11 +1,11 @@
 use ethers::prelude::*;
 
-pub mod damn_vulnerable_defi;
+// pub mod damn_vulnerable_defi;
 pub mod ethernaut;
 pub mod level;
 pub mod roles;
 
-pub use damn_vulnerable_defi::*;
+// pub use damn_vulnerable_defi::*;
 pub use ethernaut::*;
 pub use level::*;
 pub use roles::*;
@@ -31,10 +31,7 @@ where
     amount.into() * U256::from(10).pow(U256::from(18))
 }
 
-pub async fn check_solution<S: Solution>(
-    challenge: S::Level,
-    solution: S,
-) -> eyre::Result<()> {
+pub async fn check_solution<S: Solution>(solution: S) -> eyre::Result<()> {
     let provider = Provider::<Http>::try_from("http://localhost:8545")?;
 
     println!("\n\n{}", S::Level::DESCRIPTION);
@@ -42,18 +39,24 @@ pub async fn check_solution<S: Solution>(
     println!("Initializing accounts...");
     let roles = Roles::new(provider)?;
 
+    let level = S::Level::from_file()?;
+
     println!("Running the solution...");
-    solution.solve(&challenge, roles.offender.clone()).await?;
+    solution.solve(&level, roles.offender.clone()).await?;
 
     println!("Checking the solution...");
-    challenge.check(roles).await?;
+    level.check(roles).await?;
 
     let congratulations = "
-~~ $$ !! CONGRATULATIONS !! $$ ~~
+///   $$$  CONGRATULATIONS  $$$   ///
 
-Y O U P A S S E D T H E L E V E L
+    Y O U  H A V E  S O L V E D
+    T H E  C H A L L E N G E
 
-##################################
+youpassedthelevelyoupassedthelevelyou
+passedthelevelyoupassedthelevelyoupas
+sedthelevelyoupassedthelevelyoupassed
+-------------------------------------
     ";
 
     println!("{congratulations}\n");

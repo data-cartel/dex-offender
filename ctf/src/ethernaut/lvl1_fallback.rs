@@ -12,6 +12,11 @@ pub struct Level1 {
 
 #[async_trait]
 impl Challenge for Level1 {
+    fn from_file() -> eyre::Result<Self> {
+        let ctfs = crate::CTFs::from_file()?;
+        Ok(ctfs.ethernaut.level1)
+    }
+
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender, some_user: _ } = roles;
 

@@ -6,12 +6,13 @@ use crate::Challenge;
 use bindings::delegate::Delegate;
 use bindings::delegation::Delegation;
 
-pub struct EthernautLevel6 {
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+pub struct Level6 {
     pub delegation_address: Address,
 }
 
 #[async_trait]
-impl Challenge for EthernautLevel6 {
+impl Challenge for Level6 {
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 
@@ -30,8 +31,7 @@ impl Challenge for EthernautLevel6 {
         let owner = delegate.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let challenge =
-            EthernautLevel6 { delegation_address: delegation.address() };
+        let challenge = Level6 { delegation_address: delegation.address() };
 
         Ok(challenge)
     }
@@ -49,7 +49,7 @@ impl Challenge for EthernautLevel6 {
     - Method ids
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<EthernautLevel6> {
+    async fn check(self, roles: Roles) -> eyre::Result<Level6> {
         let Roles { deployer, .. } = roles;
         let delegation =
             Delegation::new(self.delegation_address, deployer.clone());

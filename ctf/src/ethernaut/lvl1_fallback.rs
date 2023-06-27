@@ -5,12 +5,13 @@ use crate::roles::*;
 use crate::{to_ether, Challenge};
 use bindings::fallback::Fallback;
 
-pub struct EthernautLevel1 {
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+pub struct Level1 {
     pub contract_address: Address,
 }
 
 #[async_trait]
-impl Challenge for EthernautLevel1 {
+impl Challenge for Level1 {
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender, some_user: _ } = roles;
 
@@ -41,8 +42,7 @@ impl Challenge for EthernautLevel1 {
         let owner = contract.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let challenge =
-            EthernautLevel1 { contract_address: contract.address() };
+        let challenge = Level1 { contract_address: contract.address() };
 
         Ok(challenge)
     }
@@ -63,7 +63,7 @@ impl Challenge for EthernautLevel1 {
     - Fallback methods
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<EthernautLevel1> {
+    async fn check(self, roles: Roles) -> eyre::Result<Level1> {
         let Roles { deployer, offender, some_user: _ } = roles;
         let contract = Fallback::new(self.contract_address, deployer.clone());
 

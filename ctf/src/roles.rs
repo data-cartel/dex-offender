@@ -11,9 +11,7 @@ pub struct Roles {
 }
 
 impl Roles {
-    pub fn new() -> eyre::Result<Self> {
-        let provider = Provider::<Http>::try_from("http://localhost:8545")?;
-
+    pub fn new(provider: Provider<Http>) -> eyre::Result<Self> {
         let deployer: LocalWallet =
             "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80".parse()?;
         let deployer =

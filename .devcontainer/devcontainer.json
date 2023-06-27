@@ -5,7 +5,7 @@
 		"dockerfile": "Dockerfile",
 		"context": "."
 	},
-	"postAttachCommand": "anvil --steps-tracing",
+	"postAttachCommand": "anvil --steps-tracing --load-state $(git rev-parse --show-toplevel)/state.json",
 	"containerUser": "vscode",
 	"remoteUser": "vscode",
 	"features": {

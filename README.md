@@ -30,7 +30,7 @@ struct Solution; // <-- Create an empty struct representing a level so
 
 #[async_trait]
 impl Solution for Solution {
-    type Level = EthernautLevel1; // If you press ctrl+] then VS Code will take you to the
+    type Level = Level1; // If you press ctrl+] then VS Code will take you to the
 //                                   definition of this type so you can check what you can
 //                                   use to pass the level. Usually it's just the address
 //                                   to which the target contract was deployed
@@ -144,11 +144,13 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ## Local blockchain - Anvil
 
-If you're using the dev container then you already have a local blockchain running in one of the VS code terminals. If not, you can start it by running `anvil`. I would recommend turning on tracing to make debugging easier.
+If you're using the dev container then you already have a local blockchain running in one of the VS code terminals. If not, you can start it by running
 
 ``` sh
-anvil --steps-tracing
+anvil --steps-tracing --load-state state.json
 ```
+
+`--steps-tracing` turns on tracing in the build-in Geth client. This is useful for debugging. `--load-state` loads the state from the file specified. `state.json` contains the state of the blockchain with all the levels set up.
 
 | Field             | Value                                                       |
 | ----------------- | ----------------------------------------------------------- |

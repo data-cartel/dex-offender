@@ -7,7 +7,7 @@ pub struct Solution;
 
 #[async_trait]
 impl ctf::Solution for Solution {
-    type Level = ctf::EthernautLevel6;
+    type Level = ctf::Level6;
 
     async fn solve(
         self,

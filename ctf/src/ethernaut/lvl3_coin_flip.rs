@@ -5,12 +5,13 @@ use crate::roles::*;
 use crate::Challenge;
 use bindings::coin_flip::CoinFlip;
 
-pub struct EthernautLevel3 {
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+pub struct Level3 {
     pub contract_address: Address,
 }
 
 #[async_trait]
-impl Challenge for EthernautLevel3 {
+impl Challenge for Level3 {
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 
@@ -21,8 +22,7 @@ impl Challenge for EthernautLevel3 {
         let consecutive_wins = contract.consecutive_wins().await?;
         assert_eq!(consecutive_wins, 0.into());
 
-        let challenge =
-            EthernautLevel3 { contract_address: contract.address() };
+        let challenge = Level3 { contract_address: contract.address() };
 
         Ok(challenge)
     }
@@ -38,7 +38,7 @@ impl Challenge for EthernautLevel3 {
     - README.md
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<EthernautLevel3> {
+    async fn check(self, roles: Roles) -> eyre::Result<Level3> {
         let Roles { deployer, .. } = roles;
         let contract = CoinFlip::new(self.contract_address, deployer.clone());
 

@@ -7,7 +7,7 @@ struct Solution;
 
 #[async_trait]
 impl ctf::Solution for Solution {
-    type Level = ctf::EthernautLevel1;
+    type Level = ctf::Level1;
 
     async fn solve(
         self,
@@ -43,6 +43,7 @@ mod tests {
     // #[ignore]
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
-        ctf::check_solution(Solution).await
+        let ctfs = ctf::CTFs::from_file()?;
+        ctf::check_solution(ctfs.ethernaut.level1, Solution).await
     }
 }

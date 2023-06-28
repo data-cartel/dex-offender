@@ -12,15 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with: # need to get the submodules
+        with:
           submodules: recursive
 
       - name: Install Foundry
         uses: onbjerg/foundry-toolchain@v1
-        # with:
-        #   version: nightly
 
-      - name: Check fmt
+      - name: Check formatting
         run: forge fmt --check
 
       - name: Build contracts

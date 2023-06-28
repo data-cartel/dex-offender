@@ -4,10 +4,10 @@ A compilation of smart contract wargames (currently only Ethernaut and DamnVulne
 
 ## Smart contracts
 
-Install Solidity libraries
+Initialize `git` submodules to pull in `forge` depdendencies
 
 ```sh
-forge install
+git submodule update --init --recursive
 ```
 
 To build contracts and generate Rust bindings use

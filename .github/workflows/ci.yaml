@@ -27,7 +27,7 @@ jobs:
       - name: Build contracts
         run: forge build --sizes
 
-      - name: Check that bindings are correct
+      - name: Re-generate bindings
         run: forge bind -b ./bindings --crate-name bindings --overwrite
 
       - name: Install toolchain

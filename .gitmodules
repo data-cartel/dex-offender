@@ -28,7 +28,3 @@
 [submodule "lib/v2-core"]
 	path = lib/v2-core
 	url = https://github.com/Uniswap/v2-core
-[submodule "lib/gp-v2-contracts"]
-	path = lib/gp-v2-contracts
-	url = https://github.com/gnosis/gp-v2-contracts
-

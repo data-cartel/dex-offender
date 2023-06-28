@@ -69,7 +69,8 @@ contract WalletRegistry is IProxyCreationCallback, Ownable {
         external
         override
     {
-        if (token.balanceOf(address(this)) < PAYMENT_AMOUNT) { // fail early
+        if (token.balanceOf(address(this)) < PAYMENT_AMOUNT) {
+            // fail early
             revert NotEnoughFunds();
         }
 
@@ -110,8 +111,9 @@ contract WalletRegistry is IProxyCreationCallback, Ownable {
         }
 
         address fallbackManager = _getFallbackManager(walletAddress);
-        if (fallbackManager != address(0))
+        if (fallbackManager != address(0)) {
             revert InvalidFallbackManager(fallbackManager);
+        }
 
         // Remove owner as beneficiary
         beneficiaries[walletOwner] = false;
@@ -125,11 +127,7 @@ contract WalletRegistry is IProxyCreationCallback, Ownable {
 
     function _getFallbackManager(address payable wallet) private view returns (address) {
         return abi.decode(
-            GnosisSafe(wallet).getStorageAt(
-                uint256(keccak256("fallback_manager.handler.address")),
-                0x20
-            ),
-            (address)
+            GnosisSafe(wallet).getStorageAt(uint256(keccak256("fallback_manager.handler.address")), 0x20), (address)
         );
     }
 }

@@ -15,8 +15,8 @@ jobs:
 
       - name: Install Foundry
         uses: onbjerg/foundry-toolchain@v1
-        # with:
-        #   version: nightly
+        with:
+          version: nightly
 
       - name: Pull library deps
         run: forge install

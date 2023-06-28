@@ -22,7 +22,7 @@ jobs:
         run: forge fmt --check
 
       - name: Build contracts
-        run: forge build --sizes
+        run: forge build
 
       - name: Check that bindings are correct
         run: forge bind -b ./bindings --crate-name bindings

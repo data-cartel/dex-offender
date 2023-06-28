@@ -2,7 +2,13 @@
 
 A compilation of smart contract wargames (currently only Ethernaut and DamnVulnerableDeFi). You can find the levels in `./contracts/$GAME_NAME` and add your solution to `./solutions/src/$GAME_NAME/lvl*.rs`.
 
-## Deploying your own contracts
+## Smart contracts
+
+Install Solidity libraries
+
+```sh
+forge install
+```
 
 To build contracts and generate Rust bindings use
 

@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Foundry
+        uses: onbjerg/foundry-toolchain@v1
+        # with:
+        #   version: nightly
+
+      - name: Pull library deps
+        run: forge install
+
+      - name: Check fmt
+        run: forge fmt --check
+
+      - name: Build contracts
+        run: forge build --sizes
+
+      - name: Check that bindings are correct
+        run: forge bind -b ./bindings --crate-name bindings
+
+      - name: Install toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+
+      - name: cargo build
+        run: cargo build --workspace --all-features
+
+      # - name: cargo test
+      #   run: cargo test -p solutions -- --nocapture

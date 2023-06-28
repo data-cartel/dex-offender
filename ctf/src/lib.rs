@@ -31,34 +31,36 @@ where
     amount.into() * U256::from(10).pow(U256::from(18))
 }
 
-pub async fn check_solution<S: Solution>(solution: S) -> eyre::Result<()> {
-    let provider = Provider::<Http>::try_from("http://localhost:8545")?;
-
-    println!("\n\n{}", S::Level::DESCRIPTION);
-
-    println!("Initializing accounts...");
-    let roles = Roles::new(provider)?;
-
+pub async fn check_solution<S: Solution>(
+    roles: &Roles,
+    solution: S,
+) -> eyre::Result<()> {
     let level = S::Level::from_file()?;
 
+    if level.check(roles).await? {
+        return Ok(());
+    }
+    println!("\n\n{}", S::Level::DESCRIPTION);
+
     println!("Running the solution...");
-    solution.solve(&level, roles.offender.clone()).await?;
+    solution.solve(&level, &roles.offender).await?;
 
     println!("Checking the solution...");
-    level.check(roles).await?;
+    let solved = level.check(roles).await?;
+    assert!(solved);
 
     let congratulations = "
-///   $$$  CONGRATULATIONS  $$$   ///
+-------------------------------------
+//////     CONGRATULATIONS     //////
 
-    Y O U  H A V E  S O L V E D
-    T H E  C H A L L E N G E
+$$$  Y O U  H A V E  S O L V E D  $$$
+$$$   T H E   C H A L L E N G E   $$$
 
 youpassedthelevelyoupassedthelevelyou
 passedthelevelyoupassedthelevelyoupas
 sedthelevelyoupassedthelevelyoupassed
 -------------------------------------
     ";
-
     println!("{congratulations}\n");
 
     Ok(())

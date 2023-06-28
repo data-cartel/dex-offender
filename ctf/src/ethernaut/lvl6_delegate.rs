@@ -54,15 +54,15 @@ impl Challenge for Level6 {
     - Method ids
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<Level6> {
+    async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
         let delegation =
             Delegation::new(self.delegation_address, deployer.clone());
 
         println!("Checking that you became the owner...");
         let owner = delegation.owner().await?;
-        assert_eq!(owner, roles.offender.address());
+        let is_owner = owner == roles.offender.address();
 
-        Ok(self)
+        Ok(is_owner)
     }
 }

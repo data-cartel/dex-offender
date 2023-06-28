@@ -43,14 +43,14 @@ impl Challenge for Level3 {
     - README.md
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<Level3> {
+    async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
         let contract = CoinFlip::new(self.contract_address, deployer.clone());
 
         println!("Checking that you won 10 times in a row...");
         let consecutive_wins = contract.consecutive_wins().await?;
-        assert_eq!(consecutive_wins, 10.into());
+        let ten_wins = consecutive_wins == 10.into();
 
-        Ok(self)
+        Ok(ten_wins)
     }
 }

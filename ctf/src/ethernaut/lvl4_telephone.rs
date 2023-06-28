@@ -38,14 +38,14 @@ impl Challenge for Level4 {
     Claim the ownership of the contract to complete this level.
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<Level4> {
+    async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
         let contract = Telephone::new(self.contract_address, deployer.clone());
 
         println!("Checking that you became the owner...");
         let owner = contract.owner().await?;
-        assert_eq!(owner, roles.offender.address());
+        let is_owner = owner == roles.offender.address();
 
-        Ok(self)
+        Ok(is_owner)
     }
 }

@@ -13,9 +13,7 @@ pub trait Challenge {
     where
         Self: Sized;
 
-    async fn check(self, roles: Roles) -> eyre::Result<Self>
-    where
-        Self: Sized;
+    async fn check(&self, roles: &Roles) -> eyre::Result<bool>;
 }
 
 #[async_trait]
@@ -25,6 +23,6 @@ pub trait Solution {
     async fn solve(
         self,
         challenge: &Self::Level,
-        offender: Actor,
+        offender: &Actor,
     ) -> eyre::Result<()>;
 }

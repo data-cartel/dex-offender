@@ -5,12 +5,18 @@ use crate::roles::*;
 use crate::Challenge;
 use bindings::telephone::Telephone;
 
-pub struct EthernautLevel4 {
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+pub struct Level4 {
     pub contract_address: Address,
 }
 
 #[async_trait]
-impl Challenge for EthernautLevel4 {
+impl Challenge for Level4 {
+    fn from_file() -> eyre::Result<Self> {
+        let ctfs = crate::CTFs::from_file()?;
+        Ok(ctfs.ethernaut.level4)
+    }
+
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 
@@ -21,8 +27,7 @@ impl Challenge for EthernautLevel4 {
         let owner = contract.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let challenge =
-            EthernautLevel4 { contract_address: contract.address() };
+        let challenge = Level4 { contract_address: contract.address() };
 
         Ok(challenge)
     }
@@ -33,14 +38,14 @@ impl Challenge for EthernautLevel4 {
     Claim the ownership of the contract to complete this level.
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<EthernautLevel4> {
+    async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
         let contract = Telephone::new(self.contract_address, deployer.clone());
 
         println!("Checking that you became the owner...");
         let owner = contract.owner().await?;
-        assert_eq!(owner, roles.offender.address());
+        let is_owner = owner == roles.offender.address();
 
-        Ok(self)
+        Ok(is_owner)
     }
 }

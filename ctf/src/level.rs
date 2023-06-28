@@ -5,13 +5,15 @@ use async_trait::async_trait;
 pub trait Challenge {
     const DESCRIPTION: &'static str;
 
+    fn from_file() -> eyre::Result<Self>
+    where
+        Self: Sized;
+
     async fn set_up(roles: &Roles) -> eyre::Result<Self>
     where
         Self: Sized;
 
-    async fn check(self, roles: Roles) -> eyre::Result<Self>
-    where
-        Self: Sized;
+    async fn check(&self, roles: &Roles) -> eyre::Result<bool>;
 }
 
 #[async_trait]
@@ -21,6 +23,6 @@ pub trait Solution {
     async fn solve(
         self,
         challenge: &Self::Level,
-        offender: Actor,
+        offender: &Actor,
     ) -> eyre::Result<()>;
 }

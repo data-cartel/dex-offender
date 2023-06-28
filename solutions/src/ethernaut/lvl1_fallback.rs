@@ -3,16 +3,16 @@ use ethers::prelude::*;
 
 use bindings::fallback::Fallback;
 
-struct Solution;
+pub(crate) struct Solution;
 
 #[async_trait]
 impl ctf::Solution for Solution {
-    type Level = ctf::EthernautLevel1;
+    type Level = ctf::ethernaut::Level1;
 
     async fn solve(
         self,
         challenge: &Self::Level,
-        offender: ctf::Actor,
+        offender: &ctf::Actor,
     ) -> eyre::Result<()> {
         let contract =
             Fallback::new(challenge.contract_address, offender.clone());
@@ -33,16 +33,5 @@ impl ctf::Solution for Solution {
         contract.withdraw().send().await?.await?;
 
         Ok(())
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // #[ignore]
-    #[tokio::test]
-    async fn test() -> eyre::Result<()> {
-        ctf::check_solution(Solution).await
     }
 }

@@ -6,12 +6,18 @@ use crate::Challenge;
 use bindings::delegate::Delegate;
 use bindings::delegation::Delegation;
 
-pub struct EthernautLevel6 {
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+pub struct Level6 {
     pub delegation_address: Address,
 }
 
 #[async_trait]
-impl Challenge for EthernautLevel6 {
+impl Challenge for Level6 {
+    fn from_file() -> eyre::Result<Self> {
+        let ctfs = crate::CTFs::from_file()?;
+        Ok(ctfs.ethernaut.level6)
+    }
+
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 
@@ -30,8 +36,7 @@ impl Challenge for EthernautLevel6 {
         let owner = delegate.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let challenge =
-            EthernautLevel6 { delegation_address: delegation.address() };
+        let challenge = Level6 { delegation_address: delegation.address() };
 
         Ok(challenge)
     }
@@ -49,15 +54,15 @@ impl Challenge for EthernautLevel6 {
     - Method ids
     ";
 
-    async fn check(self, roles: Roles) -> eyre::Result<EthernautLevel6> {
+    async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
         let delegation =
             Delegation::new(self.delegation_address, deployer.clone());
 
         println!("Checking that you became the owner...");
         let owner = delegation.owner().await?;
-        assert_eq!(owner, roles.offender.address());
+        let is_owner = owner == roles.offender.address();
 
-        Ok(self)
+        Ok(is_owner)
     }
 }

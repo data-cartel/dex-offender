@@ -16,6 +16,11 @@ pub struct DamnVulnerableDeFiChallenge1 {
 
 #[async_trait]
 impl Challenge for DamnVulnerableDeFiChallenge1 {
+    fn from_file() -> eyre::Result<Self> {
+        let ctfs = crate::CTFs::from_file()?;
+        Ok(ctfs.ethernaut.level1)
+    }
+
     async fn set_up(
         roles: &Roles,
     ) -> eyre::Result<DamnVulnerableDeFiChallenge1> {

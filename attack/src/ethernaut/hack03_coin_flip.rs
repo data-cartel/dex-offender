@@ -1,5 +1,4 @@
 use async_trait::async_trait;
-use bindings::coin_flip_exploit::CoinFlipExploit;
 use ctf::ethernaut::lvl03_coin_flip::*;
 
 pub(crate) struct Exploit;

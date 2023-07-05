@@ -1,5 +1,4 @@
 use async_trait::async_trait;
-use bindings::telephone_exploit::TelephoneExploit;
 use ctf::ethernaut::lvl04_telephone::*;
 
 pub(crate) struct Exploit;

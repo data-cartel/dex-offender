@@ -2,12 +2,12 @@ use async_trait::async_trait;
 use ethers::prelude::*;
 
 use crate::roles::*;
-use crate::{to_ether, Challenge};
+use crate::{to_ether, Target};
 use bindings::damn_valuable_token::DamnValuableToken;
 use bindings::receiver_unstoppable::ReceiverUnstoppable;
 use bindings::unstoppable_vault::UnstoppableVault;
 
-pub struct DamnVulnerableDeFiChallenge1 {
+pub struct DamnVulnerableDeFiTarget1 {
     pub vault: UnstoppableVault<SignerMiddleware<Provider<Http>, LocalWallet>>,
     pub token: DamnValuableToken<SignerMiddleware<Provider<Http>, LocalWallet>>,
     pub receiver:
@@ -15,15 +15,13 @@ pub struct DamnVulnerableDeFiChallenge1 {
 }
 
 #[async_trait]
-impl Challenge for DamnVulnerableDeFiChallenge1 {
+impl Target for DamnVulnerableDeFiTarget1 {
     fn from_file() -> eyre::Result<Self> {
         let ctfs = crate::CTFs::from_file()?;
-        Ok(ctfs.ethernaut.level1)
+        Ok(ctfs.ethernaut.target)
     }
 
-    async fn set_up(
-        roles: &Roles,
-    ) -> eyre::Result<DamnVulnerableDeFiChallenge1> {
+    async fn set_up(roles: &Roles) -> eyre::Result<DamnVulnerableDeFiTarget1> {
         let Roles { deployer, offender, some_user } = roles;
 
         let tokens_in_vault = to_ether(1_000_000);
@@ -89,18 +87,18 @@ impl Challenge for DamnVulnerableDeFiChallenge1 {
         let receiver = receiver.send().await?;
         receiver.execute_flash_loan(flash_loan_amount).send().await?.await?;
 
-        let challenge = DamnVulnerableDeFiChallenge1 { vault, token, receiver };
+        let target = DamnVulnerableDeFiTarget1 { vault, token, receiver };
 
-        Ok(challenge)
+        Ok(target)
     }
 
     const DESCRIPTION: &'static str = "Damn Vulnerable DeFi
-     Challenge #1 - Unstoppable
+     Target #1 - Unstoppable
 
     There’s a tokenized vault with a million DVT tokens deposited. It’s \
     offering flash loans for free, until the grace period ends.
 
-    To pass the challenge, make the vault stop offering flash loans.
+    To pass the target, make the vault stop offering flash loans.
 
     You start with 10 DVT tokens in balance.
     ";
@@ -108,7 +106,7 @@ impl Challenge for DamnVulnerableDeFiChallenge1 {
     async fn check(
         self,
         _offender: Roles,
-    ) -> eyre::Result<DamnVulnerableDeFiChallenge1> {
-        unimplemented!("check function not implemented for this challenge")
+    ) -> eyre::Result<DamnVulnerableDeFiTarget1> {
+        unimplemented!("check function not implemented for this target")
     }
 }

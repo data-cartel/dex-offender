@@ -2,8 +2,8 @@ use crate::roles::*;
 use async_trait::async_trait;
 
 #[async_trait]
-pub trait Challenge {
-    const DESCRIPTION: &'static str;
+pub trait Level {
+    fn name(&self) -> &'static str;
 
     fn from_file() -> eyre::Result<Self>
     where
@@ -17,12 +17,12 @@ pub trait Challenge {
 }
 
 #[async_trait]
-pub trait Solution {
-    type Level: Challenge;
+pub trait Exploit {
+    type Target: Level;
 
-    async fn solve(
+    async fn attack(
         self,
-        challenge: &Self::Level,
+        target: &Self::Target,
         offender: &Actor,
     ) -> eyre::Result<()>;
 }

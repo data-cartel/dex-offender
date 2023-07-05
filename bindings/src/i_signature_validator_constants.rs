@@ -10,181 +10,30 @@ pub use i_signature_validator_constants::*;
     non_camel_case_types,
 )]
 pub mod i_signature_validator_constants {
-    #[rustfmt::skip]
-    const __ABI: &str = "[]";
+    #[allow(deprecated)]
+    fn __abi() -> ::ethers::core::abi::Abi {
+        ::ethers::core::abi::ethabi::Contract {
+            constructor: ::core::option::Option::None,
+            functions: ::std::collections::BTreeMap::new(),
+            events: ::std::collections::BTreeMap::new(),
+            errors: ::std::collections::BTreeMap::new(),
+            receive: false,
+            fallback: false,
+        }
+    }
     ///The parsed JSON ABI of the contract.
     pub static ISIGNATUREVALIDATORCONSTANTS_ABI: ::ethers::contract::Lazy<
         ::ethers::core::abi::Abi,
-    > = ::ethers::contract::Lazy::new(|| {
-        ::ethers::core::utils::__serde_json::from_str(__ABI)
-            .expect("ABI is always valid")
-    });
+    > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        52,
-        128,
-        21,
-        96,
-        15,
-        87,
-        96,
-        0,
-        128,
-        253,
-        91,
-        80,
-        96,
-        63,
-        128,
-        96,
-        29,
-        96,
-        0,
-        57,
-        96,
-        0,
-        243,
-        254,
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        214,
-        107,
-        191,
-        13,
-        79,
-        59,
-        253,
-        165,
-        228,
-        142,
-        23,
-        194,
-        154,
-        254,
-        136,
-        77,
-        92,
-        49,
-        47,
-        183,
-        14,
-        114,
-        189,
-        212,
-        216,
-        194,
-        81,
-        80,
-        130,
-        177,
-        74,
-        144,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The bytecode of the contract.
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \n\xA9\xE3B(\x9B\xFF\xD9\x8E\"\xDA\x07q\xD1\xDC\x95\xAB\xF4Z\x05x\xE5\x1D\xEA4\x19\xB5\xE2\xC6x$\x91dsolcC\0\x08\x14\x003";
+    /// The bytecode of the contract.
     pub static ISIGNATUREVALIDATORCONSTANTS_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        214,
-        107,
-        191,
-        13,
-        79,
-        59,
-        253,
-        165,
-        228,
-        142,
-        23,
-        194,
-        154,
-        254,
-        136,
-        77,
-        92,
-        49,
-        47,
-        183,
-        14,
-        114,
-        189,
-        212,
-        216,
-        194,
-        81,
-        80,
-        130,
-        177,
-        74,
-        144,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The deployed bytecode of the contract.
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \n\xA9\xE3B(\x9B\xFF\xD9\x8E\"\xDA\x07q\xD1\xDC\x95\xAB\xF4Z\x05x\xE5\x1D\xEA4\x19\xB5\xE2\xC6x$\x91dsolcC\0\x08\x14\x003";
+    /// The deployed bytecode of the contract.
     pub static ISIGNATUREVALIDATORCONSTANTS_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,
     );
@@ -207,7 +56,7 @@ pub mod i_signature_validator_constants {
     }
     impl<M> ::core::fmt::Debug for ISignatureValidatorConstants<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(stringify!(ISignatureValidatorConstants))
+            f.debug_tuple(::core::stringify!(ISignatureValidatorConstants))
                 .field(&self.address())
                 .finish()
         }

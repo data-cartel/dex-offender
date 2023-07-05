@@ -10,15 +10,34 @@ pub use i_flash_loan_ether_receiver::*;
     non_camel_case_types,
 )]
 pub mod i_flash_loan_ether_receiver {
-    #[rustfmt::skip]
-    const __ABI: &str = "[{\"inputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\",\"name\":\"execute\",\"outputs\":[]}]";
+    #[allow(deprecated)]
+    fn __abi() -> ::ethers::core::abi::Abi {
+        ::ethers::core::abi::ethabi::Contract {
+            constructor: ::core::option::Option::None,
+            functions: ::core::convert::From::from([
+                (
+                    ::std::borrow::ToOwned::to_owned("execute"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("execute"),
+                            inputs: ::std::vec![],
+                            outputs: ::std::vec![],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::Payable,
+                        },
+                    ],
+                ),
+            ]),
+            events: ::std::collections::BTreeMap::new(),
+            errors: ::std::collections::BTreeMap::new(),
+            receive: false,
+            fallback: false,
+        }
+    }
     ///The parsed JSON ABI of the contract.
     pub static IFLASHLOANETHERRECEIVER_ABI: ::ethers::contract::Lazy<
         ::ethers::core::abi::Abi,
-    > = ::ethers::contract::Lazy::new(|| {
-        ::ethers::core::utils::__serde_json::from_str(__ABI)
-            .expect("ABI is always valid")
-    });
+    > = ::ethers::contract::Lazy::new(__abi);
     pub struct IFlashLoanEtherReceiver<M>(::ethers::contract::Contract<M>);
     impl<M> ::core::clone::Clone for IFlashLoanEtherReceiver<M> {
         fn clone(&self) -> Self {
@@ -38,7 +57,7 @@ pub mod i_flash_loan_ether_receiver {
     }
     impl<M> ::core::fmt::Debug for IFlashLoanEtherReceiver<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(stringify!(IFlashLoanEtherReceiver))
+            f.debug_tuple(::core::stringify!(IFlashLoanEtherReceiver))
                 .field(&self.address())
                 .finish()
         }

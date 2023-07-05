@@ -1,0 +1,14 @@
+[package]
+name = "attack"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ctf = { path = "../ctf" }
+async-trait = "0.1.68"
+bindings = { path = "../bindings" }
+ethers = { version = "2", default-features = false, features = ["rustls"] }
+tokio = { version = "1.19", features = ["macros", "rt-multi-thread", "time"] }
+eyre = "0.6"

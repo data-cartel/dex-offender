@@ -10,11 +10,21 @@ pub use context::*;
     non_camel_case_types,
 )]
 pub mod context {
-    #[rustfmt::skip]
-    const __ABI: &str = "[]";
+    #[allow(deprecated)]
+    fn __abi() -> ::ethers::core::abi::Abi {
+        ::ethers::core::abi::ethabi::Contract {
+            constructor: ::core::option::Option::None,
+            functions: ::std::collections::BTreeMap::new(),
+            events: ::std::collections::BTreeMap::new(),
+            errors: ::std::collections::BTreeMap::new(),
+            receive: false,
+            fallback: false,
+        }
+    }
     ///The parsed JSON ABI of the contract.
-    pub static CONTEXT_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> = ::ethers::contract::Lazy::new(||
-    ::ethers::core::utils::__serde_json::from_str(__ABI).expect("ABI is always valid"));
+    pub static CONTEXT_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> = ::ethers::contract::Lazy::new(
+        __abi,
+    );
     pub struct Context<M>(::ethers::contract::Contract<M>);
     impl<M> ::core::clone::Clone for Context<M> {
         fn clone(&self) -> Self {
@@ -34,7 +44,7 @@ pub mod context {
     }
     impl<M> ::core::fmt::Debug for Context<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(stringify!(Context)).field(&self.address()).finish()
+            f.debug_tuple(::core::stringify!(Context)).field(&self.address()).finish()
         }
     }
     impl<M: ::ethers::providers::Middleware> Context<M> {

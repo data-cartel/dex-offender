@@ -3,6 +3,7 @@
   "solidity.packageDefaultDependenciesContractsDirectory": "contracts",
   "solidity.packageDefaultDependenciesDirectory": "lib",
   "solidity.monoRepoSupport": true,
+  "solidity.linter": "",
   "editor.formatOnSave": true,
   "[solidity]": {
     "editor.defaultFormatter": "JuanBlanco.solidity"

@@ -26,13 +26,13 @@ pub mod self_authorized {
         __abi,
     );
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xAE\x1E\xDFR\xBD\xB3(\x86\xDBO\x87f\xE2z\xDE\x87\xDDV\xC7\xB1\xAD[;\xA9I3\x10\x1C\x83\xB5\0\ndsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 `\xCEM\x82\xFEjx\x1Eia\x9A\x8FB\xDC\n?\xA2\xE4\x06\xA9\xF6T\xB1\xF0\xA1\xC3\x1D\xBA\xE3\x84]vdsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static SELFAUTHORIZED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xAE\x1E\xDFR\xBD\xB3(\x86\xDBO\x87f\xE2z\xDE\x87\xDDV\xC7\xB1\xAD[;\xA9I3\x10\x1C\x83\xB5\0\ndsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 `\xCEM\x82\xFEjx\x1Eia\x9A\x8FB\xDC\n?\xA2\xE4\x06\xA9\xF6T\xB1\xF0\xA1\xC3\x1D\xBA\xE3\x84]vdsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static SELFAUTHORIZED_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

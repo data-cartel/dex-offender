@@ -16,7 +16,89 @@ pub mod fixed_point_math_lib {
             constructor: ::core::option::Option::None,
             functions: ::std::collections::BTreeMap::new(),
             events: ::std::collections::BTreeMap::new(),
-            errors: ::std::collections::BTreeMap::new(),
+            errors: ::core::convert::From::from([
+                (
+                    ::std::borrow::ToOwned::to_owned("DivFailed"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("DivFailed"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("DivWadFailed"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("DivWadFailed"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("ExpOverflow"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("ExpOverflow"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("FactorialOverflow"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("FactorialOverflow"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("FullMulDivFailed"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("FullMulDivFailed"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("LnWadUndefined"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("LnWadUndefined"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Log2Undefined"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("Log2Undefined"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("MulDivFailed"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("MulDivFailed"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("MulWadFailed"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("MulWadFailed"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+            ]),
             receive: false,
             fallback: false,
         }
@@ -26,13 +108,13 @@ pub mod fixed_point_math_lib {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 n\xD2\x0Fh\xBE\xC4\x04i\xF9+}\x99J>\xB3T\x1CDD\xC3\xFF\x94B\x96u\x1Eq\xCCj\xA6\xA0ndsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 =\x02\x9C\xEAx\xAC\xC2\xC0@\xB7u\xF3J\xA2\xDD\xA0\xCA\xB7\xFE\xFA\x91\xEB8\xD1\x9BR\x87\xDF\x9E6\xDFadsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static FIXEDPOINTMATHLIB_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 n\xD2\x0Fh\xBE\xC4\x04i\xF9+}\x99J>\xB3T\x1CDD\xC3\xFF\x94B\x96u\x1Eq\xCCj\xA6\xA0ndsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 =\x02\x9C\xEAx\xAC\xC2\xC0@\xB7u\xF3J\xA2\xDD\xA0\xCA\xB7\xFE\xFA\x91\xEB8\xD1\x9BR\x87\xDF\x9E6\xDFadsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static FIXEDPOINTMATHLIB_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,
@@ -120,6 +202,323 @@ pub mod fixed_point_math_lib {
     for FixedPointMathLib<M> {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
+        }
+    }
+    ///Custom Error type `DivFailed` with signature `DivFailed()` and selector `0x65244e4e`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "DivFailed", abi = "DivFailed()")]
+    pub struct DivFailed;
+    ///Custom Error type `DivWadFailed` with signature `DivWadFailed()` and selector `0x7c5f487d`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "DivWadFailed", abi = "DivWadFailed()")]
+    pub struct DivWadFailed;
+    ///Custom Error type `ExpOverflow` with signature `ExpOverflow()` and selector `0xa37bfec9`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "ExpOverflow", abi = "ExpOverflow()")]
+    pub struct ExpOverflow;
+    ///Custom Error type `FactorialOverflow` with signature `FactorialOverflow()` and selector `0xaba0f2a2`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "FactorialOverflow", abi = "FactorialOverflow()")]
+    pub struct FactorialOverflow;
+    ///Custom Error type `FullMulDivFailed` with signature `FullMulDivFailed()` and selector `0xae47f702`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "FullMulDivFailed", abi = "FullMulDivFailed()")]
+    pub struct FullMulDivFailed;
+    ///Custom Error type `LnWadUndefined` with signature `LnWadUndefined()` and selector `0x1615e638`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "LnWadUndefined", abi = "LnWadUndefined()")]
+    pub struct LnWadUndefined;
+    ///Custom Error type `Log2Undefined` with signature `Log2Undefined()` and selector `0x5be3aa5c`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "Log2Undefined", abi = "Log2Undefined()")]
+    pub struct Log2Undefined;
+    ///Custom Error type `MulDivFailed` with signature `MulDivFailed()` and selector `0xad251c27`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "MulDivFailed", abi = "MulDivFailed()")]
+    pub struct MulDivFailed;
+    ///Custom Error type `MulWadFailed` with signature `MulWadFailed()` and selector `0xbac65e5b`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "MulWadFailed", abi = "MulWadFailed()")]
+    pub struct MulWadFailed;
+    ///Container type for all of the contract's custom errors
+    #[derive(Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash)]
+    pub enum FixedPointMathLibErrors {
+        DivFailed(DivFailed),
+        DivWadFailed(DivWadFailed),
+        ExpOverflow(ExpOverflow),
+        FactorialOverflow(FactorialOverflow),
+        FullMulDivFailed(FullMulDivFailed),
+        LnWadUndefined(LnWadUndefined),
+        Log2Undefined(Log2Undefined),
+        MulDivFailed(MulDivFailed),
+        MulWadFailed(MulWadFailed),
+        /// The standard solidity revert string, with selector
+        /// Error(string) -- 0x08c379a0
+        RevertString(::std::string::String),
+    }
+    impl ::ethers::core::abi::AbiDecode for FixedPointMathLibErrors {
+        fn decode(
+            data: impl AsRef<[u8]>,
+        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError> {
+            let data = data.as_ref();
+            if let Ok(decoded)
+                = <::std::string::String as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::RevertString(decoded));
+            }
+            if let Ok(decoded)
+                = <DivFailed as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::DivFailed(decoded));
+            }
+            if let Ok(decoded)
+                = <DivWadFailed as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::DivWadFailed(decoded));
+            }
+            if let Ok(decoded)
+                = <ExpOverflow as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::ExpOverflow(decoded));
+            }
+            if let Ok(decoded)
+                = <FactorialOverflow as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::FactorialOverflow(decoded));
+            }
+            if let Ok(decoded)
+                = <FullMulDivFailed as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::FullMulDivFailed(decoded));
+            }
+            if let Ok(decoded)
+                = <LnWadUndefined as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::LnWadUndefined(decoded));
+            }
+            if let Ok(decoded)
+                = <Log2Undefined as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Log2Undefined(decoded));
+            }
+            if let Ok(decoded)
+                = <MulDivFailed as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::MulDivFailed(decoded));
+            }
+            if let Ok(decoded)
+                = <MulWadFailed as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::MulWadFailed(decoded));
+            }
+            Err(::ethers::core::abi::Error::InvalidData.into())
+        }
+    }
+    impl ::ethers::core::abi::AbiEncode for FixedPointMathLibErrors {
+        fn encode(self) -> ::std::vec::Vec<u8> {
+            match self {
+                Self::DivFailed(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::DivWadFailed(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::ExpOverflow(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::FactorialOverflow(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::FullMulDivFailed(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::LnWadUndefined(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Log2Undefined(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::MulDivFailed(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::MulWadFailed(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::RevertString(s) => ::ethers::core::abi::AbiEncode::encode(s),
+            }
+        }
+    }
+    impl ::ethers::contract::ContractRevert for FixedPointMathLibErrors {
+        fn valid_selector(selector: [u8; 4]) -> bool {
+            match selector {
+                [0x08, 0xc3, 0x79, 0xa0] => true,
+                _ if selector
+                    == <DivFailed as ::ethers::contract::EthError>::selector() => true,
+                _ if selector
+                    == <DivWadFailed as ::ethers::contract::EthError>::selector() => true,
+                _ if selector
+                    == <ExpOverflow as ::ethers::contract::EthError>::selector() => true,
+                _ if selector
+                    == <FactorialOverflow as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <FullMulDivFailed as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <LnWadUndefined as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Log2Undefined as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <MulDivFailed as ::ethers::contract::EthError>::selector() => true,
+                _ if selector
+                    == <MulWadFailed as ::ethers::contract::EthError>::selector() => true,
+                _ => false,
+            }
+        }
+    }
+    impl ::core::fmt::Display for FixedPointMathLibErrors {
+        fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+            match self {
+                Self::DivFailed(element) => ::core::fmt::Display::fmt(element, f),
+                Self::DivWadFailed(element) => ::core::fmt::Display::fmt(element, f),
+                Self::ExpOverflow(element) => ::core::fmt::Display::fmt(element, f),
+                Self::FactorialOverflow(element) => ::core::fmt::Display::fmt(element, f),
+                Self::FullMulDivFailed(element) => ::core::fmt::Display::fmt(element, f),
+                Self::LnWadUndefined(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Log2Undefined(element) => ::core::fmt::Display::fmt(element, f),
+                Self::MulDivFailed(element) => ::core::fmt::Display::fmt(element, f),
+                Self::MulWadFailed(element) => ::core::fmt::Display::fmt(element, f),
+                Self::RevertString(s) => ::core::fmt::Display::fmt(s, f),
+            }
+        }
+    }
+    impl ::core::convert::From<::std::string::String> for FixedPointMathLibErrors {
+        fn from(value: String) -> Self {
+            Self::RevertString(value)
+        }
+    }
+    impl ::core::convert::From<DivFailed> for FixedPointMathLibErrors {
+        fn from(value: DivFailed) -> Self {
+            Self::DivFailed(value)
+        }
+    }
+    impl ::core::convert::From<DivWadFailed> for FixedPointMathLibErrors {
+        fn from(value: DivWadFailed) -> Self {
+            Self::DivWadFailed(value)
+        }
+    }
+    impl ::core::convert::From<ExpOverflow> for FixedPointMathLibErrors {
+        fn from(value: ExpOverflow) -> Self {
+            Self::ExpOverflow(value)
+        }
+    }
+    impl ::core::convert::From<FactorialOverflow> for FixedPointMathLibErrors {
+        fn from(value: FactorialOverflow) -> Self {
+            Self::FactorialOverflow(value)
+        }
+    }
+    impl ::core::convert::From<FullMulDivFailed> for FixedPointMathLibErrors {
+        fn from(value: FullMulDivFailed) -> Self {
+            Self::FullMulDivFailed(value)
+        }
+    }
+    impl ::core::convert::From<LnWadUndefined> for FixedPointMathLibErrors {
+        fn from(value: LnWadUndefined) -> Self {
+            Self::LnWadUndefined(value)
+        }
+    }
+    impl ::core::convert::From<Log2Undefined> for FixedPointMathLibErrors {
+        fn from(value: Log2Undefined) -> Self {
+            Self::Log2Undefined(value)
+        }
+    }
+    impl ::core::convert::From<MulDivFailed> for FixedPointMathLibErrors {
+        fn from(value: MulDivFailed) -> Self {
+            Self::MulDivFailed(value)
+        }
+    }
+    impl ::core::convert::From<MulWadFailed> for FixedPointMathLibErrors {
+        fn from(value: MulWadFailed) -> Self {
+            Self::MulWadFailed(value)
         }
     }
 }

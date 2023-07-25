@@ -21,6 +21,7 @@ pub mod climber_timelock_base;
 pub mod climber_vault;
 pub mod coin;
 pub mod coin_flip;
+pub mod coin_suka;
 pub mod context;
 pub mod context_upgradeable;
 pub mod counters;

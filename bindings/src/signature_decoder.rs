@@ -10,181 +10,30 @@ pub use signature_decoder::*;
     non_camel_case_types,
 )]
 pub mod signature_decoder {
-    #[rustfmt::skip]
-    const __ABI: &str = "[]";
+    #[allow(deprecated)]
+    fn __abi() -> ::ethers::core::abi::Abi {
+        ::ethers::core::abi::ethabi::Contract {
+            constructor: ::core::option::Option::None,
+            functions: ::std::collections::BTreeMap::new(),
+            events: ::std::collections::BTreeMap::new(),
+            errors: ::std::collections::BTreeMap::new(),
+            receive: false,
+            fallback: false,
+        }
+    }
     ///The parsed JSON ABI of the contract.
     pub static SIGNATUREDECODER_ABI: ::ethers::contract::Lazy<
         ::ethers::core::abi::Abi,
-    > = ::ethers::contract::Lazy::new(|| {
-        ::ethers::core::utils::__serde_json::from_str(__ABI)
-            .expect("ABI is always valid")
-    });
+    > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        52,
-        128,
-        21,
-        96,
-        15,
-        87,
-        96,
-        0,
-        128,
-        253,
-        91,
-        80,
-        96,
-        63,
-        128,
-        96,
-        29,
-        96,
-        0,
-        57,
-        96,
-        0,
-        243,
-        254,
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        216,
-        170,
-        192,
-        41,
-        40,
-        77,
-        175,
-        189,
-        75,
-        172,
-        229,
-        87,
-        200,
-        193,
-        169,
-        167,
-        152,
-        210,
-        233,
-        113,
-        152,
-        58,
-        230,
-        181,
-        127,
-        225,
-        226,
-        223,
-        189,
-        180,
-        193,
-        242,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The bytecode of the contract.
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xDA\x9AS\xC8x\x01\xED1x\tP\xDD\xE7\x84\x1C\x9A\xE8\xE6\xF8\x96%vK$\x07\xF1\xAB\xC0U\xB4\xD5bdsolcC\0\x08\x14\x003";
+    /// The bytecode of the contract.
     pub static SIGNATUREDECODER_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        216,
-        170,
-        192,
-        41,
-        40,
-        77,
-        175,
-        189,
-        75,
-        172,
-        229,
-        87,
-        200,
-        193,
-        169,
-        167,
-        152,
-        210,
-        233,
-        113,
-        152,
-        58,
-        230,
-        181,
-        127,
-        225,
-        226,
-        223,
-        189,
-        180,
-        193,
-        242,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The deployed bytecode of the contract.
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xDA\x9AS\xC8x\x01\xED1x\tP\xDD\xE7\x84\x1C\x9A\xE8\xE6\xF8\x96%vK$\x07\xF1\xAB\xC0U\xB4\xD5bdsolcC\0\x08\x14\x003";
+    /// The deployed bytecode of the contract.
     pub static SIGNATUREDECODER_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,
     );
@@ -207,7 +56,9 @@ pub mod signature_decoder {
     }
     impl<M> ::core::fmt::Debug for SignatureDecoder<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(stringify!(SignatureDecoder)).field(&self.address()).finish()
+            f.debug_tuple(::core::stringify!(SignatureDecoder))
+                .field(&self.address())
+                .finish()
         }
     }
     impl<M: ::ethers::providers::Middleware> SignatureDecoder<M> {

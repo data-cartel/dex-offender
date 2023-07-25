@@ -10,181 +10,30 @@ pub use secured_token_transfer::*;
     non_camel_case_types,
 )]
 pub mod secured_token_transfer {
-    #[rustfmt::skip]
-    const __ABI: &str = "[]";
+    #[allow(deprecated)]
+    fn __abi() -> ::ethers::core::abi::Abi {
+        ::ethers::core::abi::ethabi::Contract {
+            constructor: ::core::option::Option::None,
+            functions: ::std::collections::BTreeMap::new(),
+            events: ::std::collections::BTreeMap::new(),
+            errors: ::std::collections::BTreeMap::new(),
+            receive: false,
+            fallback: false,
+        }
+    }
     ///The parsed JSON ABI of the contract.
     pub static SECUREDTOKENTRANSFER_ABI: ::ethers::contract::Lazy<
         ::ethers::core::abi::Abi,
-    > = ::ethers::contract::Lazy::new(|| {
-        ::ethers::core::utils::__serde_json::from_str(__ABI)
-            .expect("ABI is always valid")
-    });
+    > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        52,
-        128,
-        21,
-        96,
-        15,
-        87,
-        96,
-        0,
-        128,
-        253,
-        91,
-        80,
-        96,
-        63,
-        128,
-        96,
-        29,
-        96,
-        0,
-        57,
-        96,
-        0,
-        243,
-        254,
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        50,
-        4,
-        88,
-        4,
-        0,
-        14,
-        131,
-        12,
-        67,
-        62,
-        193,
-        185,
-        255,
-        185,
-        45,
-        62,
-        208,
-        110,
-        176,
-        247,
-        208,
-        105,
-        9,
-        85,
-        202,
-        230,
-        64,
-        212,
-        254,
-        251,
-        25,
-        5,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The bytecode of the contract.
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \t\x0B+\xA2I\xC6\xF4\xA7\x9E:\\\xC8\xF4\n\x8F\xAE\x9F\xA3\x82\x7FF\xB7\xFB\x97\xD5\xC1\xB9\xBA\xB22\xABydsolcC\0\x08\x14\x003";
+    /// The bytecode of the contract.
     pub static SECUREDTOKENTRANSFER_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        50,
-        4,
-        88,
-        4,
-        0,
-        14,
-        131,
-        12,
-        67,
-        62,
-        193,
-        185,
-        255,
-        185,
-        45,
-        62,
-        208,
-        110,
-        176,
-        247,
-        208,
-        105,
-        9,
-        85,
-        202,
-        230,
-        64,
-        212,
-        254,
-        251,
-        25,
-        5,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The deployed bytecode of the contract.
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \t\x0B+\xA2I\xC6\xF4\xA7\x9E:\\\xC8\xF4\n\x8F\xAE\x9F\xA3\x82\x7FF\xB7\xFB\x97\xD5\xC1\xB9\xBA\xB22\xABydsolcC\0\x08\x14\x003";
+    /// The deployed bytecode of the contract.
     pub static SECUREDTOKENTRANSFER_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,
     );
@@ -207,7 +56,7 @@ pub mod secured_token_transfer {
     }
     impl<M> ::core::fmt::Debug for SecuredTokenTransfer<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(stringify!(SecuredTokenTransfer))
+            f.debug_tuple(::core::stringify!(SecuredTokenTransfer))
                 .field(&self.address())
                 .finish()
         }

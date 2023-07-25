@@ -3,9 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - master
-  pull_request:
+      - 0xgleb/solutions
+      - sojaleiss/solutions
   workflow_dispatch:
+  pull_request:
 
 env:
   FOUNDRY_PROFILE: ci
@@ -21,14 +22,11 @@ jobs:
       - name: Install Foundry
         uses: onbjerg/foundry-toolchain@v1
 
-      - name: Check formatting
-        run: forge fmt ./contracts --check
+      - name: Check Solidity formatting
+        run: forge fmt --check
 
       - name: Build contracts
-        run: forge build --sizes
-
-      - name: Re-generate bindings
-        run: forge bind -b ./bindings --crate-name bindings --overwrite
+        run: forge build
 
       - name: Install toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -37,8 +35,11 @@ jobs:
         with:
           cache-on-failure: true
 
-      - name: cargo build
-        run: cargo build --workspace --all-features
+      - name: Build crates
+        run: cargo build --workspace --all-targets
 
-      # - name: cargo test
-      #   run: cargo test -p solutions -- --nocapture
+      - name: Lint
+        run: cargo clippy
+
+      - name: Check solutions
+        run: cargo test -p attack -- --nocapture

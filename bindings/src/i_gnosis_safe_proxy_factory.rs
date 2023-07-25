@@ -10,15 +10,57 @@ pub use i_gnosis_safe_proxy_factory::*;
     non_camel_case_types,
 )]
 pub mod i_gnosis_safe_proxy_factory {
-    #[rustfmt::skip]
-    const __ABI: &str = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"masterCopy\",\"type\":\"address\",\"components\":[]},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\",\"components\":[]}],\"stateMutability\":\"nonpayable\",\"type\":\"function\",\"name\":\"createProxy\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\",\"components\":[]}]}]";
+    #[allow(deprecated)]
+    fn __abi() -> ::ethers::core::abi::Abi {
+        ::ethers::core::abi::ethabi::Contract {
+            constructor: ::core::option::Option::None,
+            functions: ::core::convert::From::from([
+                (
+                    ::std::borrow::ToOwned::to_owned("createProxy"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("createProxy"),
+                            inputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::borrow::ToOwned::to_owned("masterCopy"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address"),
+                                    ),
+                                },
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::borrow::ToOwned::to_owned("data"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Bytes,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("bytes"),
+                                    ),
+                                },
+                            ],
+                            outputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address"),
+                                    ),
+                                },
+                            ],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
+                        },
+                    ],
+                ),
+            ]),
+            events: ::std::collections::BTreeMap::new(),
+            errors: ::std::collections::BTreeMap::new(),
+            receive: false,
+            fallback: false,
+        }
+    }
     ///The parsed JSON ABI of the contract.
     pub static IGNOSISSAFEPROXYFACTORY_ABI: ::ethers::contract::Lazy<
         ::ethers::core::abi::Abi,
-    > = ::ethers::contract::Lazy::new(|| {
-        ::ethers::core::utils::__serde_json::from_str(__ABI)
-            .expect("ABI is always valid")
-    });
+    > = ::ethers::contract::Lazy::new(__abi);
     pub struct IGnosisSafeProxyFactory<M>(::ethers::contract::Contract<M>);
     impl<M> ::core::clone::Clone for IGnosisSafeProxyFactory<M> {
         fn clone(&self) -> Self {
@@ -38,7 +80,7 @@ pub mod i_gnosis_safe_proxy_factory {
     }
     impl<M> ::core::fmt::Debug for IGnosisSafeProxyFactory<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(stringify!(IGnosisSafeProxyFactory))
+            f.debug_tuple(::core::stringify!(IGnosisSafeProxyFactory))
                 .field(&self.address())
                 .finish()
         }

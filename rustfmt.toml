@@ -17,4 +17,4 @@ condense_wildcard_suffixes = true
 edition = "2021"
 fn_single_line = true
 max_width = 80
-format_string = true
+format_strings = true

@@ -1,7 +1,6 @@
-/target
+target/
 out/
 cache/
-Cargo.lock
 
 .direnv
 .devenv

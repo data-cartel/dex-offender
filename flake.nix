@@ -1,6 +1,7 @@
 {
   inputs = {
     devenv.url = "github:cachix/devenv";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
     fenix = {
       url = "github:nix-community/fenix";
@@ -32,8 +33,8 @@
             languages.nix.enable = true;
             languages.rust = {
               enable = true;
-              version = "stable";
-              packages = {
+              channel = "stable";
+              toolchain = {
                 rustfmt = inputs.fenix.packages.${pkgs.system}.latest.rustfmt;
                 clippy = inputs.fenix.packages.${pkgs.system}.latest.clippy;
               };
@@ -52,38 +53,39 @@
               forge fmt
               forge bind -b ./bindings --crate-name bindings --overwrite
             '';
+
             difftastic.enable = true;
 
             # https://devenv.sh/pre-commit-hooks/
             pre-commit.hooks = {
               nixfmt.enable = true;
-              #   bind-contracts = {
-              #     enable = true;
+              bind-contracts = {
+                enable = true;
 
-              #     name = "Bind contracts";
-              #     entry =
-              #       "forge bind -b ./bindings --crate-name bindings --overwrite";
+                name = "Bind contracts";
+                entry =
+                  "forge bind -b ./bindings --crate-name bindings --overwrite";
 
-              #     pass_filenames = false;
-              #     raw.verbose = true;
-              #   };
-              #   deploy-levels = {
-              #     enable = true;
+                pass_filenames = false;
+                raw.verbose = true;
+              };
+              deploy-levels = {
+                enable = true;
 
-              #     name = "Deploy levels";
-              #     entry = "cargo run --bin deploy_levels";
+                name = "Deploy levels";
+                entry = "cargo run -p ctf --bin deploy_levels";
 
-              #     pass_filenames = false;
-              #     raw.verbose = true;
-              #   };
-              #   clippy = {
-              #     enable = true;
-              #     raw.verbose = true;
-              #   };
-              #   rustfmt = {
-              #     enable = true;
-              #     raw.verbose = true;
-              #   };
+                pass_filenames = false;
+                raw.verbose = true;
+              };
+              clippy = {
+                enable = true;
+                raw.verbose = true;
+              };
+              rustfmt = {
+                enable = true;
+                raw.verbose = true;
+              };
             };
           }];
         };

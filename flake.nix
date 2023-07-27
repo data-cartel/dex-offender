@@ -22,7 +22,7 @@
 
           modules = [{
             packages = with pkgs;
-              [ solc gcc foundry.defaultPackage.${system} go-ethereum ]
+              [ solc gcc foundry.defaultPackage.${system} go-ethereum tldr ]
               ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk; [
                 libiconv
                 frameworks.Security
@@ -59,31 +59,41 @@
             # https://devenv.sh/pre-commit-hooks/
             pre-commit.hooks = {
               nixfmt.enable = true;
+              forge-fmt = {
+                enable = true;
+
+                name = "Format Solidity code";
+                entry = "forge fmt";
+
+                pass_filenames = false;
+                raw.verbose = true;
+              };
               bind-contracts = {
                 enable = true;
 
-                name = "Bind contracts";
+                name = "Generate Rust bindings for Solidity contracts";
                 entry =
                   "forge bind -b ./bindings --crate-name bindings --overwrite";
 
                 pass_filenames = false;
                 raw.verbose = true;
               };
-              deploy-levels = {
+              cargo-fmt = {
                 enable = true;
 
-                name = "Deploy levels";
-                entry = "cargo run -p ctf --bin deploy_levels";
+                name = "Format Rust code";
+                entry = "cargo fmt";
 
                 pass_filenames = false;
                 raw.verbose = true;
               };
-              clippy = {
+              cargo-build = {
                 enable = true;
-                raw.verbose = true;
-              };
-              rustfmt = {
-                enable = true;
+
+                name = "Compile Rust code";
+                entry = "cargo build --workspace --all-features --all-targets";
+
+                pass_filenames = false;
                 raw.verbose = true;
               };
             };

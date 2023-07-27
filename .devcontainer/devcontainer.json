@@ -6,6 +6,7 @@
 	// 	"context": "."
 	// },
 	"image": "ghcr.io/cachix/devenv:latest",
+	"postCreateCommand": "forge install",
 	"postAttachCommand": "anvil --steps-tracing --load-state state.json",
 	// "containerUser": "vscode",
 	"remoteUser": "vscode",

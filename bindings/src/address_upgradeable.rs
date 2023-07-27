@@ -26,13 +26,13 @@ pub mod address_upgradeable {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x99&\xA6\xB3#\x9EOR\x1A\xF1\xCA1:\x86\xE2V\xD3\xF4\xE8\x02@\x16\xAC\xECh\\\x1E\x15n\xDF\xBF\x17dsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xEA\xF5c\xE1^\x7F\x0E\x16\x88\x0C\x17\x87\xD6\xDA\xA9\xE8\xD1\xEF\xF8\xFA\xEF\x1A\xF8\x15\xED*\xBF\x82\xF3\xC6\xE3\xD3dsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static ADDRESSUPGRADEABLE_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x99&\xA6\xB3#\x9EOR\x1A\xF1\xCA1:\x86\xE2V\xD3\xF4\xE8\x02@\x16\xAC\xECh\\\x1E\x15n\xDF\xBF\x17dsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xEA\xF5c\xE1^\x7F\x0E\x16\x88\x0C\x17\x87\xD6\xDA\xA9\xE8\xD1\xEF\xF8\xFA\xEF\x1A\xF8\x15\xED*\xBF\x82\xF3\xC6\xE3\xD3dsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static ADDRESSUPGRADEABLE_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

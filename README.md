@@ -1,3 +1,7 @@
+1) bind-attack
+2) cargo test -p attack -- --nocapture
+
+
 # DEX OFFENDER
 
 A compilation of smart contract wargames (currently only Ethernaut and DamnVulnerableDeFi). You can find the levels in `./contracts/$GAME_NAME` and add your solution to `./attack/src/$GAME_NAME/hack*.rs`.
@@ -98,7 +102,7 @@ impl ctf::Exploit for Exploit {
         // This is how you "connect" to a deployed contract. You can see how it was deployed
         // in ./ctf/src/ethernaut/lvl01_fallback.rs
         let contract =
-            Fallback::new(target.contract_address, offender.clone());
+            Fallback::new(target.address, offender.clone());
 
         // This is how you call a contract function with no arguments:
         contract.contribute().value(1).send().await?.await?;

@@ -1,6 +1,5 @@
 use async_trait::async_trait;
-use ctf::ethernaut::lvlREPLACEME::*;
-use ethers::prelude::*;
+use ctf::ethernaut::lvl02_fallout::*;
 
 pub(crate) struct Exploit;
 
@@ -8,11 +7,17 @@ pub(crate) struct Exploit;
 impl ctf::Exploit for Exploit {
     type Target = Target;
 
+    /**
+     * @title Ethernaut Level 2: Fallout
+     *
+     * Claim ownership of the contract below to complete
+     * this level.
+     */
     async fn attack(
         self,
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
-        Ok(())
+        todo!("Solve me!")
     }
 }

@@ -26,13 +26,13 @@ pub mod secured_token_transfer {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xDF\x89\xC4I\xC0\x89\r!\xCE\x8E}MM\xAFr\xDE\xF4/\x98\xDD\x05\x87T\x86\xBA\x15\xE1\x88E\x9C\xBA=dsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 8\xA0Z\x8Fo\xDF\xDB\xF1\x8D5\0U\xD7\x827\xBB\xAC]\xCE\xDE\xA1\x0B\x06\x85\x1A7\x0F\xF6\xC5t(\xF2dsolcC\0\x08\x14\x003";
     /// The bytecode of the contract.
     pub static SECUREDTOKENTRANSFER_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xDF\x89\xC4I\xC0\x89\r!\xCE\x8E}MM\xAFr\xDE\xF4/\x98\xDD\x05\x87T\x86\xBA\x15\xE1\x88E\x9C\xBA=dsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 8\xA0Z\x8Fo\xDF\xDB\xF1\x8D5\0U\xD7\x827\xBB\xAC]\xCE\xDE\xA1\x0B\x06\x85\x1A7\x0F\xF6\xC5t(\xF2dsolcC\0\x08\x14\x003";
     /// The deployed bytecode of the contract.
     pub static SECUREDTOKENTRANSFER_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

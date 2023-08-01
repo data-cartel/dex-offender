@@ -26,13 +26,13 @@ pub mod transfer_helper {
         __abi,
     );
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 F@\xA3\xAE\xDA\x01\xAF\x10\xBF\x02\x8D\xFB\xD5\xE4p,\x8A\x9ER\x87>\xF8\xB5K\xC5CZ\xB8\xB9\x8D\xC7\x0CdsolcC\0\x07\x06\x003";
+    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 _1c\xDF\x86\xFE5i\xFB\xE3B^x\xDD\x12:T\xCB\x0F\xD7R{3\xA9]\x8E\xC8\x16t\xA3\xD8\x86dsolcC\0\x07\x06\x003";
     /// The bytecode of the contract.
     pub static TRANSFERHELPER_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 F@\xA3\xAE\xDA\x01\xAF\x10\xBF\x02\x8D\xFB\xD5\xE4p,\x8A\x9ER\x87>\xF8\xB5K\xC5CZ\xB8\xB9\x8D\xC7\x0CdsolcC\0\x07\x06\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 _1c\xDF\x86\xFE5i\xFB\xE3B^x\xDD\x12:T\xCB\x0F\xD7R{3\xA9]\x8E\xC8\x16t\xA3\xD8\x86dsolcC\0\x07\x06\x003";
     /// The deployed bytecode of the contract.
     pub static TRANSFERHELPER_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

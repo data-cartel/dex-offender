@@ -26,13 +26,13 @@ pub mod counters {
         __abi,
     );
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 ]\x97J\xBA\x93\x864~\xA8\xA1\x10\xBBc\xD1mC\x13>3\xDB\\\x81\xEA\xD4w\xD8\xFDV0}B\xFBdsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x06f\x97^l\xD0[\xFD\xAB\xDA[_\x88;\xA3\xD3\x0F\xEE\x9C\xAEy\x8B\xED\x8E\x1A\x18\x86\xD0`\xD7\xBA\x80dsolcC\0\x08\x14\x003";
     /// The bytecode of the contract.
     pub static COUNTERS_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 ]\x97J\xBA\x93\x864~\xA8\xA1\x10\xBBc\xD1mC\x13>3\xDB\\\x81\xEA\xD4w\xD8\xFDV0}B\xFBdsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x06f\x97^l\xD0[\xFD\xAB\xDA[_\x88;\xA3\xD3\x0F\xEE\x9C\xAEy\x8B\xED\x8E\x1A\x18\x86\xD0`\xD7\xBA\x80dsolcC\0\x08\x14\x003";
     /// The deployed bytecode of the contract.
     pub static COUNTERS_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

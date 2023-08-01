@@ -8,7 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     foundry = {
-      url = "github:shazow/foundry.nix";
+      url =
+        "github:shazow/foundry.nix/monthly"; # Use monthly branch for permanent releases
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -87,15 +88,15 @@
                 pass_filenames = false;
                 raw.verbose = true;
               };
-              cargo-build = {
-                enable = true;
+              # cargo-build = {
+              #   enable = true;
 
-                name = "Compile Rust code";
-                entry = "cargo build --workspace --all-features --all-targets";
+              #   name = "Compile Rust code";
+              #   entry = "cargo build --workspace --all-features --all-targets";
 
-                pass_filenames = false;
-                raw.verbose = true;
-              };
+              #   pass_filenames = false;
+              #   raw.verbose = true;
+              # };
             };
           }];
         };

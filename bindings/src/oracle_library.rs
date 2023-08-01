@@ -26,13 +26,13 @@ pub mod oracle_library {
         __abi,
     );
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 +_\xF9\x92\xCFe\x9B\x11\xC6bV\xCC\xA4\x88\xC1N\x0B\x1C\x0B\x7F\xD8\x96@H\xDCA\x9Du\xF7qR\xF3dsolcC\0\x07\x06\x003";
+    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 T\xD42\xB3tA\xF7\xC8\xFE]\xF7\x82\x97\x80\x0Cx\x05s.\x9D\x99\x11r\r\xB2\xD9\xC1y+#\xFC>dsolcC\0\x07\x06\x003";
     /// The bytecode of the contract.
     pub static ORACLELIBRARY_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 +_\xF9\x92\xCFe\x9B\x11\xC6bV\xCC\xA4\x88\xC1N\x0B\x1C\x0B\x7F\xD8\x96@H\xDCA\x9Du\xF7qR\xF3dsolcC\0\x07\x06\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 T\xD42\xB3tA\xF7\xC8\xFE]\xF7\x82\x97\x80\x0Cx\x05s.\x9D\x99\x11r\r\xB2\xD9\xC1y+#\xFC>dsolcC\0\x07\x06\x003";
     /// The deployed bytecode of the contract.
     pub static ORACLELIBRARY_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

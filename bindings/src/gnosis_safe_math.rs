@@ -26,13 +26,13 @@ pub mod gnosis_safe_math {
         __abi,
     );
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 h\xF5\xF7\xBCD\xF2b\x8B_\x031fH\xC6\xB5\xB4nu\xC6\xC2}9\xD0|\xA1%#}+\xB0j\ndsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x19\r\xF4\xEF\x9C\"6T\xF5qWM\x1C\xAC\x0B\x85Nf`Y\x1D<H5U\xBBBf\x90\\W\xB5dsolcC\0\x08\x14\x003";
     /// The bytecode of the contract.
     pub static GNOSISSAFEMATH_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 h\xF5\xF7\xBCD\xF2b\x8B_\x031fH\xC6\xB5\xB4nu\xC6\xC2}9\xD0|\xA1%#}+\xB0j\ndsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x19\r\xF4\xEF\x9C\"6T\xF5qWM\x1C\xAC\x0B\x85Nf`Y\x1D<H5U\xBBBf\x90\\W\xB5dsolcC\0\x08\x14\x003";
     /// The deployed bytecode of the contract.
     pub static GNOSISSAFEMATH_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

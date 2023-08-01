@@ -26,13 +26,13 @@ pub mod signature_decoder {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x05a3N\xC0[[[])\x94\xCC\xE2Q7\xBA\xD48K\x1Dy\x06\x1Bb\x84\xB7\x83\x95\xF2\x17\x0E\x08dsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 1v\x111l3\xA4Z\xE0\x13(\xCD\x90\x7F\t\xEC\x8B\x045\x19\xDC\xCA\xD0I\xD5\xBD\xB4\xA8\xCF\x07\xCCNdsolcC\0\x08\x14\x003";
     /// The bytecode of the contract.
     pub static SIGNATUREDECODER_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __BYTECODE,
     );
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x05a3N\xC0[[[])\x94\xCC\xE2Q7\xBA\xD48K\x1Dy\x06\x1Bb\x84\xB7\x83\x95\xF2\x17\x0E\x08dsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 1v\x111l3\xA4Z\xE0\x13(\xCD\x90\x7F\t\xEC\x8B\x045\x19\xDC\xCA\xD0I\xD5\xBD\xB4\xA8\xCF\x07\xCCNdsolcC\0\x08\x14\x003";
     /// The deployed bytecode of the contract.
     pub static SIGNATUREDECODER_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
         __DEPLOYED_BYTECODE,

@@ -1,10 +1,6 @@
 [profile.default]
-src = 'contracts'
-out = 'out'
-libs = ['lib']
-ignored_error_codes = [
-  9302,
-  5159,
-  5740,
-  6321
-]
+libs = []
+src = 'attack/contracts'
+out = 'attack/out'
+cache_path = 'attack/cache'
+ignored_error_codes = [ 2072, 5159 ]

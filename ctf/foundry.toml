@@ -1,0 +1,12 @@
+[profile.default]
+libs = ['../lib']
+out = 'out'
+src = 'contracts'
+cache = false
+ignored_error_codes = [
+  2072,
+  5159,
+  5740,
+  6321,
+  9302
+]

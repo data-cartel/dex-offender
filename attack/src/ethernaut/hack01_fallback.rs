@@ -27,7 +27,7 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
-        let contract = Fallback::new(target.contract_address, offender.clone());
+        let contract = Fallback::new(target.address, offender.clone());
 
         println!("Calling contribute()...");
         contract.contribute().value(1).send().await?.await?;

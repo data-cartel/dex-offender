@@ -1,8 +1,8 @@
 use async_trait::async_trait;
 use ethers::prelude::*;
 
+pub use crate::abi::{delegate::Delegate, delegation::Delegation};
 use crate::{roles::*, Level};
-pub use bindings::{delegate::Delegate, delegation::Delegation};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {

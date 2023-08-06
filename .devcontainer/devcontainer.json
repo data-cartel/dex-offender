@@ -1,14 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
 	"name": "DEX Offender",
-	// "build": {
-	// 	"dockerfile": "Dockerfile",
-	// 	"context": "."
-	// },
 	"image": "ghcr.io/cachix/devenv:latest",
-	"postCreateCommand": "forge install",
+	"postCreateCommand": "nix develop --check --impure",
+	"postStartCommand": "direnv allow",
 	"postAttachCommand": "anvil --steps-tracing --load-state state.json",
-	// "containerUser": "vscode",
 	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {
@@ -19,14 +15,16 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"mkhl.direnv",
+				"bbenoist.Nix",
 				"JuanBlanco.solidity",
+				"serayuzgur.crates",
+				"bungcip.better-toml",
+				"vadimcn.vscode-lldb",
 				"usernamehw.errorlens",
 				"rust-lang.rust-analyzer",
-				"bungcip.better-toml",
-				"serayuzgur.crates",
-				"vadimcn.vscode-lldb",
-				"ms-vsliveshare.vsliveshare",
-				"yzhang.markdown-all-in-one"
+				"yzhang.markdown-all-in-one",
+				"ms-vsliveshare.vsliveshare"
 			]
 		}
 	}

@@ -1,13 +1,12 @@
-use crate::roles::*;
-use crate::Level;
+use crate::{roles::*, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
-pub use bindings::replaceme::ReplaceMe;
+pub use crate::abi::replaceme::ReplaceMe;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -30,7 +29,7 @@ impl Level for Target {
                 .send()
                 .await?;
 
-        let target = Target { contract_address: contract.address() };
+        let target = Target { address: contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -40,7 +39,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = ReplaceMe::new(self.contract_address, deployer.clone());
+        let contract = ReplaceMe::new(self.address, deployer.clone());
 
         println!("Checking that you became the owner...");
         let owner = contract.whatisthis().await?;

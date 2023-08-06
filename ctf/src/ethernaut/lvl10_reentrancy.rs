@@ -1,12 +1,12 @@
-use crate::{roles::*, Level};
+use crate::{roles::*, to_ether, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
-pub use bindings::reentrance::Reentrance;
+pub use crate::abi::reentrance::Reentrance;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -19,7 +19,7 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Re-entrancy" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, offender: _, some_user } = roles;
 
         println!("Deploying the Reentrance contract...");
         let contract =
@@ -29,13 +29,28 @@ impl Level for Target {
             .send_transaction(
                 TransactionRequest::new()
                     .to(contract.address())
-                    .value(U256::from(1)),
+                    .value(to_ether(1)),
                 None,
             )
             .await?
             .await?;
+        contract
+            .donate(some_user.address())
+            .value(to_ether(20))
+            .send()
+            .await?
+            .await?;
 
-        let target = Target { contract_address: contract.address() };
+        let contract =
+            Reentrance::new(contract.address(), some_user.to_owned());
+        contract
+            .donate(deployer.address())
+            .value(to_ether(100))
+            .send()
+            .await?
+            .await?;
+
+        let target = Target { address: contract.address() };
         let check = target.check(roles).await?;
         assert!(!check);
 
@@ -44,7 +59,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Reentrance::new(self.contract_address, deployer.clone());
+        let contract = Reentrance::new(self.address, deployer.clone());
 
         println!("Checking the contract balance...");
         let balance = deployer.get_balance(contract.address(), None).await?;

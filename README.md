@@ -10,10 +10,10 @@ Install smart contract dependencies
 forge install
 ```
 
-To build contracts and generate Rust bindings use
+Build attack contracts and generate Rust bindings for their ABIs
 
 ```sh
-forge bind -b ./bindings --crate-name bindings --overwrite
+forge bind -b ./attack/src/abi --module --overwrite
 ```
 
 If you want to automatically rebuild the contracts on file change, use

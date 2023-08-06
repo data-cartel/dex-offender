@@ -1,6 +1,7 @@
 use ethers::prelude::*;
 
 // pub mod damn_vulnerable_defi;
+pub mod abi;
 pub mod ethernaut;
 pub mod level;
 pub mod roles;

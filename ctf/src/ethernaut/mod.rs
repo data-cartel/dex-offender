@@ -12,6 +12,9 @@ pub mod lvl07_force;
 pub mod lvl08_vault;
 pub mod lvl09_king;
 pub mod lvl10_reentrancy;
+pub mod lvl11_elevator;
+pub mod lvl12_privacy;
+pub mod lvl13_gatekeeper_one;
 
 use lvl01_fallback as lvl01;
 use lvl02_fallout as lvl02;
@@ -23,6 +26,9 @@ use lvl07_force as lvl07;
 use lvl08_vault as lvl08;
 use lvl09_king as lvl09;
 use lvl10_reentrancy as lvl10;
+use lvl11_elevator as lvl11;
+use lvl12_privacy as lvl12;
+use lvl13_gatekeeper_one as lvl13;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Ethernaut {
@@ -36,6 +42,9 @@ pub struct Ethernaut {
     pub level08: lvl08::Target,
     pub level09: lvl09::Target,
     pub level10: lvl10::Target,
+    pub level11: lvl11::Target,
+    pub level12: lvl12::Target,
+    pub level13: lvl13::Target,
 }
 
 pub async fn set_up_ethernaut(
@@ -53,6 +62,9 @@ pub async fn set_up_ethernaut(
     let level08 = lvl08::Target::set_up(&roles).await?;
     let level09 = lvl09::Target::set_up(&roles).await?;
     let level10 = lvl10::Target::set_up(&roles).await?;
+    let level11 = lvl11::Target::set_up(&roles).await?;
+    let level12 = lvl12::Target::set_up(&roles).await?;
+    let level13 = lvl13::Target::set_up(&roles).await?;
 
     Ok(Ethernaut {
         level01,
@@ -65,5 +77,8 @@ pub async fn set_up_ethernaut(
         level08,
         level09,
         level10,
+        level11,
+        level12,
+        level13,
     })
 }

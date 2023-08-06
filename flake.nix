@@ -8,27 +8,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     foundry = {
-      url =
-        "github:shazow/foundry.nix/monthly"; # Use monthly branch for permanent releases
+      url = "github:shazow/foundry.nix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = { self, nixpkgs, flake-utils, fenix, foundry, devenv }@inputs:
     flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; };
+      let
+        pkgs = import nixpkgs { inherit system; };
+        foundry-pkg = foundry.defaultPackage.${system};
+        forge = "${foundry-pkg}/bin/forge";
       in {
         devShell = devenv.lib.mkShell {
           inherit inputs pkgs;
 
           modules = [{
             packages = with pkgs;
-              [ solc gcc foundry.defaultPackage.${system} go-ethereum tldr ]
+              [ solc gcc foundry-pkg go-ethereum tldr bat ]
               ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk; [
                 libiconv
                 frameworks.Security
                 frameworks.CoreFoundation
               ]);
+
+            difftastic.enable = true;
 
             # https://devenv.sh/languages/
             languages.nix.enable = true;
@@ -41,61 +45,71 @@
               };
             };
 
-            scripts.gen.exec = ''
-              forge fmt
-              forge bind -b ./bindings --crate-name bindings --overwrite
-              cargo fmt
-              cargo clippy
-              cargo build --workspace --all-features --all-targets
+            enterShell = ''
+              if ! command -v cargo watch &> /dev/null; then
+                cargo install cargo-watch
+              fi
+            '';
+
+            scripts.bind-attack.exec = ''
+              ${forge} fmt
+              ${forge} bind -b ./attack/src/abi --module --force --overwrite
+            '';
+
+            scripts.bind-ctfs.exec = ''
+              ${forge} fmt --root ctf
+              ${forge} bind --root ctf -b ./ctf/src/abi --module --force --overwrite
+            '';
+
+            scripts.deploy-levels.exec = ''
+              if [ -f state.json ]; then
+                rm -v state.json
+              fi
               cargo run --bin deploy_levels
             '';
 
-            scripts.bind.exec = ''
-              forge fmt
-              forge bind -b ./bindings --crate-name bindings --overwrite
-            '';
-
-            difftastic.enable = true;
-
             # https://devenv.sh/pre-commit-hooks/
             pre-commit.hooks = {
-              nixfmt.enable = true;
-              forge-fmt = {
+              nixfmt = {
                 enable = true;
-
-                name = "Format Solidity code";
-                entry = "forge fmt";
-
-                pass_filenames = false;
-                raw.verbose = true;
-              };
-              bind-contracts = {
-                enable = true;
-
-                name = "Generate Rust bindings for Solidity contracts";
-                entry =
-                  "forge bind -b ./bindings --crate-name bindings --overwrite";
-
-                pass_filenames = false;
-                raw.verbose = true;
+                fail_fast = true;
               };
               cargo-fmt = {
                 enable = true;
-
                 name = "Format Rust code";
                 entry = "cargo fmt";
-
+                files = ".*/src/.*.rs$";
+                excludes = [ "target/.*" "lib/.*" ];
                 pass_filenames = false;
-                raw.verbose = true;
+                verbose = true;
               };
-              # cargo-build = {
+              # bind-attack-contracts = {
               #   enable = true;
-
-              #   name = "Compile Rust code";
-              #   entry = "cargo build --workspace --all-features --all-targets";
-
+              #   name = "Bind attack contracts";
+              #   description =
+              #     "Build attack/contracts/ contracts and generate Rust ABI bindings";
+              #   files = "attack/contracts/.*.sol$";
+              #   entry = ".devenv/profile/bin/bind-attack";
               #   pass_filenames = false;
-              #   raw.verbose = true;
+              #   verbose = true;
+              # };
+              # bind-ctf-contracts = {
+              #   enable = true;
+              #   name = "Bind CTF contracts";
+              #   description =
+              #     "Compile CTF smart contracts and generate Rust ABI bindings";
+              #   files = "ctf/contracts/.*.sol$";
+              #   entry = ".devenv/profile/bin/bind-ctfs";
+              #   pass_filenames = false;
+              #   verbose = true;
+              # };
+              # deploy-levels = {
+              #   enable = true;
+              #   name = "Deploy levels";
+              #   files = "ctf/src/.*.rs";
+              #   entry = ".devenv/profile/bin/deploy-levels";
+              #   pass_filenames = false;
+              #   verbose = true;
               # };
             };
           }];

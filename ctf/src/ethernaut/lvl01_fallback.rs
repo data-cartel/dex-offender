@@ -1,12 +1,12 @@
 use async_trait::async_trait;
 use ethers::prelude::*;
 
+pub use crate::abi::fallback::Fallback;
 use crate::{roles::*, to_ether, Level};
-pub use bindings::fallback::Fallback;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -48,22 +48,21 @@ impl Level for Target {
         let owner = contract.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let target = Target { contract_address: contract.address() };
+        let target = Target { address: contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Fallback::new(self.contract_address, deployer.clone());
+        let contract = Fallback::new(self.address, deployer.clone());
 
         println!("Checking that you claimed ownership of the contract...");
         let owner = contract.owner().await?;
         let is_owner = owner == offender.address();
 
         println!("Checking that you reduced its balance to 0...");
-        let contract_balance =
-            deployer.get_balance(self.contract_address, None).await?;
+        let contract_balance = deployer.get_balance(self.address, None).await?;
         let balance_reduced = contract_balance == U256::from(0);
 
         Ok(is_owner && balance_reduced)

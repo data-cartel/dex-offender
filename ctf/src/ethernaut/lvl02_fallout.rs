@@ -1,12 +1,12 @@
 use async_trait::async_trait;
 use ethers::prelude::*;
 
+pub use crate::abi::fallout::Fallout;
 use crate::{roles::*, Level};
-pub use bindings::fallout::Fallout;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -29,14 +29,14 @@ impl Level for Target {
         let owner = contract.owner().await?;
         assert_eq!(owner, deployer.address());
 
-        let target = Target { contract_address: contract.address() };
+        let target = Target { address: contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Fallout::new(self.contract_address, deployer.clone());
+        let contract = Fallout::new(self.address, deployer.clone());
 
         println!("Checking that you claimed ownership of the contract...");
         let owner = contract.owner().await?;

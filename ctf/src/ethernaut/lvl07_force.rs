@@ -2,11 +2,11 @@ use crate::{roles::*, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
-pub use bindings::force::Force;
+pub use crate::abi::force::Force;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -24,7 +24,7 @@ impl Level for Target {
         println!("Deploying the Force contract...");
         let force = Force::deploy(deployer.to_owned(), ())?.send().await?;
 
-        let target = Target { contract_address: force.address() };
+        let target = Target { address: force.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -34,7 +34,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Force::new(self.contract_address, deployer.clone());
+        let contract = Force::new(self.address, deployer.clone());
 
         println!("Checking the contract balance...");
         let balance = deployer.get_balance(contract.address(), None).await?;

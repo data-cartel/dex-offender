@@ -1,12 +1,12 @@
 use async_trait::async_trait;
 use ethers::prelude::*;
 
+pub use crate::abi::token::Token;
 use crate::{roles::*, Level};
-pub use bindings::token::Token;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -28,14 +28,14 @@ impl Level for Target {
 
         contract.transfer(offender.address(), 20.into()).send().await?;
 
-        let target = Target { contract_address: contract.address() };
+        let target = Target { address: contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Token::new(self.contract_address, deployer.clone());
+        let contract = Token::new(self.address, deployer.clone());
 
         println!("Checking that got more tokens...");
         let balance = contract.balance_of(offender.address()).call().await?;

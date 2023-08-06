@@ -1,13 +1,16 @@
 {
+  "editor.formatOnSave": true,
   "rust-analyzer.check.command": "clippy",
-  "solidity.packageDefaultDependenciesContractsDirectory": "contracts",
+  "rust-analyzer.restartServerOnConfigChange": true,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "solidity.packageDefaultDependenciesContractsDirectory": "attack/contracts",
   "solidity.packageDefaultDependenciesDirectory": "lib",
   "solidity.monoRepoSupport": true,
+  "solidity.formatter": "forge",
   "solidity.linter": "",
-  "editor.formatOnSave": true,
   "[solidity]": {
     "editor.defaultFormatter": "JuanBlanco.solidity"
   },
-  "solidity.formatter": "forge",
-  "editor.wordWrap": "off"
 }

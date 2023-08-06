@@ -1,6 +1,8 @@
 target/
-out/
-cache/
+ctf/out
+ctf/cache
+attack/out
+attack/cache
 
 .direnv
 .devenv

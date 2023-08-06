@@ -3,9 +3,9 @@ use ethers::prelude::*;
 
 use crate::roles::*;
 use crate::{to_ether, Target};
-use bindings::damn_valuable_token::DamnValuableToken;
-use bindings::receiver_unstoppable::ReceiverUnstoppable;
-use bindings::unstoppable_vault::UnstoppableVault;
+use crate::abi::damn_valuable_token::DamnValuableToken;
+use crate::abi::receiver_unstoppable::ReceiverUnstoppable;
+use crate::abi::unstoppable_vault::UnstoppableVault;
 
 pub struct DamnVulnerableDeFiTarget1 {
     pub vault: UnstoppableVault<SignerMiddleware<Provider<Http>, LocalWallet>>,

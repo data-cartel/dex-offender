@@ -1,12 +1,12 @@
 use async_trait::async_trait;
 use ethers::prelude::*;
 
+pub use crate::abi::coin_flip::CoinFlip;
 use crate::{roles::*, Level};
-pub use bindings::coin_flip::CoinFlip;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -28,14 +28,14 @@ impl Level for Target {
         let consecutive_wins = contract.consecutive_wins().await?;
         assert_eq!(consecutive_wins, 0.into());
 
-        let target = Target { contract_address: contract.address() };
+        let target = Target { address: contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = CoinFlip::new(self.contract_address, deployer.clone());
+        let contract = CoinFlip::new(self.address, deployer.clone());
 
         println!("Checking that you won 10 times in a row...");
         let consecutive_wins = contract.consecutive_wins().await?;

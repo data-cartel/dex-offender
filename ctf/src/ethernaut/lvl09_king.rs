@@ -2,11 +2,11 @@ use crate::{roles::*, to_ether, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
-pub use bindings::king::King;
+pub use crate::abi::king::King;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
-    pub contract_address: Address,
+    pub address: Address,
 }
 
 #[async_trait]
@@ -27,7 +27,7 @@ impl Level for Target {
             .send()
             .await?;
 
-        let target = Target { contract_address: king.address() };
+        let target = Target { address: king.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -37,7 +37,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = King::new(self.contract_address, deployer.clone());
+        let contract = King::new(self.address, deployer.clone());
 
         println!("Attempting to reclaim the kingdom...");
         let result = deployer

@@ -23,7 +23,7 @@ impl Level for Target {
 
         println!("Deploying the King contract...");
         let king = King::deploy(deployer.to_owned(), ())?
-            .value(to_ether(1))
+            .value(to_ether(10))
             .send()
             .await?;
 
@@ -44,7 +44,7 @@ impl Level for Target {
             .send_transaction(
                 TransactionRequest::new()
                     .to(contract.address())
-                    .value(U256::from(1)),
+                    .value(to_ether(10)),
                 None,
             )
             .await;

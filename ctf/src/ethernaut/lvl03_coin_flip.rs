@@ -39,7 +39,7 @@ impl Level for Target {
 
         println!("Checking that you won 10 times in a row...");
         let consecutive_wins = contract.consecutive_wins().await?;
-        let ten_wins = consecutive_wins == 10.into();
+        let ten_wins = consecutive_wins >= 10.into();
 
         Ok(ten_wins)
     }

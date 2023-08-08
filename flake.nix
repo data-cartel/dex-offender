@@ -32,6 +32,7 @@
                 frameworks.CoreFoundation
               ]);
 
+            dotenv.enable = true;
             difftastic.enable = true;
 
             # https://devenv.sh/languages/
@@ -56,9 +57,9 @@
               ${forge} bind -b ./attack/src/abi --module --force --overwrite
             '';
 
-            scripts.bind-ctfs.exec = ''
+            scripts.bind-ctf.exec = ''
               ${forge} fmt --root ctf
-              ${forge} bind --root ctf -b ./ctf/src/abi --module --force --overwrite
+              ${forge} bind --root ctf -b ./ctf/src/abi --module --skip-cargo-toml --force --overwrite
             '';
 
             scripts.deploy-levels.exec = ''

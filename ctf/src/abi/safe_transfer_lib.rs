@@ -16,42 +16,7 @@ pub mod safe_transfer_lib {
             constructor: ::core::option::Option::None,
             functions: ::std::collections::BTreeMap::new(),
             events: ::std::collections::BTreeMap::new(),
-            errors: ::core::convert::From::from([
-                (
-                    ::std::borrow::ToOwned::to_owned("ApproveFailed"),
-                    ::std::vec![::ethers::core::abi::ethabi::AbiError {
-                        name: ::std::borrow::ToOwned::to_owned("ApproveFailed"),
-                        inputs: ::std::vec![],
-                    },],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("ETHTransferFailed"),
-                    ::std::vec![::ethers::core::abi::ethabi::AbiError {
-                        name: ::std::borrow::ToOwned::to_owned(
-                            "ETHTransferFailed"
-                        ),
-                        inputs: ::std::vec![],
-                    },],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("TransferFailed"),
-                    ::std::vec![::ethers::core::abi::ethabi::AbiError {
-                        name: ::std::borrow::ToOwned::to_owned(
-                            "TransferFailed"
-                        ),
-                        inputs: ::std::vec![],
-                    },],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("TransferFromFailed"),
-                    ::std::vec![::ethers::core::abi::ethabi::AbiError {
-                        name: ::std::borrow::ToOwned::to_owned(
-                            "TransferFromFailed"
-                        ),
-                        inputs: ::std::vec![],
-                    },],
-                ),
-            ]),
+            errors: ::std::collections::BTreeMap::new(),
             receive: false,
             fallback: false,
         }
@@ -61,12 +26,12 @@ pub mod safe_transfer_lib {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xF5\xE7oU\xF5\xD0\x9Fo{S\x8BB/\x01)|y\x06\x86\xF9\x18 \x12\x1B\x1E}\xBF:\x014\xDA\x9DdsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xFB#\xB0\xF1\x7F/x\x0B\xB3\xA5(D\xAF\xEB\x9E\xF8b#\x97W\xD2\xEC\x1AE\r\xE11\xF4\xE9\x81\x9ChdsolcC\0\x08\x14\x003";
     /// The bytecode of the contract.
     pub static SAFETRANSFERLIB_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xF5\xE7oU\xF5\xD0\x9Fo{S\x8BB/\x01)|y\x06\x86\xF9\x18 \x12\x1B\x1E}\xBF:\x014\xDA\x9DdsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xFB#\xB0\xF1\x7F/x\x0B\xB3\xA5(D\xAF\xEB\x9E\xF8b#\x97W\xD2\xEC\x1AE\r\xE11\xF4\xE9\x81\x9ChdsolcC\0\x08\x14\x003";
     /// The deployed bytecode of the contract.
     pub static SAFETRANSFERLIB_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);
@@ -158,202 +123,6 @@ pub mod safe_transfer_lib {
     {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
-        }
-    }
-    ///Custom Error type `ApproveFailed` with signature
-    /// `ApproveFailed()` and selector `0x3e3f8f73`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthError,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-    )]
-    #[etherror(name = "ApproveFailed", abi = "ApproveFailed()")]
-    pub struct ApproveFailed;
-    ///Custom Error type `ETHTransferFailed` with signature
-    /// `ETHTransferFailed()` and selector `0xb12d13eb`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthError,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-    )]
-    #[etherror(name = "ETHTransferFailed", abi = "ETHTransferFailed()")]
-    pub struct ETHTransferFailed;
-    ///Custom Error type `TransferFailed` with signature
-    /// `TransferFailed()` and selector `0x90b8ec18`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthError,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-    )]
-    #[etherror(name = "TransferFailed", abi = "TransferFailed()")]
-    pub struct TransferFailed;
-    ///Custom Error type `TransferFromFailed` with
-    /// signature `TransferFromFailed()` and selector
-    /// `0x7939f424`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthError,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-    )]
-    #[etherror(name = "TransferFromFailed", abi = "TransferFromFailed()")]
-    pub struct TransferFromFailed;
-    ///Container type for all of the contract's custom
-    /// errors
-    #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
-    )]
-    pub enum SafeTransferLibErrors {
-        ApproveFailed(ApproveFailed),
-        ETHTransferFailed(ETHTransferFailed),
-        TransferFailed(TransferFailed),
-        TransferFromFailed(TransferFromFailed),
-        /// The standard solidity revert string, with
-        /// selector Error(string) -- 0x08c379a0
-        RevertString(::std::string::String),
-    }
-    impl ::ethers::core::abi::AbiDecode for SafeTransferLibErrors {
-        fn decode(
-            data: impl AsRef<[u8]>,
-        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
-        {
-            let data = data.as_ref();
-            if let Ok(decoded)
-                = <::std::string::String as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::RevertString(decoded));
-            }
-            if let Ok(decoded) =
-                <ApproveFailed as ::ethers::core::abi::AbiDecode>::decode(data)
-            {
-                return Ok(Self::ApproveFailed(decoded));
-            }
-            if let Ok(decoded) =
-                <ETHTransferFailed as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                )
-            {
-                return Ok(Self::ETHTransferFailed(decoded));
-            }
-            if let Ok(decoded) =
-                <TransferFailed as ::ethers::core::abi::AbiDecode>::decode(data)
-            {
-                return Ok(Self::TransferFailed(decoded));
-            }
-            if let Ok(decoded) =
-                <TransferFromFailed as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                )
-            {
-                return Ok(Self::TransferFromFailed(decoded));
-            }
-            Err(::ethers::core::abi::Error::InvalidData.into())
-        }
-    }
-    impl ::ethers::core::abi::AbiEncode for SafeTransferLibErrors {
-        fn encode(self) -> ::std::vec::Vec<u8> {
-            match self {
-                Self::ApproveFailed(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::ETHTransferFailed(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::TransferFailed(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::TransferFromFailed(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::RevertString(s) => {
-                    ::ethers::core::abi::AbiEncode::encode(s)
-                }
-            }
-        }
-    }
-    impl ::ethers::contract::ContractRevert for SafeTransferLibErrors {
-        fn valid_selector(selector: [u8; 4]) -> bool {
-            match selector {
-                [0x08, 0xc3, 0x79, 0xa0] => true,
-                _ if selector
-                    == <ApproveFailed as ::ethers::contract::EthError>::selector() => {
-                    true
-                }
-                _ if selector
-                    == <ETHTransferFailed as ::ethers::contract::EthError>::selector() => {
-                    true
-                }
-                _ if selector
-                    == <TransferFailed as ::ethers::contract::EthError>::selector() => {
-                    true
-                }
-                _ if selector
-                    == <TransferFromFailed as ::ethers::contract::EthError>::selector() => {
-                    true
-                }
-                _ => false,
-            }
-        }
-    }
-    impl ::core::fmt::Display for SafeTransferLibErrors {
-        fn fmt(
-            &self,
-            f: &mut ::core::fmt::Formatter<'_>,
-        ) -> ::core::fmt::Result {
-            match self {
-                Self::ApproveFailed(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
-                Self::ETHTransferFailed(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
-                Self::TransferFailed(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
-                Self::TransferFromFailed(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
-                Self::RevertString(s) => ::core::fmt::Display::fmt(s, f),
-            }
-        }
-    }
-    impl ::core::convert::From<::std::string::String> for SafeTransferLibErrors {
-        fn from(value: String) -> Self { Self::RevertString(value) }
-    }
-    impl ::core::convert::From<ApproveFailed> for SafeTransferLibErrors {
-        fn from(value: ApproveFailed) -> Self { Self::ApproveFailed(value) }
-    }
-    impl ::core::convert::From<ETHTransferFailed> for SafeTransferLibErrors {
-        fn from(value: ETHTransferFailed) -> Self {
-            Self::ETHTransferFailed(value)
-        }
-    }
-    impl ::core::convert::From<TransferFailed> for SafeTransferLibErrors {
-        fn from(value: TransferFailed) -> Self { Self::TransferFailed(value) }
-    }
-    impl ::core::convert::From<TransferFromFailed> for SafeTransferLibErrors {
-        fn from(value: TransferFromFailed) -> Self {
-            Self::TransferFromFailed(value)
         }
     }
 }

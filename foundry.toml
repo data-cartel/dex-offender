@@ -1,8 +1,10 @@
 [profile.default]
-libs = []
+libs = ['lib']
 src = 'attack/contracts'
+test = 'attack/test'
 out = 'attack/out'
+cache_path = 'attack/cache'
+
 optimizer = true
 optimizer_runs = 9999
-cache_path = 'attack/cache'
 ignored_error_codes = [ 2072, 5159, 9302 ]

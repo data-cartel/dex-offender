@@ -22,8 +22,8 @@ impl ctf::Exploit for Exploit {
         // чтобы точно хватило
         hack_contract
             .go_inside(offender.address())
-            .gas(1000000000000_i128)
-            .call()
+            .gas(9000000_i128)
+            .send()
             .await?;
         Ok(())
     }

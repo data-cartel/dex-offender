@@ -26,12 +26,12 @@ pub mod signed_math {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x9F\x13\xD4\xB7\xF5\0\xE2\xDF\xD9\xE5}I\x171\xA4\xE1s\xDF\xA4e\x145\xF1\x7F>w\xBA\x8B\x9AP\xAE\xD5dsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x86\"\xF7\xBF\x8E\xDAW\xA5\x7F\0\x81\xED9\x82^\x88u\x8C\xB6Y\xD6\xEF\xF4\xE8\xE0\xE7@be\x84\xA4\xB1dsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static SIGNEDMATH_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x9F\x13\xD4\xB7\xF5\0\xE2\xDF\xD9\xE5}I\x171\xA4\xE1s\xDF\xA4e\x145\xF1\x7F>w\xBA\x8B\x9AP\xAE\xD5dsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x86\"\xF7\xBF\x8E\xDAW\xA5\x7F\0\x81\xED9\x82^\x88u\x8C\xB6Y\xD6\xEF\xF4\xE8\xE0\xE7@be\x84\xA4\xB1dsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static SIGNEDMATH_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

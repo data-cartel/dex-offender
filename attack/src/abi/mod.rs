@@ -4,20 +4,6 @@
 //! Do not manually edit these files.
 //! These files may be overwritten by the codegen system at
 //! any time.
-pub mod building;
-pub mod building_contract;
-pub mod coin_flip;
-pub mod elevator;
 pub mod example;
-pub mod force;
-pub mod gatekeeper_one;
-pub mod hack_coin_flip;
-pub mod king;
-pub mod king_hack;
-pub mod let_me_in;
-pub mod money_giver;
-pub mod reentrance;
-pub mod repeat_please;
 pub mod std_invariant;
 pub mod std_style;
-pub mod telephone;

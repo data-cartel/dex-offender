@@ -2,6 +2,18 @@
 
 pragma solidity <0.7.0;
 
+/*
+Ethernaut's motorbike has a brand new upgradeable engine design.
+
+Would you be able to selfdestruct its engine and make the motorbike unusable ?
+
+Things that might help:
+> EIP-1967
+> UUPS upgradeable pattern
+> Initializable contract
+*/
+
+
 import "openzeppelin-contracts-06/utils/Address.sol";
 import "openzeppelin-contracts-06/proxy/Initializable.sol";
 

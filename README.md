@@ -1,6 +1,12 @@
-1) bind-attack
-2) cargo test -p attack -- --nocapture
+1. bind-attack
+2. cargo test -p attack -- --nocapture
+3. deploy-levels (перед этим анвил остановить, который крутит блокчейн) //нужно, если set up изменена
+   ps axu | grep anvil
+   anvil --steps-tracing --state state.json
 
+4. cargo build (если удалить папку target) //не трогать
+
+cast disassemble /ввести байткод/
 
 # DEX OFFENDER
 
@@ -126,7 +132,7 @@ impl ctf::Exploit for Exploit {
 
 If you then run `cargo test -p attack -- --nocapture` you should see something like this
 
-``` text
+```text
 $ cargo test -p attack -- --nocapture
    Compiling attack v0.1.0 (/home/gleb/code/0xgleb/data-cartel/dex-offender/attack)
     Finished test [unoptimized + debuginfo] target(s) in 6.83s
@@ -165,7 +171,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 If you're using the dev container then you already have a local blockchain running in one of the VS code terminals. If not, you can start it by running `anvil`. I would recommend turning on tracing to make debugging easier.
 
-``` sh
+```sh
 anvil --steps-tracing --load-state state.json
 ```
 
@@ -314,7 +320,7 @@ $ cast rpc trace_transaction 0x6d2ec4f84ff1308695afd6a0ef130af5bde3f26eefc112b22
 
 This is hard to read. Let's pipe it thorugh `jq`.
 
-``` sh
+```sh
 $ cast rpc trace_transaction 0x6d2ec4f84ff1308695afd6a0ef130af5bde3f26eefc112b22d39840502528635 | jq .
 [
   {

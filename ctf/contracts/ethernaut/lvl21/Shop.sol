@@ -1,6 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
+/*
+Сan you get the item from the shop for less than the price asked?
 
+Things that might help:
+> Shop expects to be used from a Buyer
+> Understanding restrictions of view functions
+*/
 interface Buyer {
     function price() external view returns (uint256);
 }

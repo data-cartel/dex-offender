@@ -1,6 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
+/*
+This instance represents a Good Samaritan that is wealthy 
+and ready to donate some coins to anyone requesting it.
+
+Would you be able to drain all the balance from his Wallet?
+
+Things that might help:
+
+> Solidity Custom Errors
+*/
+
 import "@openzeppelin/contracts/utils/Address.sol";
 
 contract GoodSamaritan {

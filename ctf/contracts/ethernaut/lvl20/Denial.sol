@@ -1,6 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+/**
+ * @title Ethernaut Level 20: Denial
+ *
+ * This is a simple wallet that drips funds over time. You can withdraw the
+ * funds slowly by becoming a withdrawing partner.
+ *
+ * If you can deny the owner from withdrawing funds when they call withdraw()
+ * (whilst the contract still has funds, and the transaction is of 1M gas or less)
+ * you will win this level.
+ */
 contract Denial {
     address public partner; // withdrawal partner - pay the gas, split the withdraw
     address public constant owner = address(0xA9E);

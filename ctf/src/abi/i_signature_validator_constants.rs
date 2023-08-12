@@ -26,13 +26,13 @@ pub mod i_signature_validator_constants {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 [\xD3\xB63\x1F\x06`C\xF8i\xEFg1\x96\xADh\x82SBsK\x19[\xCCV\x19\xA3\xBC\x1C\x07\xCE\xCFdsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xB7\x99\x02\xA6\xBC\x10\x86j\x8CV\xCD(\xEE\xC0\xEE\xEB\x86f\xE8\x87\xC2D\x7F\xA2\x88w\x9A`\xEB\x1F,\xF3dsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static ISIGNATUREVALIDATORCONSTANTS_BYTECODE:
         ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 [\xD3\xB63\x1F\x06`C\xF8i\xEFg1\x96\xADh\x82SBsK\x19[\xCCV\x19\xA3\xBC\x1C\x07\xCE\xCFdsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xB7\x99\x02\xA6\xBC\x10\x86j\x8CV\xCD(\xEE\xC0\xEE\xEB\x86f\xE8\x87\xC2D\x7F\xA2\x88w\x9A`\xEB\x1F,\xF3dsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static ISIGNATUREVALIDATORCONSTANTS_DEPLOYED_BYTECODE:
         ::ethers::core::types::Bytes =

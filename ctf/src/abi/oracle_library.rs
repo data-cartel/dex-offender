@@ -26,12 +26,12 @@ pub mod oracle_library {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 A\x19\x894\x92\x98\xD2\xA2\xFF\xC6}\xC68\x03\xA4d\x88\x97\xA4\x19Xs<\x02\x86\x13d\xA6\xED\x01)\xFCdsolcC\0\x07\x06\x003";
+    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xE4\x08Z\xC6T\x85/\xBC\xFF\xDD\xE3\x06\xC2#\x0B\"\xB3\xB3\xA8B\xA8\xD1t\xA8\x0E\x9CZ\x84Gb\xE3\"dsolcC\0\x07\x06\x003";
     /// The bytecode of the contract.
     pub static ORACLELIBRARY_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 A\x19\x894\x92\x98\xD2\xA2\xFF\xC6}\xC68\x03\xA4d\x88\x97\xA4\x19Xs<\x02\x86\x13d\xA6\xED\x01)\xFCdsolcC\0\x07\x06\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xE4\x08Z\xC6T\x85/\xBC\xFF\xDD\xE3\x06\xC2#\x0B\"\xB3\xB3\xA8B\xA8\xD1t\xA8\x0E\x9CZ\x84Gb\xE3\"dsolcC\0\x07\x06\x003";
     /// The deployed bytecode of the contract.
     pub static ORACLELIBRARY_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

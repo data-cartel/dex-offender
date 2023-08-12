@@ -26,12 +26,12 @@ pub mod safe_transfer_lib {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xFB#\xB0\xF1\x7F/x\x0B\xB3\xA5(D\xAF\xEB\x9E\xF8b#\x97W\xD2\xEC\x1AE\r\xE11\xF4\xE9\x81\x9ChdsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 U\xB3\xC6\xB3\xF1\xD3E\xB9Y)\x8F{\x98\x9Ef\x13\x95\xF0l\xA1&\xBF\xB5\x91\x9C\xD7\xD5\xF8\xAF<\x86\xFBdsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static SAFETRANSFERLIB_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xFB#\xB0\xF1\x7F/x\x0B\xB3\xA5(D\xAF\xEB\x9E\xF8b#\x97W\xD2\xEC\x1AE\r\xE11\xF4\xE9\x81\x9ChdsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 U\xB3\xC6\xB3\xF1\xD3E\xB9Y)\x8F{\x98\x9Ef\x13\x95\xF0l\xA1&\xBF\xB5\x91\x9C\xD7\xD5\xF8\xAF<\x86\xFBdsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static SAFETRANSFERLIB_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

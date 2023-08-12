@@ -26,12 +26,12 @@ pub mod transfer_helper {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xE4\xF2\x11\x10F\x8F\xD3\xBCO\xB9\x84?\xD8\x14\xCC\xF9\xD9\xCF'k3F,>\xB3R\xA6\xB7\xDF\x04M\xF4dsolcC\0\x07\x06\x003";
+    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xBF\x95\xA3c)\xC4\x02\x9F\"\xD9^0\xCC_w\x8B\xF7l\n<\x88\x08\xFC\xD1`\xB3\xC7\r\xDC/\x7F\xB9dsolcC\0\x07\x06\x003";
     /// The bytecode of the contract.
     pub static TRANSFERHELPER_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xE4\xF2\x11\x10F\x8F\xD3\xBCO\xB9\x84?\xD8\x14\xCC\xF9\xD9\xCF'k3F,>\xB3R\xA6\xB7\xDF\x04M\xF4dsolcC\0\x07\x06\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xBF\x95\xA3c)\xC4\x02\x9F\"\xD9^0\xCC_w\x8B\xF7l\n<\x88\x08\xFC\xD1`\xB3\xC7\r\xDC/\x7F\xB9dsolcC\0\x07\x06\x003";
     /// The deployed bytecode of the contract.
     pub static TRANSFERHELPER_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

@@ -19,11 +19,13 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Naught Coin" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, offender, some_user: _ } = roles;
 
         println!("Deploying the NaughtCoin contract...");
         let contract =
-            NaughtCoin::deploy(deployer.to_owned(), ())?.send().await?;
+            NaughtCoin::deploy(deployer.to_owned(), offender.address())?
+                .send()
+                .await?;
 
         let target = Target { address: contract.address() };
 

@@ -25,12 +25,12 @@ pub mod force {
     pub static FORCE_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> =
         ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xB67<C\xED\x8F\xC7Q\xF6\xB9\x91)\x0B\xB0\xB49\x0B#\xE4D\x8Cu\xF2\xC7\x83\xCC\x968\xC4(\xC2WdsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xED\x8Dx\xFB\x996\x1DPy\x0F\x92k\x0F\x1B\x14_k\x85Ou\x03%`\xAE\x08\x1A\xC7\r<\x01\x1A\x07dsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static FORCE_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xB67<C\xED\x8F\xC7Q\xF6\xB9\x91)\x0B\xB0\xB49\x0B#\xE4D\x8Cu\xF2\xC7\x83\xCC\x968\xC4(\xC2WdsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xED\x8Dx\xFB\x996\x1DPy\x0F\x92k\x0F\x1B\x14_k\x85Ou\x03%`\xAE\x08\x1A\xC7\r<\x01\x1A\x07dsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static FORCE_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

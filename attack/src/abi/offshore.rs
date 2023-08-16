@@ -1,4 +1,4 @@
-pub use example::*;
+pub use offshore::*;
 /// This module was auto-generated with ethers-rs Abigen.
 /// More information at: <https://github.com/gakonst/ethers-rs>
 #[allow(
@@ -9,13 +9,19 @@ pub use example::*;
     dead_code,
     non_camel_case_types
 )]
-pub mod example {
+pub mod offshore {
     #[allow(deprecated)]
     fn __abi() -> ::ethers::core::abi::Abi {
         ::ethers::core::abi::ethabi::Contract {
             constructor: ::core::option::Option::Some(
                 ::ethers::core::abi::ethabi::Constructor {
-                    inputs: ::std::vec![],
+                    inputs: ::std::vec![::ethers::core::abi::ethabi::Param {
+                        name: ::std::borrow::ToOwned::to_owned("_to"),
+                        kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                        internal_type: ::core::option::Option::Some(
+                            ::std::borrow::ToOwned::to_owned("address payable"),
+                        ),
+                    },],
                 },
             ),
             functions: ::core::convert::From::from([(
@@ -42,40 +48,41 @@ pub mod example {
         }
     }
     ///The parsed JSON ABI of the contract.
-    pub static EXAMPLE_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> =
-        ::ethers::contract::Lazy::new(__abi);
+    pub static OFFSHORE_ABI: ::ethers::contract::Lazy<
+        ::ethers::core::abi::Abi,
+    > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\0\x80T`\x01`\x01`\xA0\x1B\x03\x19\x163\x17\x90U`\xAB\x80a\x000`\09`\0\xF3\xFE`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`-W[`\0\x80\xFD[`\0T`L\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 9\xA0(,\x1E(\xEAEb5{\xC4\x96\xF6\xE5]\x9E\x022?H7%\x08\t\x08\x84&\"\x1F\xC7\xCDdsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`@Qa\x0108\x03\x80a\x010\x839\x81\x01`@\x81\x90Ra\0/\x91a\0GV[P`\0\x80T`\x01`\x01`\xA0\x1B\x03\x19\x163\x17\x90Ua\0wV[`\0` \x82\x84\x03\x12\x15a\0YW`\0\x80\xFD[\x81Q`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14a\0pW`\0\x80\xFD[\x93\x92PPPV[`\xAB\x80a\0\x85`\09`\0\xF3\xFE`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`-W[`\0\x80\xFD[`\0T`L\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \x82\x8E\x94\xAE\x93\xE5\xE19C+\xC0\xE1\xF0\xDA\xD5\xAF+G&\x0Ef\xD5#\xAFO5\x84\xF7@\x01T\x10dsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
-    pub static EXAMPLE_BYTECODE: ::ethers::core::types::Bytes =
+    pub static OFFSHORE_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`-W[`\0\x80\xFD[`\0T`L\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 9\xA0(,\x1E(\xEAEb5{\xC4\x96\xF6\xE5]\x9E\x022?H7%\x08\t\x08\x84&\"\x1F\xC7\xCDdsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`-W[`\0\x80\xFD[`\0T`L\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \x82\x8E\x94\xAE\x93\xE5\xE19C+\xC0\xE1\xF0\xDA\xD5\xAF+G&\x0Ef\xD5#\xAFO5\x84\xF7@\x01T\x10dsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
-    pub static EXAMPLE_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
+    pub static OFFSHORE_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);
-    pub struct Example<M>(::ethers::contract::Contract<M>);
-    impl<M> ::core::clone::Clone for Example<M> {
+    pub struct Offshore<M>(::ethers::contract::Contract<M>);
+    impl<M> ::core::clone::Clone for Offshore<M> {
         fn clone(&self) -> Self { Self(::core::clone::Clone::clone(&self.0)) }
     }
-    impl<M> ::core::ops::Deref for Example<M> {
+    impl<M> ::core::ops::Deref for Offshore<M> {
         type Target = ::ethers::contract::Contract<M>;
         fn deref(&self) -> &Self::Target { &self.0 }
     }
-    impl<M> ::core::ops::DerefMut for Example<M> {
+    impl<M> ::core::ops::DerefMut for Offshore<M> {
         fn deref_mut(&mut self) -> &mut Self::Target { &mut self.0 }
     }
-    impl<M> ::core::fmt::Debug for Example<M> {
+    impl<M> ::core::fmt::Debug for Offshore<M> {
         fn fmt(
             &self,
             f: &mut ::core::fmt::Formatter<'_>,
         ) -> ::core::fmt::Result {
-            f.debug_tuple(::core::stringify!(Example))
+            f.debug_tuple(::core::stringify!(Offshore))
                 .field(&self.address())
                 .finish()
         }
     }
-    impl<M: ::ethers::providers::Middleware> Example<M> {
+    impl<M: ::ethers::providers::Middleware> Offshore<M> {
         /// Creates a new contract instance with the
         /// specified `ethers` client at `address`.
         /// The contract derefs to a `ethers::Contract`
@@ -86,7 +93,7 @@ pub mod example {
         ) -> Self {
             Self(::ethers::contract::Contract::new(
                 address.into(),
-                EXAMPLE_ABI.clone(),
+                OFFSHORE_ABI.clone(),
                 client,
             ))
         }
@@ -128,8 +135,8 @@ pub mod example {
             ::ethers::contract::ContractError<M>,
         > {
             let factory = ::ethers::contract::ContractFactory::new(
-                EXAMPLE_ABI.clone(),
-                EXAMPLE_BYTECODE.clone().into(),
+                OFFSHORE_ABI.clone(),
+                OFFSHORE_BYTECODE.clone().into(),
                 client,
             );
             let deployer = factory.deploy(constructor_args)?;
@@ -150,7 +157,7 @@ pub mod example {
         }
     }
     impl<M: ::ethers::providers::Middleware>
-        From<::ethers::contract::Contract<M>> for Example<M>
+        From<::ethers::contract::Contract<M>> for Offshore<M>
     {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())

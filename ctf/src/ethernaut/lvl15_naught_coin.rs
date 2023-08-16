@@ -39,8 +39,8 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
         let contract = NaughtCoin::new(self.address, deployer.clone());
 
-        println!("Checking that your balance is 0...");
-        let balance = deployer.get_balance(offender.address(), None).await?;
+        println!("Checking that you transfered all tokens...");
+        let balance = contract.get_balance(offender.address(), None).await?;
         let zero = U256::from(0_u8);
         Ok(balance == zero)
     }

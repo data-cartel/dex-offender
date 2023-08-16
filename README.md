@@ -1,9 +1,8 @@
 1) bind-attack
 2) cargo test -p attack -- --nocapture
-3) bind-ctf
-4) cargo build (если удалить папку target)
-5) deploy-levels (перед этим анвил остановить, который крутит блокчейн)
+3) deploy-levels (перед этим анвил остановить, который крутит блокчейн) //нужно, если set up изменена
 
+4) cargo build (если удалить папку target) //не трогать
 
 # DEX OFFENDER
 

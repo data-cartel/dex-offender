@@ -17,6 +17,11 @@ pub mod lvl12_privacy;
 pub mod lvl13_gatekeeper_one;
 pub mod lvl14_gatekeeper_two;
 pub mod lvl15_naught_coin;
+pub mod lvl16_preservation;
+
+pub mod lvl18_magic_number;
+
+pub mod lvl20_denial;
 
 use lvl01_fallback as lvl01;
 use lvl02_fallout as lvl02;
@@ -33,6 +38,11 @@ use lvl12_privacy as lvl12;
 use lvl13_gatekeeper_one as lvl13;
 use lvl14_gatekeeper_two as lvl14;
 use lvl15_naught_coin as lvl15;
+use lvl16_preservation as lvl16;
+
+use lvl18_magic_number as lvl18;
+
+use lvl20_denial as lvl20;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Ethernaut {
@@ -51,6 +61,11 @@ pub struct Ethernaut {
     pub level13: lvl13::Target,
     pub level14: lvl14::Target,
     pub level15: lvl15::Target,
+    pub level16: lvl16::Target,
+
+    pub level18: lvl18::Target,
+
+    pub level20: lvl20::Target,
 }
 
 pub async fn set_up_ethernaut(
@@ -73,6 +88,11 @@ pub async fn set_up_ethernaut(
     let level13 = lvl13::Target::set_up(&roles).await?;
     let level14 = lvl14::Target::set_up(&roles).await?;
     let level15 = lvl15::Target::set_up(&roles).await?;
+    let level16 = lvl16::Target::set_up(&roles).await?;
+
+    let level18 = lvl18::Target::set_up(&roles).await?;
+
+    let level20 = lvl20::Target::set_up(&roles).await?;
 
     Ok(Ethernaut {
         level01,
@@ -90,5 +110,10 @@ pub async fn set_up_ethernaut(
         level13,
         level14,
         level15,
+        level16,
+
+        level18,
+
+        level20,
     })
 }

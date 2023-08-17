@@ -2,7 +2,7 @@ use crate::{roles::*, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
-pub use crate::abi::naught_coin::NaughtCoin;
+pub use crate::abi::alien_codex::AlienCodex;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -13,19 +13,17 @@ pub struct Target {
 impl Level for Target {
     fn from_file() -> eyre::Result<Self> {
         let ctfs = crate::CTFs::from_file()?;
-        Ok(ctfs.ethernaut.level15)
+        Ok(ctfs.ethernaut.level19)
     }
 
-    fn name(&self) -> &'static str { "Naught Coin" }
+    fn name(&self) -> &'static str { "Alien Codex" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender, some_user: _ } = roles;
 
-        println!("Deploying the NaughtCoin contract...");
-        let contract =
-            NaughtCoin::deploy(deployer.to_owned(), offender.address())?
-                .send()
-                .await?;
+        println!("Deploying the Alien Codex contract...");
+        let contract = AlienCodex::deploy()?.send().await?;
+
 
         let target = Target { address: contract.address() };
 
@@ -37,11 +35,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = NaughtCoin::new(self.address, deployer.clone());
+        let contract = AlienCodex::new(self.address, deployer.clone());
 
-        println!("Checking that you transfered all tokens...");
-        let balance = contract.balance_of(offender.address()).await?;
-        let zero = U256::from(0_u8);
-        Ok(balance == zero)
+        println!("Checking that you claimed ownership of the contract...");
+        let owner = contract.owner().await?;
+        Ok(owner == offender.address())
     }
 }

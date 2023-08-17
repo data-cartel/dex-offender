@@ -13,34 +13,61 @@ pub mod offshore {
     #[allow(deprecated)]
     fn __abi() -> ::ethers::core::abi::Abi {
         ::ethers::core::abi::ethabi::Contract {
-            constructor: ::core::option::Option::Some(
-                ::ethers::core::abi::ethabi::Constructor {
-                    inputs: ::std::vec![::ethers::core::abi::ethabi::Param {
+            constructor: ::core::option::Option::Some(::ethers::core::abi::ethabi::Constructor {
+                inputs: ::std::vec![
+                    ::ethers::core::abi::ethabi::Param {
                         name: ::std::borrow::ToOwned::to_owned("_to"),
                         kind: ::ethers::core::abi::ethabi::ParamType::Address,
                         internal_type: ::core::option::Option::Some(
                             ::std::borrow::ToOwned::to_owned("address payable"),
                         ),
-                    },],
-                },
-            ),
-            functions: ::core::convert::From::from([(
-                ::std::borrow::ToOwned::to_owned("owner"),
-                ::std::vec![::ethers::core::abi::ethabi::Function {
-                    name: ::std::borrow::ToOwned::to_owned("owner"),
-                    inputs: ::std::vec![],
-                    outputs: ::std::vec![::ethers::core::abi::ethabi::Param {
-                        name: ::std::string::String::new(),
-                        kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                        internal_type: ::core::option::Option::Some(
-                            ::std::borrow::ToOwned::to_owned("address"),
-                        ),
-                    },],
-                    constant: ::core::option::Option::None,
-                    state_mutability:
-                        ::ethers::core::abi::ethabi::StateMutability::View,
-                },],
-            )]),
+                    },
+                ],
+            }),
+            functions: ::core::convert::From::from([
+                (
+                    ::std::borrow::ToOwned::to_owned("balance"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("balance"),
+                            inputs: ::std::vec![],
+                            outputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::borrow::ToOwned::to_owned("balanceee"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
+                                        256usize,
+                                    ),
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("uint256"),
+                                    ),
+                                },
+                            ],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("owner"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("owner"),
+                            inputs: ::std::vec![],
+                            outputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address"),
+                                    ),
+                                },
+                            ],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
+                        },
+                    ],
+                ),
+            ]),
             events: ::std::collections::BTreeMap::new(),
             errors: ::std::collections::BTreeMap::new(),
             receive: false,
@@ -52,12 +79,12 @@ pub mod offshore {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`@Qa\x0108\x03\x80a\x010\x839\x81\x01`@\x81\x90Ra\0/\x91a\0GV[P`\0\x80T`\x01`\x01`\xA0\x1B\x03\x19\x163\x17\x90Ua\0wV[`\0` \x82\x84\x03\x12\x15a\0YW`\0\x80\xFD[\x81Q`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14a\0pW`\0\x80\xFD[\x93\x92PPPV[`\xAB\x80a\0\x85`\09`\0\xF3\xFE`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`-W[`\0\x80\xFD[`\0T`L\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \x82\x8E\x94\xAE\x93\xE5\xE19C+\xC0\xE1\xF0\xDA\xD5\xAF+G&\x0Ef\xD5#\xAFO5\x84\xF7@\x01T\x10dsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`@Qa\x01H8\x03\x80a\x01H\x839\x81\x01`@\x81\x90Ra\0/\x91a\0GV[P`\0\x80T`\x01`\x01`\xA0\x1B\x03\x19\x163\x17\x90Ua\0wV[`\0` \x82\x84\x03\x12\x15a\0YW`\0\x80\xFD[\x81Q`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14a\0pW`\0\x80\xFD[\x93\x92PPPV[`\xC3\x80a\0\x85`\09`\0\xF3\xFE`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`2W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`7W\x80c\xB6\x9E\xF8\xA8\x14`\x80W[`\0\x80\xFD[`\0T`V\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[`@QG\x81R` \x01`wV\xFE\xA2dipfsX\"\x12 \x8F\xC5.Y\xBF\x90\xC9^\xC9\xCC\xEC\xE5tr\xE7v\x90\x1E\x07G\xE2\xB7I\xB18+w\x96fF\x7FbdsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static OFFSHORE_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`-W[`\0\x80\xFD[`\0T`L\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \x82\x8E\x94\xAE\x93\xE5\xE19C+\xC0\xE1\xF0\xDA\xD5\xAF+G&\x0Ef\xD5#\xAFO5\x84\xF7@\x01T\x10dsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`2W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`7W\x80c\xB6\x9E\xF8\xA8\x14`\x80W[`\0\x80\xFD[`\0T`V\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[`@QG\x81R` \x01`wV\xFE\xA2dipfsX\"\x12 \x8F\xC5.Y\xBF\x90\xC9^\xC9\xCC\xEC\xE5tr\xE7v\x90\x1E\x07G\xE2\xB7I\xB18+w\x96fF\x7FbdsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static OFFSHORE_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);
@@ -143,6 +170,18 @@ pub mod offshore {
             let deployer = ::ethers::contract::ContractDeployer::new(deployer);
             Ok(deployer)
         }
+        ///Calls the contract's `balance` (0xb69ef8a8)
+        /// function
+        pub fn balance(
+            &self,
+        ) -> ::ethers::contract::builders::ContractCall<
+            M,
+            ::ethers::core::types::U256,
+        > {
+            self.0
+                .method_hash([182, 158, 248, 168], ())
+                .expect("method not found (this should never happen)")
+        }
         ///Calls the contract's `owner` (0x8da5cb5b)
         /// function
         pub fn owner(
@@ -164,6 +203,21 @@ pub mod offshore {
         }
     }
     ///Container type for all input parameters for the
+    /// `balance` function with signature `balance()` and
+    /// selector `0xb69ef8a8`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthCall,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+    )]
+    #[ethcall(name = "balance", abi = "balance()")]
+    pub struct BalanceCall;
+    ///Container type for all input parameters for the
     /// `owner` function with signature `owner()` and
     /// selector `0x8da5cb5b`
     #[derive(
@@ -178,6 +232,78 @@ pub mod offshore {
     )]
     #[ethcall(name = "owner", abi = "owner()")]
     pub struct OwnerCall;
+    ///Container type for all of the contract's call
+    #[derive(
+        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+    )]
+    pub enum OffshoreCalls {
+        Balance(BalanceCall),
+        Owner(OwnerCall),
+    }
+    impl ::ethers::core::abi::AbiDecode for OffshoreCalls {
+        fn decode(
+            data: impl AsRef<[u8]>,
+        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
+        {
+            let data = data.as_ref();
+            if let Ok(decoded) =
+                <BalanceCall as ::ethers::core::abi::AbiDecode>::decode(data)
+            {
+                return Ok(Self::Balance(decoded));
+            }
+            if let Ok(decoded) =
+                <OwnerCall as ::ethers::core::abi::AbiDecode>::decode(data)
+            {
+                return Ok(Self::Owner(decoded));
+            }
+            Err(::ethers::core::abi::Error::InvalidData.into())
+        }
+    }
+    impl ::ethers::core::abi::AbiEncode for OffshoreCalls {
+        fn encode(self) -> Vec<u8> {
+            match self {
+                Self::Balance(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Owner(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+            }
+        }
+    }
+    impl ::core::fmt::Display for OffshoreCalls {
+        fn fmt(
+            &self,
+            f: &mut ::core::fmt::Formatter<'_>,
+        ) -> ::core::fmt::Result {
+            match self {
+                Self::Balance(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Owner(element) => ::core::fmt::Display::fmt(element, f),
+            }
+        }
+    }
+    impl ::core::convert::From<BalanceCall> for OffshoreCalls {
+        fn from(value: BalanceCall) -> Self { Self::Balance(value) }
+    }
+    impl ::core::convert::From<OwnerCall> for OffshoreCalls {
+        fn from(value: OwnerCall) -> Self { Self::Owner(value) }
+    }
+    ///Container type for all return fields from the
+    /// `balance` function with signature `balance()` and
+    /// selector `0xb69ef8a8`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthAbiType,
+        ::ethers::contract::EthAbiCodec,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+    )]
+    pub struct BalanceReturn {
+        pub balanceee: ::ethers::core::types::U256,
+    }
     ///Container type for all return fields from the
     /// `owner` function with signature `owner()` and
     /// selector `0x8da5cb5b`

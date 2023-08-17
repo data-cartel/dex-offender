@@ -48,17 +48,15 @@ impl Level for Target {
                 println!("Check if TheMeaningOfLife() is 42...");
                 let hack_contract =
                     MeaningOfLife::new(hack_contract_address, deployer.clone());
-                let magic = hack_contract
-                    .what_is_the_meaning_of_life()
-                    .send()
-                    .await?
-                    .await?;
-                if magic != 0x000000000000000000000000000000000000000000000000000000000000002a {
-                 return Ok(false);
-             }
+                let magic = hack_contract.what_is_the_meaning_of_life().await?;
+                let ft = U256::from(42_u8);
+                if magic != ft {
+                    return Ok(false);
+                }
                 println!("Check if the contract size is less than 10 bytes...");
                 // Retrieve the contract bytecode
-                let bytecode = deployer.get_code(hack_contract, None).await?;
+                let bytecode =
+                    deployer.get_code(hack_contract_address, None).await?;
 
                 // Get the size of the bytecode in bytes
                 let bytecode_size = bytecode.len();

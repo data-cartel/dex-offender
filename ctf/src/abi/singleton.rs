@@ -26,12 +26,12 @@ pub mod singleton {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 jV\x82\x1AS\xFB\x02|\xA4\xD3\x05\xC5\xBEc\xF3\0\"\xD8V\xEA\xC4\xEEZ\xC9\x7F%)\xDEW\xEA\x98\x8DdsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`?\x80`\x1D`\09`\0\xF3\xFE`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 k\xC5 \xDF\xE8\xEB\x15\xE9\xCF\"\xD0\xCD\x0B\x06\x86\0\x7F\xE89\x8A\xCC<8\nj\xBE\x8B\x0C\xFA\xA5\x07\x07dsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static SINGLETON_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 jV\x82\x1AS\xFB\x02|\xA4\xD3\x05\xC5\xBEc\xF3\0\"\xD8V\xEA\xC4\xEEZ\xC9\x7F%)\xDEW\xEA\x98\x8DdsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 k\xC5 \xDF\xE8\xEB\x15\xE9\xCF\"\xD0\xCD\x0B\x06\x86\0\x7F\xE89\x8A\xCC<8\nj\xBE\x8B\x0C\xFA\xA5\x07\x07dsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static SINGLETON_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

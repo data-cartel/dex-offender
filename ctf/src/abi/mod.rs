@@ -110,6 +110,7 @@ pub mod lib_sort;
 pub mod library_contract;
 pub mod magic_num;
 pub mod math;
+pub mod meaning_of_life;
 pub mod module_manager;
 pub mod motorbike;
 pub mod naive_receiver_lender_pool;

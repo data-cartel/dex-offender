@@ -22,7 +22,9 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
 
         println!("Deploying the Denial contract...");
-        let contract = Denial::deploy()?.send().await?;
+        let contract = Denial::deploy(deployer.to_owned(), offender.address())?
+            .send()
+            .await?;
 
 
         let target = Target { address: contract.address() };
@@ -37,12 +39,13 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
         let contract = Denial::new(self.address, deployer.clone());
         println!("Checking that the contract has more than 100 wei...");
-        if deployer.get_balance(contract.address(), None).await? <= 100 {
+        let hundred = U256::from(100_u8);
+        if deployer.get_balance(contract.address(), None).await? <= hundred {
             // cheating otherwise
             return Ok(false);
         }
-        println("Checking that the owner cannot call withdraw()...");
-        match contract.gas(1000000).withdraw().send().await {
+        println!("Checking that the owner cannot call withdraw()...");
+        match contract.withdraw().gas(1000000).send().await {
             Err(_) => {
                 return Ok(false);
             }

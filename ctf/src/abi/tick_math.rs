@@ -26,12 +26,12 @@ pub mod tick_math {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xE4If\xF3-5\xD8700t=\xF9E\xA0\xD1U\x82\xAF\xDD\xB9\x1C\xAB[\x85f-kM}\xD6\x02dsolcC\0\x07\x06\x003";
+    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD3gk\x1ES\xA3\xDC)\xF4%e\xC2\xE0\xE4.oI%\0\xF5Z\x81\x8C$I\x9C\xC2eW\x8Af\xC7dsolcC\0\x07\x06\x003";
     /// The bytecode of the contract.
     pub static TICKMATH_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xE4If\xF3-5\xD8700t=\xF9E\xA0\xD1U\x82\xAF\xDD\xB9\x1C\xAB[\x85f-kM}\xD6\x02dsolcC\0\x07\x06\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD3gk\x1ES\xA3\xDC)\xF4%e\xC2\xE0\xE4.oI%\0\xF5Z\x81\x8C$I\x9C\xC2eW\x8Af\xC7dsolcC\0\x07\x06\x003";
     /// The deployed bytecode of the contract.
     pub static TICKMATH_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

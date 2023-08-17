@@ -15,22 +15,7 @@ pub mod initializable {
         ::ethers::core::abi::ethabi::Contract {
             constructor: ::core::option::Option::None,
             functions: ::std::collections::BTreeMap::new(),
-            events: ::core::convert::From::from([(
-                ::std::borrow::ToOwned::to_owned("Initialized"),
-                ::std::vec![::ethers::core::abi::ethabi::Event {
-                    name: ::std::borrow::ToOwned::to_owned("Initialized"),
-                    inputs: ::std::vec![
-                        ::ethers::core::abi::ethabi::EventParam {
-                            name: ::std::borrow::ToOwned::to_owned("version"),
-                            kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                8usize
-                            ),
-                            indexed: false,
-                        },
-                    ],
-                    anonymous: false,
-                },],
-            )]),
+            events: ::std::collections::BTreeMap::new(),
             errors: ::std::collections::BTreeMap::new(),
             receive: false,
             fallback: false,
@@ -76,27 +61,6 @@ pub mod initializable {
                 client,
             ))
         }
-        ///Gets the contract's `Initialized` event
-        pub fn initialized_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<
-            ::std::sync::Arc<M>,
-            M,
-            InitializedFilter,
-        > {
-            self.0.event()
-        }
-        /// Returns an `Event` builder for all the events of
-        /// this contract.
-        pub fn events(
-            &self,
-        ) -> ::ethers::contract::builders::Event<
-            ::std::sync::Arc<M>,
-            M,
-            InitializedFilter,
-        > {
-            self.0.event_with_filter(::core::default::Default::default())
-        }
     }
     impl<M: ::ethers::providers::Middleware>
         From<::ethers::contract::Contract<M>> for Initializable<M>
@@ -104,19 +68,5 @@ pub mod initializable {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
         }
-    }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-    )]
-    #[ethevent(name = "Initialized", abi = "Initialized(uint8)")]
-    pub struct InitializedFilter {
-        pub version: u8,
     }
 }

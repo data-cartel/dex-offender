@@ -1,4 +1,4 @@
-use crate::{roles::*, Level};
+use crate::{abi::meaning_of_life::MeaningOfLife, roles::*, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
@@ -22,7 +22,10 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
 
         println!("Deploying the Magic Number contract...");
-        let contract = MagicNum::deploy()?.send().await?;
+        let contract =
+            MagicNum::deploy(deployer.to_owned(), offender.address())?
+                .send()
+                .await?;
 
 
         let target = Target { address: contract.address() };
@@ -41,15 +44,21 @@ impl Level for Target {
             Err(_) => {
                 return Ok(false);
             }
-            Ok(hack_contract) => {
+            Ok(hack_contract_address) => {
                 println!("Check if TheMeaningOfLife() is 42...");
-                let magic = hack_contract.whatIsTheMeaningOfLife();
+                let hack_contract =
+                    MeaningOfLife::new(hack_contract_address, deployer.clone());
+                let magic = hack_contract
+                    .what_is_the_meaning_of_life()
+                    .send()
+                    .await?
+                    .await?;
                 if magic != 0x000000000000000000000000000000000000000000000000000000000000002a {
                  return Ok(false);
              }
                 println!("Check if the contract size is less than 10 bytes...");
                 // Retrieve the contract bytecode
-                let bytecode = deployer.get_code(hack_contract).await?;
+                let bytecode = deployer.get_code(hack_contract, None).await?;
 
                 // Get the size of the bytecode in bytes
                 let bytecode_size = bytecode.len();
@@ -58,5 +67,6 @@ impl Level for Target {
                 }
             }
         }
+        Ok(true)
     }
 }

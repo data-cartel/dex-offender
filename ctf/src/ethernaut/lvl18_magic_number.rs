@@ -23,9 +23,7 @@ impl Level for Target {
 
         println!("Deploying the Magic Number contract...");
         let contract =
-            MagicNum::deploy(deployer.to_owned(), offender.address())?
-                .send()
-                .await?;
+            MagicNum::deploy(deployer.to_owned(), ())?.send().await?;
 
 
         let target = Target { address: contract.address() };

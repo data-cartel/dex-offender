@@ -22,10 +22,15 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
 
         println!("Deploying the Denial contract...");
-        let contract = Denial::deploy(deployer.to_owned(), offender.address())?
-            .send()
-            .await?;
+        let contract = Denial::deploy(deployer.to_owned(), ())?.send().await?;
 
+        deployer
+            .send_transaction(
+                TransactionRequest::new().to(contract.address()).value(1000000),
+                None,
+            )
+            .await?
+            .await?;
 
         let target = Target { address: contract.address() };
 
@@ -45,11 +50,9 @@ impl Level for Target {
             return Ok(false);
         }
         println!("Checking that the owner cannot call withdraw()...");
-        match contract.withdraw().gas(1000000).send().await {
-            Err(_) => {
-                return Ok(false);
-            }
-            Ok(hack_contract) => Ok(true),
-        }
+        let passed =
+            contract.withdraw().gas(1000000).send().await?.await.is_err();
+
+        Ok(passed)
     }
 }

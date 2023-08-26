@@ -44,6 +44,18 @@
     },
     "level15": {
       "address": "0x59b670e9fa9d0a427751af201d676719a970857b"
+    },
+    "level16": {
+      "address": "0xa85233c63b9ee964add6f2cffe00fd84eb32338f"
+    },
+    "level18": {
+      "address": "0x4a679253410272dd5232b3ff7cf5dbb88f295319"
+    },
+    "level19": {
+      "address": "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
+    },
+    "level20": {
+      "address": "0x09635f643e140090a9a8dcd712ed6285858cebef"
     }
   }
 }

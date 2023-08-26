@@ -1,4 +1,4 @@
-pub use library_contract::*;
+pub use n::*;
 /// This module was auto-generated with ethers-rs Abigen.
 /// More information at: <https://github.com/gakonst/ethers-rs>
 #[allow(
@@ -9,30 +9,16 @@ pub use library_contract::*;
     dead_code,
     non_camel_case_types
 )]
-pub mod library_contract {
+pub mod n {
     #[allow(deprecated)]
     fn __abi() -> ::ethers::core::abi::Abi {
         ::ethers::core::abi::ethabi::Contract {
-            constructor: ::core::option::Option::None,
-            functions: ::core::convert::From::from([(
-                ::std::borrow::ToOwned::to_owned("setTime"),
-                ::std::vec![::ethers::core::abi::ethabi::Function {
-                    name: ::std::borrow::ToOwned::to_owned("setTime"),
-                    inputs: ::std::vec![::ethers::core::abi::ethabi::Param {
-                        name: ::std::borrow::ToOwned::to_owned("_time"),
-                        kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                            256usize,
-                        ),
-                        internal_type: ::core::option::Option::Some(
-                            ::std::borrow::ToOwned::to_owned("uint256"),
-                        ),
-                    },],
-                    outputs: ::std::vec![],
-                    constant: ::core::option::Option::None,
-                    state_mutability:
-                        ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                },],
-            )]),
+            constructor: ::core::option::Option::Some(
+                ::ethers::core::abi::ethabi::Constructor {
+                    inputs: ::std::vec![],
+                },
+            ),
+            functions: ::std::collections::BTreeMap::new(),
             events: ::std::collections::BTreeMap::new(),
             errors: ::std::collections::BTreeMap::new(),
             receive: false,
@@ -40,41 +26,38 @@ pub mod library_contract {
         }
     }
     ///The parsed JSON ABI of the contract.
-    pub static LIBRARYCONTRACT_ABI: ::ethers::contract::Lazy<
-        ::ethers::core::abi::Abi,
-    > = ::ethers::contract::Lazy::new(__abi);
+    pub static N_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> =
+        ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x8D\x80a\0\x1E`\09`\0\xF3\xFE`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c;\xEB&\xC4\x14`-W[`\0\x80\xFD[`=`86`\x04`?V[`\0UV[\0[`\0` \x82\x84\x03\x12\x15`PW`\0\x80\xFD[P5\x91\x90PV\xFE\xA2dipfsX\"\x12 \x9D\xBC\x8F\xA3\x8EX'u}g\xB0\x90\x0B-Q \xC8\x17\x1A\xB3\x06\xE8>7^\x14 \xAB-\xD3\xEC\xE1dsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[Pi`*`\0R` `\0\xF3`\0R`\n`\0\xF3\xFE";
     /// The bytecode of the contract.
-    pub static LIBRARYCONTRACT_BYTECODE: ::ethers::core::types::Bytes =
+    pub static N_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`(W`\x005`\xE0\x1C\x80c;\xEB&\xC4\x14`-W[`\0\x80\xFD[`=`86`\x04`?V[`\0UV[\0[`\0` \x82\x84\x03\x12\x15`PW`\0\x80\xFD[P5\x91\x90PV\xFE\xA2dipfsX\"\x12 \x9D\xBC\x8F\xA3\x8EX'u}g\xB0\x90\x0B-Q \xC8\x17\x1A\xB3\x06\xE8>7^\x14 \xAB-\xD3\xEC\xE1dsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \x01t\xA8\x96\xDFH\xE87Wy\x07\x05\xE1&\xF9\x8DA'0eG\xBC@e\xF2*J\x89\x88\xEFT\xE1dsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
-    pub static LIBRARYCONTRACT_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
+    pub static N_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);
-    pub struct LibraryContract<M>(::ethers::contract::Contract<M>);
-    impl<M> ::core::clone::Clone for LibraryContract<M> {
+    pub struct N<M>(::ethers::contract::Contract<M>);
+    impl<M> ::core::clone::Clone for N<M> {
         fn clone(&self) -> Self { Self(::core::clone::Clone::clone(&self.0)) }
     }
-    impl<M> ::core::ops::Deref for LibraryContract<M> {
+    impl<M> ::core::ops::Deref for N<M> {
         type Target = ::ethers::contract::Contract<M>;
         fn deref(&self) -> &Self::Target { &self.0 }
     }
-    impl<M> ::core::ops::DerefMut for LibraryContract<M> {
+    impl<M> ::core::ops::DerefMut for N<M> {
         fn deref_mut(&mut self) -> &mut Self::Target { &mut self.0 }
     }
-    impl<M> ::core::fmt::Debug for LibraryContract<M> {
+    impl<M> ::core::fmt::Debug for N<M> {
         fn fmt(
             &self,
             f: &mut ::core::fmt::Formatter<'_>,
         ) -> ::core::fmt::Result {
-            f.debug_tuple(::core::stringify!(LibraryContract))
-                .field(&self.address())
-                .finish()
+            f.debug_tuple(::core::stringify!(N)).field(&self.address()).finish()
         }
     }
-    impl<M: ::ethers::providers::Middleware> LibraryContract<M> {
+    impl<M: ::ethers::providers::Middleware> N<M> {
         /// Creates a new contract instance with the
         /// specified `ethers` client at `address`.
         /// The contract derefs to a `ethers::Contract`
@@ -85,7 +68,7 @@ pub mod library_contract {
         ) -> Self {
             Self(::ethers::contract::Contract::new(
                 address.into(),
-                LIBRARYCONTRACT_ABI.clone(),
+                N_ABI.clone(),
                 client,
             ))
         }
@@ -127,47 +110,20 @@ pub mod library_contract {
             ::ethers::contract::ContractError<M>,
         > {
             let factory = ::ethers::contract::ContractFactory::new(
-                LIBRARYCONTRACT_ABI.clone(),
-                LIBRARYCONTRACT_BYTECODE.clone().into(),
+                N_ABI.clone(),
+                N_BYTECODE.clone().into(),
                 client,
             );
             let deployer = factory.deploy(constructor_args)?;
             let deployer = ::ethers::contract::ContractDeployer::new(deployer);
             Ok(deployer)
         }
-        ///Calls the contract's `setTime` (0x3beb26c4)
-        /// function
-        pub fn set_time(
-            &self,
-            time: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([59, 235, 38, 196], time)
-                .expect("method not found (this should never happen)")
-        }
     }
     impl<M: ::ethers::providers::Middleware>
-        From<::ethers::contract::Contract<M>> for LibraryContract<M>
+        From<::ethers::contract::Contract<M>> for N<M>
     {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
         }
-    }
-    ///Container type for all input parameters for the
-    /// `setTime` function with signature `setTime(uint256)`
-    /// and selector `0x3beb26c4`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-    )]
-    #[ethcall(name = "setTime", abi = "setTime(uint256)")]
-    pub struct SetTimeCall {
-        pub time: ::ethers::core::types::U256,
     }
 }

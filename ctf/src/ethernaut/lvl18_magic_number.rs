@@ -38,19 +38,22 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
         let contract = MagicNum::new(self.address, deployer.clone());
         println!("Verifying that the solver variable is not empty...");
-        match contract.solver().await {
+        let hack_contract_address = contract.solver().await?;
+        println!("Check if TheMeaningOfLife() is 42...");
+        let hack_contract =
+            MeaningOfLife::new(hack_contract_address, deployer.clone());
+        let magic = hack_contract.what_is_the_meaning_of_life().await;
+        match magic {
             Err(_) => {
                 return Ok(false);
             }
-            Ok(hack_contract_address) => {
-                println!("Check if TheMeaningOfLife() is 42...");
-                let hack_contract =
-                    MeaningOfLife::new(hack_contract_address, deployer.clone());
-                let magic = hack_contract.what_is_the_meaning_of_life().await?;
+            Ok(magic) => {
                 let ft = U256::from(42_u8);
                 if magic != ft {
+                    println!("It's not 42");
                     return Ok(false);
                 }
+
                 println!("Check if the contract size is less than 10 bytes...");
                 // Retrieve the contract bytecode
                 let bytecode =
@@ -59,6 +62,7 @@ impl Level for Target {
                 // Get the size of the bytecode in bytes
                 let bytecode_size = bytecode.len();
                 if bytecode_size > 10 {
+                    println!("It's not");
                     return Ok(false);
                 }
             }

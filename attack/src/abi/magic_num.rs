@@ -1,4 +1,4 @@
-pub use telephone::*;
+pub use magic_num::*;
 /// This module was auto-generated with ethers-rs Abigen.
 /// More information at: <https://github.com/gakonst/ethers-rs>
 #[allow(
@@ -9,7 +9,7 @@ pub use telephone::*;
     dead_code,
     non_camel_case_types
 )]
-pub mod telephone {
+pub mod magic_num {
     #[allow(deprecated)]
     fn __abi() -> ::ethers::core::abi::Abi {
         ::ethers::core::abi::ethabi::Contract {
@@ -18,13 +18,13 @@ pub mod telephone {
             }),
             functions: ::core::convert::From::from([
                 (
-                    ::std::borrow::ToOwned::to_owned("changeOwner"),
+                    ::std::borrow::ToOwned::to_owned("setSolver"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("changeOwner"),
+                            name: ::std::borrow::ToOwned::to_owned("setSolver"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_owner"),
+                                    name: ::std::borrow::ToOwned::to_owned("_solver"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
@@ -38,10 +38,10 @@ pub mod telephone {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("owner"),
+                    ::std::borrow::ToOwned::to_owned("solver"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("owner"),
+                            name: ::std::borrow::ToOwned::to_owned("solver"),
                             inputs: ::std::vec![],
                             outputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
@@ -65,41 +65,41 @@ pub mod telephone {
         }
     }
     ///The parsed JSON ABI of the contract.
-    pub static TELEPHONE_ABI: ::ethers::contract::Lazy<
+    pub static MAGICNUM_ABI: ::ethers::contract::Lazy<
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\0\x80T`\x01`\x01`\xA0\x1B\x03\x19\x163\x17\x90Ua\x01W\x80a\x002`\09`\0\xF3\xFE`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14a\0;W\x80c\xA6\xF9\xDA\xE1\x14a\0\x84W[`\0\x80\xFD[`\0Ta\0[\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3[a\0\x97a\0\x926`\x04a\0\xE4V[a\0\x99V[\0[23\x14a\0\xE1W`\0\x80T\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x16s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x83\x16\x17\x90U[PV[`\0` \x82\x84\x03\x12\x15a\0\xF6W`\0\x80\xFD[\x815s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x16\x81\x14a\x01\x1AW`\0\x80\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 %X\xCC\xC9\xFDht\xFF\xBB\xA1\x0E\xAA\xD8V5\xAA\xE1\xCC\xD6?s\xA6\x9F\x08\xD2m3\xABU\x88&\xD9dsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[Pa\x01N\x80a\0 `\09`\0\xF3\xFE`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c\x1F\x87\x943\x14a\0;W\x80cI\xA7\xA2m\x14a\0\x92W[`\0\x80\xFD[a\0\x90a\0I6`\x04a\0\xDBV[`\0\x80T\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x16s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x92\x90\x92\x16\x91\x90\x91\x17\x90UV[\0[`\0Ta\0\xB2\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3[`\0` \x82\x84\x03\x12\x15a\0\xEDW`\0\x80\xFD[\x815s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x16\x81\x14a\x01\x11W`\0\x80\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 \x05\xD4\xD8\xEFp2\x11c\x86\xAE~<\x991\x9A?\x03\xAF\x88(\xB52\x9E\x1C\xED\xF3V\xF7NSY\x8CdsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
-    pub static TELEPHONE_BYTECODE: ::ethers::core::types::Bytes =
+    pub static MAGICNUM_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c\x8D\xA5\xCB[\x14a\0;W\x80c\xA6\xF9\xDA\xE1\x14a\0\x84W[`\0\x80\xFD[`\0Ta\0[\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3[a\0\x97a\0\x926`\x04a\0\xE4V[a\0\x99V[\0[23\x14a\0\xE1W`\0\x80T\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x16s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x83\x16\x17\x90U[PV[`\0` \x82\x84\x03\x12\x15a\0\xF6W`\0\x80\xFD[\x815s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x16\x81\x14a\x01\x1AW`\0\x80\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 %X\xCC\xC9\xFDht\xFF\xBB\xA1\x0E\xAA\xD8V5\xAA\xE1\xCC\xD6?s\xA6\x9F\x08\xD2m3\xABU\x88&\xD9dsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c\x1F\x87\x943\x14a\0;W\x80cI\xA7\xA2m\x14a\0\x92W[`\0\x80\xFD[a\0\x90a\0I6`\x04a\0\xDBV[`\0\x80T\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x16s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x92\x90\x92\x16\x91\x90\x91\x17\x90UV[\0[`\0Ta\0\xB2\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3[`\0` \x82\x84\x03\x12\x15a\0\xEDW`\0\x80\xFD[\x815s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x16\x81\x14a\x01\x11W`\0\x80\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 \x05\xD4\xD8\xEFp2\x11c\x86\xAE~<\x991\x9A?\x03\xAF\x88(\xB52\x9E\x1C\xED\xF3V\xF7NSY\x8CdsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
-    pub static TELEPHONE_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
+    pub static MAGICNUM_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);
-    pub struct Telephone<M>(::ethers::contract::Contract<M>);
-    impl<M> ::core::clone::Clone for Telephone<M> {
+    pub struct MagicNum<M>(::ethers::contract::Contract<M>);
+    impl<M> ::core::clone::Clone for MagicNum<M> {
         fn clone(&self) -> Self { Self(::core::clone::Clone::clone(&self.0)) }
     }
-    impl<M> ::core::ops::Deref for Telephone<M> {
+    impl<M> ::core::ops::Deref for MagicNum<M> {
         type Target = ::ethers::contract::Contract<M>;
         fn deref(&self) -> &Self::Target { &self.0 }
     }
-    impl<M> ::core::ops::DerefMut for Telephone<M> {
+    impl<M> ::core::ops::DerefMut for MagicNum<M> {
         fn deref_mut(&mut self) -> &mut Self::Target { &mut self.0 }
     }
-    impl<M> ::core::fmt::Debug for Telephone<M> {
+    impl<M> ::core::fmt::Debug for MagicNum<M> {
         fn fmt(
             &self,
             f: &mut ::core::fmt::Formatter<'_>,
         ) -> ::core::fmt::Result {
-            f.debug_tuple(::core::stringify!(Telephone))
+            f.debug_tuple(::core::stringify!(MagicNum))
                 .field(&self.address())
                 .finish()
         }
     }
-    impl<M: ::ethers::providers::Middleware> Telephone<M> {
+    impl<M: ::ethers::providers::Middleware> MagicNum<M> {
         /// Creates a new contract instance with the
         /// specified `ethers` client at `address`.
         /// The contract derefs to a `ethers::Contract`
@@ -110,7 +110,7 @@ pub mod telephone {
         ) -> Self {
             Self(::ethers::contract::Contract::new(
                 address.into(),
-                TELEPHONE_ABI.clone(),
+                MAGICNUM_ABI.clone(),
                 client,
             ))
         }
@@ -152,47 +152,47 @@ pub mod telephone {
             ::ethers::contract::ContractError<M>,
         > {
             let factory = ::ethers::contract::ContractFactory::new(
-                TELEPHONE_ABI.clone(),
-                TELEPHONE_BYTECODE.clone().into(),
+                MAGICNUM_ABI.clone(),
+                MAGICNUM_BYTECODE.clone().into(),
                 client,
             );
             let deployer = factory.deploy(constructor_args)?;
             let deployer = ::ethers::contract::ContractDeployer::new(deployer);
             Ok(deployer)
         }
-        ///Calls the contract's `changeOwner` (0xa6f9dae1)
+        ///Calls the contract's `setSolver` (0x1f879433)
         /// function
-        pub fn change_owner(
+        pub fn set_solver(
             &self,
-            owner: ::ethers::core::types::Address,
+            solver: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([166, 249, 218, 225], owner)
+                .method_hash([31, 135, 148, 51], solver)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `owner` (0x8da5cb5b)
+        ///Calls the contract's `solver` (0x49a7a26d)
         /// function
-        pub fn owner(
+        pub fn solver(
             &self,
         ) -> ::ethers::contract::builders::ContractCall<
             M,
             ::ethers::core::types::Address,
         > {
             self.0
-                .method_hash([141, 165, 203, 91], ())
+                .method_hash([73, 167, 162, 109], ())
                 .expect("method not found (this should never happen)")
         }
     }
     impl<M: ::ethers::providers::Middleware>
-        From<::ethers::contract::Contract<M>> for Telephone<M>
+        From<::ethers::contract::Contract<M>> for MagicNum<M>
     {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
         }
     }
     ///Container type for all input parameters for the
-    /// `changeOwner` function with signature
-    /// `changeOwner(address)` and selector `0xa6f9dae1`
+    /// `setSolver` function with signature
+    /// `setSolver(address)` and selector `0x1f879433`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -203,13 +203,13 @@ pub mod telephone {
         Eq,
         Hash,
     )]
-    #[ethcall(name = "changeOwner", abi = "changeOwner(address)")]
-    pub struct ChangeOwnerCall {
-        pub owner: ::ethers::core::types::Address,
+    #[ethcall(name = "setSolver", abi = "setSolver(address)")]
+    pub struct SetSolverCall {
+        pub solver: ::ethers::core::types::Address,
     }
     ///Container type for all input parameters for the
-    /// `owner` function with signature `owner()` and
-    /// selector `0x8da5cb5b`
+    /// `solver` function with signature `solver()` and
+    /// selector `0x49a7a26d`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -220,71 +220,69 @@ pub mod telephone {
         Eq,
         Hash,
     )]
-    #[ethcall(name = "owner", abi = "owner()")]
-    pub struct OwnerCall;
+    #[ethcall(name = "solver", abi = "solver()")]
+    pub struct SolverCall;
     ///Container type for all of the contract's call
     #[derive(
         Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
     )]
-    pub enum TelephoneCalls {
-        ChangeOwner(ChangeOwnerCall),
-        Owner(OwnerCall),
+    pub enum MagicNumCalls {
+        SetSolver(SetSolverCall),
+        Solver(SolverCall),
     }
-    impl ::ethers::core::abi::AbiDecode for TelephoneCalls {
+    impl ::ethers::core::abi::AbiDecode for MagicNumCalls {
         fn decode(
             data: impl AsRef<[u8]>,
         ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
         {
             let data = data.as_ref();
             if let Ok(decoded) =
-                <ChangeOwnerCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                )
+                <SetSolverCall as ::ethers::core::abi::AbiDecode>::decode(data)
             {
-                return Ok(Self::ChangeOwner(decoded));
+                return Ok(Self::SetSolver(decoded));
             }
             if let Ok(decoded) =
-                <OwnerCall as ::ethers::core::abi::AbiDecode>::decode(data)
+                <SolverCall as ::ethers::core::abi::AbiDecode>::decode(data)
             {
-                return Ok(Self::Owner(decoded));
+                return Ok(Self::Solver(decoded));
             }
             Err(::ethers::core::abi::Error::InvalidData.into())
         }
     }
-    impl ::ethers::core::abi::AbiEncode for TelephoneCalls {
+    impl ::ethers::core::abi::AbiEncode for MagicNumCalls {
         fn encode(self) -> Vec<u8> {
             match self {
-                Self::ChangeOwner(element) => {
+                Self::SetSolver(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::Owner(element) => {
+                Self::Solver(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
             }
         }
     }
-    impl ::core::fmt::Display for TelephoneCalls {
+    impl ::core::fmt::Display for MagicNumCalls {
         fn fmt(
             &self,
             f: &mut ::core::fmt::Formatter<'_>,
         ) -> ::core::fmt::Result {
             match self {
-                Self::ChangeOwner(element) => {
+                Self::SetSolver(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::Owner(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Solver(element) => ::core::fmt::Display::fmt(element, f),
             }
         }
     }
-    impl ::core::convert::From<ChangeOwnerCall> for TelephoneCalls {
-        fn from(value: ChangeOwnerCall) -> Self { Self::ChangeOwner(value) }
+    impl ::core::convert::From<SetSolverCall> for MagicNumCalls {
+        fn from(value: SetSolverCall) -> Self { Self::SetSolver(value) }
     }
-    impl ::core::convert::From<OwnerCall> for TelephoneCalls {
-        fn from(value: OwnerCall) -> Self { Self::Owner(value) }
+    impl ::core::convert::From<SolverCall> for MagicNumCalls {
+        fn from(value: SolverCall) -> Self { Self::Solver(value) }
     }
     ///Container type for all return fields from the
-    /// `owner` function with signature `owner()` and
-    /// selector `0x8da5cb5b`
+    /// `solver` function with signature `solver()` and
+    /// selector `0x49a7a26d`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -295,5 +293,5 @@ pub mod telephone {
         Eq,
         Hash,
     )]
-    pub struct OwnerReturn(pub ::ethers::core::types::Address);
+    pub struct SolverReturn(pub ::ethers::core::types::Address);
 }

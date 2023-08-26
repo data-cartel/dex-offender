@@ -13,7 +13,10 @@
 //pub mod hack13_gatekeeper_one;
 //pub mod hack14_gatekeeper_two;
 //pub mod hack15_naught_coin;
-pub mod hack16_preservation;
+//pub mod hack16_preservation;
+//pub mod hack18_magic_number;
+//pub mod hack19_alien_codex;
+pub mod hack20_denial;
 
 #[cfg(test)]
 mod tests {
@@ -35,7 +38,10 @@ mod tests {
     //use hack13_gatekeeper_one as hack13;
     //use hack14_gatekeeper_two as hack14;
     //use hack15_naught_coin as hack15;
-    use hack16_preservation as hack16;
+    //use hack16_preservation as hack16;
+    //use hack18_magic_number as hack18;
+    //use hack19_alien_codex as hack19;
+    use hack20_denial as hack20;
 
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
@@ -59,7 +65,10 @@ mod tests {
         //ctf::check_exploit(&roles, hack13::Exploit).await?;
         //ctf::check_exploit(&roles, hack14::Exploit).await?;
         //ctf::check_exploit(&roles, hack15::Exploit).await?;
-        ctf::check_exploit(&roles, hack16::Exploit).await?;
+        //ctf::check_exploit(&roles, hack16::Exploit).await?;
+        //ctf::check_exploit(&roles, hack18::Exploit).await?;
+        //ctf::check_exploit(&roles, hack19::Exploit).await?;
+        ctf::check_exploit(&roles, hack20::Exploit).await?;
         Ok(())
     }
 }

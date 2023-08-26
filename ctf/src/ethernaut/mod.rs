@@ -20,7 +20,7 @@ pub mod lvl15_naught_coin;
 pub mod lvl16_preservation;
 
 pub mod lvl18_magic_number;
-
+pub mod lvl19_alien_codex;
 pub mod lvl20_denial;
 
 use lvl01_fallback as lvl01;
@@ -41,7 +41,7 @@ use lvl15_naught_coin as lvl15;
 use lvl16_preservation as lvl16;
 
 use lvl18_magic_number as lvl18;
-
+use lvl19_alien_codex as lvl19;
 use lvl20_denial as lvl20;
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
@@ -64,7 +64,7 @@ pub struct Ethernaut {
     pub level16: lvl16::Target,
 
     pub level18: lvl18::Target,
-
+    pub level19: lvl19::Target,
     pub level20: lvl20::Target,
 }
 
@@ -91,7 +91,7 @@ pub async fn set_up_ethernaut(
     let level16 = lvl16::Target::set_up(&roles).await?;
 
     let level18 = lvl18::Target::set_up(&roles).await?;
-
+    let level19 = lvl19::Target::set_up(&roles).await?;
     let level20 = lvl20::Target::set_up(&roles).await?;
 
     Ok(Ethernaut {
@@ -113,7 +113,7 @@ pub async fn set_up_ethernaut(
         level16,
 
         level18,
-
+        level19,
         level20,
     })
 }

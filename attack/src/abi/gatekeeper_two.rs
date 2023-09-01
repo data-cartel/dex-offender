@@ -1,4 +1,4 @@
-pub use coin_flip::*;
+pub use gatekeeper_two::*;
 /// This module was auto-generated with ethers-rs Abigen.
 /// More information at: <https://github.com/gakonst/ethers-rs>
 #[allow(
@@ -9,20 +9,23 @@ pub use coin_flip::*;
     dead_code,
     non_camel_case_types
 )]
-pub mod coin_flip {
+pub mod gatekeeper_two {
     #[allow(deprecated)]
     fn __abi() -> ::ethers::core::abi::Abi {
         ::ethers::core::abi::ethabi::Contract {
             constructor: ::core::option::Option::None,
             functions: ::core::convert::From::from([(
-                ::std::borrow::ToOwned::to_owned("flip"),
+                ::std::borrow::ToOwned::to_owned("enter"),
                 ::std::vec![::ethers::core::abi::ethabi::Function {
-                    name: ::std::borrow::ToOwned::to_owned("flip"),
+                    name: ::std::borrow::ToOwned::to_owned("enter"),
                     inputs: ::std::vec![::ethers::core::abi::ethabi::Param {
-                        name: ::std::borrow::ToOwned::to_owned("_guess"),
-                        kind: ::ethers::core::abi::ethabi::ParamType::Bool,
+                        name: ::std::borrow::ToOwned::to_owned("_gateKey"),
+                        kind:
+                            ::ethers::core::abi::ethabi::ParamType::FixedBytes(
+                                8usize,
+                            ),
                         internal_type: ::core::option::Option::Some(
-                            ::std::borrow::ToOwned::to_owned("bool"),
+                            ::std::borrow::ToOwned::to_owned("bytes8"),
                         ),
                     },],
                     outputs: ::std::vec![::ethers::core::abi::ethabi::Param {
@@ -44,31 +47,31 @@ pub mod coin_flip {
         }
     }
     ///The parsed JSON ABI of the contract.
-    pub static COINFLIP_ABI: ::ethers::contract::Lazy<
+    pub static GATEKEEPERTWO_ABI: ::ethers::contract::Lazy<
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
-    pub struct CoinFlip<M>(::ethers::contract::Contract<M>);
-    impl<M> ::core::clone::Clone for CoinFlip<M> {
+    pub struct GatekeeperTwo<M>(::ethers::contract::Contract<M>);
+    impl<M> ::core::clone::Clone for GatekeeperTwo<M> {
         fn clone(&self) -> Self { Self(::core::clone::Clone::clone(&self.0)) }
     }
-    impl<M> ::core::ops::Deref for CoinFlip<M> {
+    impl<M> ::core::ops::Deref for GatekeeperTwo<M> {
         type Target = ::ethers::contract::Contract<M>;
         fn deref(&self) -> &Self::Target { &self.0 }
     }
-    impl<M> ::core::ops::DerefMut for CoinFlip<M> {
+    impl<M> ::core::ops::DerefMut for GatekeeperTwo<M> {
         fn deref_mut(&mut self) -> &mut Self::Target { &mut self.0 }
     }
-    impl<M> ::core::fmt::Debug for CoinFlip<M> {
+    impl<M> ::core::fmt::Debug for GatekeeperTwo<M> {
         fn fmt(
             &self,
             f: &mut ::core::fmt::Formatter<'_>,
         ) -> ::core::fmt::Result {
-            f.debug_tuple(::core::stringify!(CoinFlip))
+            f.debug_tuple(::core::stringify!(GatekeeperTwo))
                 .field(&self.address())
                 .finish()
         }
     }
-    impl<M: ::ethers::providers::Middleware> CoinFlip<M> {
+    impl<M: ::ethers::providers::Middleware> GatekeeperTwo<M> {
         /// Creates a new contract instance with the
         /// specified `ethers` client at `address`.
         /// The contract derefs to a `ethers::Contract`
@@ -79,31 +82,31 @@ pub mod coin_flip {
         ) -> Self {
             Self(::ethers::contract::Contract::new(
                 address.into(),
-                COINFLIP_ABI.clone(),
+                GATEKEEPERTWO_ABI.clone(),
                 client,
             ))
         }
-        ///Calls the contract's `flip` (0x1d263f67)
+        ///Calls the contract's `enter` (0x3370204e)
         /// function
-        pub fn flip(
+        pub fn enter(
             &self,
-            guess: bool,
+            gate_key: [u8; 8],
         ) -> ::ethers::contract::builders::ContractCall<M, bool> {
             self.0
-                .method_hash([29, 38, 63, 103], guess)
+                .method_hash([51, 112, 32, 78], gate_key)
                 .expect("method not found (this should never happen)")
         }
     }
     impl<M: ::ethers::providers::Middleware>
-        From<::ethers::contract::Contract<M>> for CoinFlip<M>
+        From<::ethers::contract::Contract<M>> for GatekeeperTwo<M>
     {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
         }
     }
     ///Container type for all input parameters for the
-    /// `flip` function with signature `flip(bool)` and
-    /// selector `0x1d263f67`
+    /// `enter` function with signature `enter(bytes8)` and
+    /// selector `0x3370204e`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -114,13 +117,13 @@ pub mod coin_flip {
         Eq,
         Hash,
     )]
-    #[ethcall(name = "flip", abi = "flip(bool)")]
-    pub struct FlipCall {
-        pub guess: bool,
+    #[ethcall(name = "enter", abi = "enter(bytes8)")]
+    pub struct EnterCall {
+        pub gate_key: [u8; 8],
     }
-    ///Container type for all return fields from the `flip`
-    /// function with signature `flip(bool)` and selector
-    /// `0x1d263f67`
+    ///Container type for all return fields from the
+    /// `enter` function with signature `enter(bytes8)` and
+    /// selector `0x3370204e`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -131,5 +134,5 @@ pub mod coin_flip {
         Eq,
         Hash,
     )]
-    pub struct FlipReturn(pub bool);
+    pub struct EnterReturn(pub bool);
 }

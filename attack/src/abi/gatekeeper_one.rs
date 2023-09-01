@@ -7,7 +7,7 @@ pub use gatekeeper_one::*;
     clippy::upper_case_acronyms,
     clippy::type_complexity,
     dead_code,
-    non_camel_case_types,
+    non_camel_case_types
 )]
 pub mod gatekeeper_one {
     #[allow(deprecated)]
@@ -73,49 +73,47 @@ pub mod gatekeeper_one {
         }
     }
     ///The parsed JSON ABI of the contract.
-    pub static GATEKEEPERONE_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> = ::ethers::contract::Lazy::new(
-        __abi,
-    );
+    pub static GATEKEEPERONE_ABI: ::ethers::contract::Lazy<
+        ::ethers::core::abi::Abi,
+    > = ::ethers::contract::Lazy::new(__abi);
     pub struct GatekeeperOne<M>(::ethers::contract::Contract<M>);
     impl<M> ::core::clone::Clone for GatekeeperOne<M> {
-        fn clone(&self) -> Self {
-            Self(::core::clone::Clone::clone(&self.0))
-        }
+        fn clone(&self) -> Self { Self(::core::clone::Clone::clone(&self.0)) }
     }
     impl<M> ::core::ops::Deref for GatekeeperOne<M> {
         type Target = ::ethers::contract::Contract<M>;
-        fn deref(&self) -> &Self::Target {
-            &self.0
-        }
+        fn deref(&self) -> &Self::Target { &self.0 }
     }
     impl<M> ::core::ops::DerefMut for GatekeeperOne<M> {
-        fn deref_mut(&mut self) -> &mut Self::Target {
-            &mut self.0
-        }
+        fn deref_mut(&mut self) -> &mut Self::Target { &mut self.0 }
     }
     impl<M> ::core::fmt::Debug for GatekeeperOne<M> {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+        fn fmt(
+            &self,
+            f: &mut ::core::fmt::Formatter<'_>,
+        ) -> ::core::fmt::Result {
             f.debug_tuple(::core::stringify!(GatekeeperOne))
                 .field(&self.address())
                 .finish()
         }
     }
     impl<M: ::ethers::providers::Middleware> GatekeeperOne<M> {
-        /// Creates a new contract instance with the specified `ethers` client at
-        /// `address`. The contract derefs to a `ethers::Contract` object.
+        /// Creates a new contract instance with the
+        /// specified `ethers` client at `address`.
+        /// The contract derefs to a `ethers::Contract`
+        /// object.
         pub fn new<T: Into<::ethers::core::types::Address>>(
             address: T,
             client: ::std::sync::Arc<M>,
         ) -> Self {
-            Self(
-                ::ethers::contract::Contract::new(
-                    address.into(),
-                    GATEKEEPERONE_ABI.clone(),
-                    client,
-                ),
-            )
+            Self(::ethers::contract::Contract::new(
+                address.into(),
+                GATEKEEPERONE_ABI.clone(),
+                client,
+            ))
         }
-        ///Calls the contract's `enter` (0x3370204e) function
+        ///Calls the contract's `enter` (0x3370204e)
+        /// function
         pub fn enter(
             &self,
             gate_key: [u8; 8],
@@ -124,7 +122,8 @@ pub mod gatekeeper_one {
                 .method_hash([51, 112, 32, 78], gate_key)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `entrant` (0x9db31d77) function
+        ///Calls the contract's `entrant` (0x9db31d77)
+        /// function
         pub fn entrant(
             &self,
         ) -> ::ethers::contract::builders::ContractCall<
@@ -136,13 +135,16 @@ pub mod gatekeeper_one {
                 .expect("method not found (this should never happen)")
         }
     }
-    impl<M: ::ethers::providers::Middleware> From<::ethers::contract::Contract<M>>
-    for GatekeeperOne<M> {
+    impl<M: ::ethers::providers::Middleware>
+        From<::ethers::contract::Contract<M>> for GatekeeperOne<M>
+    {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
         }
     }
-    ///Container type for all input parameters for the `enter` function with signature `enter(bytes8)` and selector `0x3370204e`
+    ///Container type for all input parameters for the
+    /// `enter` function with signature `enter(bytes8)` and
+    /// selector `0x3370204e`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -151,13 +153,15 @@ pub mod gatekeeper_one {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     #[ethcall(name = "enter", abi = "enter(bytes8)")]
     pub struct EnterCall {
         pub gate_key: [u8; 8],
     }
-    ///Container type for all input parameters for the `entrant` function with signature `entrant()` and selector `0x9db31d77`
+    ///Container type for all input parameters for the
+    /// `entrant` function with signature `entrant()` and
+    /// selector `0x9db31d77`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -166,12 +170,14 @@ pub mod gatekeeper_one {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     #[ethcall(name = "entrant", abi = "entrant()")]
     pub struct EntrantCall;
     ///Container type for all of the contract's call
-    #[derive(Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash)]
+    #[derive(
+        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+    )]
     pub enum GatekeeperOneCalls {
         Enter(EnterCall),
         Entrant(EntrantCall),
@@ -179,14 +185,17 @@ pub mod gatekeeper_one {
     impl ::ethers::core::abi::AbiDecode for GatekeeperOneCalls {
         fn decode(
             data: impl AsRef<[u8]>,
-        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError> {
+        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
+        {
             let data = data.as_ref();
-            if let Ok(decoded)
-                = <EnterCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+            if let Ok(decoded) =
+                <EnterCall as ::ethers::core::abi::AbiDecode>::decode(data)
+            {
                 return Ok(Self::Enter(decoded));
             }
-            if let Ok(decoded)
-                = <EntrantCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+            if let Ok(decoded) =
+                <EntrantCall as ::ethers::core::abi::AbiDecode>::decode(data)
+            {
                 return Ok(Self::Entrant(decoded));
             }
             Err(::ethers::core::abi::Error::InvalidData.into())
@@ -195,13 +204,20 @@ pub mod gatekeeper_one {
     impl ::ethers::core::abi::AbiEncode for GatekeeperOneCalls {
         fn encode(self) -> Vec<u8> {
             match self {
-                Self::Enter(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::Entrant(element) => ::ethers::core::abi::AbiEncode::encode(element),
+                Self::Enter(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Entrant(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
             }
         }
     }
     impl ::core::fmt::Display for GatekeeperOneCalls {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+        fn fmt(
+            &self,
+            f: &mut ::core::fmt::Formatter<'_>,
+        ) -> ::core::fmt::Result {
             match self {
                 Self::Enter(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Entrant(element) => ::core::fmt::Display::fmt(element, f),
@@ -209,16 +225,14 @@ pub mod gatekeeper_one {
         }
     }
     impl ::core::convert::From<EnterCall> for GatekeeperOneCalls {
-        fn from(value: EnterCall) -> Self {
-            Self::Enter(value)
-        }
+        fn from(value: EnterCall) -> Self { Self::Enter(value) }
     }
     impl ::core::convert::From<EntrantCall> for GatekeeperOneCalls {
-        fn from(value: EntrantCall) -> Self {
-            Self::Entrant(value)
-        }
+        fn from(value: EntrantCall) -> Self { Self::Entrant(value) }
     }
-    ///Container type for all return fields from the `enter` function with signature `enter(bytes8)` and selector `0x3370204e`
+    ///Container type for all return fields from the
+    /// `enter` function with signature `enter(bytes8)` and
+    /// selector `0x3370204e`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -227,10 +241,12 @@ pub mod gatekeeper_one {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     pub struct EnterReturn(pub bool);
-    ///Container type for all return fields from the `entrant` function with signature `entrant()` and selector `0x9db31d77`
+    ///Container type for all return fields from the
+    /// `entrant` function with signature `entrant()` and
+    /// selector `0x9db31d77`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -239,7 +255,7 @@ pub mod gatekeeper_one {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     pub struct EntrantReturn(pub ::ethers::core::types::Address);
 }

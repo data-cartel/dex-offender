@@ -11,6 +11,7 @@ pub mod hack10_reentrancy;
 pub mod hack11_elevator;
 pub mod hack12_privacy;
 pub mod hack13_gatekeeper_one;
+pub mod hack14_gatekeeper_two;
 
 #[cfg(test)]
 mod tests {
@@ -30,6 +31,7 @@ mod tests {
     use hack11_elevator as hack11;
     use hack12_privacy as hack12;
     use hack13_gatekeeper_one as hack13;
+    use hack14_gatekeeper_two as hack14;
 
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
@@ -51,6 +53,7 @@ mod tests {
         ctf::check_exploit(&roles, hack11::Exploit).await?;
         ctf::check_exploit(&roles, hack12::Exploit).await?;
         ctf::check_exploit(&roles, hack13::Exploit).await?;
+        ctf::check_exploit(&roles, hack14::Exploit).await?;
 
         Ok(())
     }

@@ -1,7 +1,6 @@
 use crate::abi::gatexploit::Gatexploit;
 use async_trait::async_trait;
 use ctf::ethernaut::lvl13_gatekeeper_one::*;
-use ethers::prelude::*;
 
 pub(crate) struct Exploit;
 

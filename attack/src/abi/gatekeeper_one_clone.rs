@@ -7,7 +7,7 @@ pub use gatekeeper_one_clone::*;
     clippy::upper_case_acronyms,
     clippy::type_complexity,
     dead_code,
-    non_camel_case_types,
+    non_camel_case_types
 )]
 pub mod gatekeeper_one_clone {
     #[allow(deprecated)]
@@ -77,70 +77,73 @@ pub mod gatekeeper_one_clone {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[Pa\x02\xAB\x80a\0 `\09`\0\xF3\xFE`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c3p N\x14a\0;W\x80c\x9D\xB3\x1Dw\x14a\0cW[`\0\x80\xFD[a\0Na\0I6`\x04a\x02\"V[a\0\x8EV[`@Q\x90\x15\x15\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[`\0Ta\0v\x90`\x01`\x01`\xA0\x1B\x03\x16\x81V[`@Q`\x01`\x01`\xA0\x1B\x03\x90\x91\x16\x81R` \x01a\0ZV[`\x0023\x03a\0\x9CW`\0\x80\xFD[a\x1F\xFFZa\0\xAA\x91\x90a\x02SV[\x15a\0\xB4W`\0\x80\xFD[\x81\x80`\xC0\x1Ca\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x01+W`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01Rh part one`\xB8\x1B`d\x82\x01R`\x84\x01[`@Q\x80\x91\x03\x90\xFD[`\xC0\x81\x90\x1Cc\xFF\xFF\xFF\xFF\x81\x16\x03a\x01\x96W`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01Rh part two`\xB8\x1B`d\x82\x01R`\x84\x01a\x01\"V[2a\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x02\x06W`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`+`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01Rj part three`\xA8\x1B`d\x82\x01R`\x84\x01a\x01\"V[`\0\x80T`\x01`\x01`\xA0\x1B\x03\x19\x162\x17\x90U`\x01\x91PP\x91\x90PV[`\0` \x82\x84\x03\x12\x15a\x024W`\0\x80\xFD[\x815`\x01`\x01`\xC0\x1B\x03\x19\x81\x16\x81\x14a\x02LW`\0\x80\xFD[\x93\x92PPPV[`\0\x82a\x02pWcNH{q`\xE0\x1B`\0R`\x12`\x04R`$`\0\xFD[P\x06\x90V\xFE\xA2dipfsX\"\x12 \xF4eo\x01\xC2\xF1\xB7\xB0\xA3\x94\x83&W\x16`y\xD3\x8E\xFE\xB8\x86\xAB\xD17E8\xF1.\x1B\xDC\xE6\x90dsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[Pa\x03\x96\x80a\0 `\09`\0\xF3\xFE`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c3p N\x14a\0;W\x80c\x9D\xB3\x1Dw\x14a\0cW[`\0\x80\xFD[a\0Na\0I6`\x04a\x02\xDCV[a\0\xA8V[`@Q\x90\x15\x15\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[`\0Ta\0\x83\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01a\0ZV[`\x0023\x03a\0\xB6W`\0\x80\xFD[a\x1F\xFFZa\0\xC4\x91\x90a\x03%V[\x15a\0\xCEW`\0\x80\xFD[\x81\x80`\xC0\x1Ca\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x01sW`@Q\x7F\x08\xC3y\xA0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01R\x7F part one\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`d\x82\x01R`\x84\x01[`@Q\x80\x91\x03\x90\xFD[`\xC0\x81\x90\x1Cc\xFF\xFF\xFF\xFF\x81\x16\x03a\x02\x0CW`@Q\x7F\x08\xC3y\xA0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01R\x7F part two\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`d\x82\x01R`\x84\x01a\x01jV[2a\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x02\xA8W`@Q\x7F\x08\xC3y\xA0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81R` `\x04\x82\x01R`+`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01R\x7F part three\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`d\x82\x01R`\x84\x01a\x01jV[`\0\x80T\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x162\x17\x90U`\x01\x91PP\x91\x90PV[`\0` \x82\x84\x03\x12\x15a\x02\xEEW`\0\x80\xFD[\x815\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81\x16\x81\x14a\x03\x1EW`\0\x80\xFD[\x93\x92PPPV[`\0\x82a\x03[W\x7FNH{q\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`\0R`\x12`\x04R`$`\0\xFD[P\x06\x90V\xFE\xA2dipfsX\"\x12 \x1AsP\x12k\x0EU\xA9f\xFD(\x1B\x16'7\xE4\xE7_<\xFDS\xE4>X\xC0\x0C\xCF>{p\x02\x16dsolcC\0\x08\x14\x003";
     /// The bytecode of the contract.
-    pub static GATEKEEPERONECLONE_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
-        __BYTECODE,
-    );
+    pub static GATEKEEPERONECLONE_BYTECODE: ::ethers::core::types::Bytes =
+        ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c3p N\x14a\0;W\x80c\x9D\xB3\x1Dw\x14a\0cW[`\0\x80\xFD[a\0Na\0I6`\x04a\x02\"V[a\0\x8EV[`@Q\x90\x15\x15\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[`\0Ta\0v\x90`\x01`\x01`\xA0\x1B\x03\x16\x81V[`@Q`\x01`\x01`\xA0\x1B\x03\x90\x91\x16\x81R` \x01a\0ZV[`\x0023\x03a\0\x9CW`\0\x80\xFD[a\x1F\xFFZa\0\xAA\x91\x90a\x02SV[\x15a\0\xB4W`\0\x80\xFD[\x81\x80`\xC0\x1Ca\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x01+W`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01Rh part one`\xB8\x1B`d\x82\x01R`\x84\x01[`@Q\x80\x91\x03\x90\xFD[`\xC0\x81\x90\x1Cc\xFF\xFF\xFF\xFF\x81\x16\x03a\x01\x96W`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01Rh part two`\xB8\x1B`d\x82\x01R`\x84\x01a\x01\"V[2a\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x02\x06W`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`+`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01Rj part three`\xA8\x1B`d\x82\x01R`\x84\x01a\x01\"V[`\0\x80T`\x01`\x01`\xA0\x1B\x03\x19\x162\x17\x90U`\x01\x91PP\x91\x90PV[`\0` \x82\x84\x03\x12\x15a\x024W`\0\x80\xFD[\x815`\x01`\x01`\xC0\x1B\x03\x19\x81\x16\x81\x14a\x02LW`\0\x80\xFD[\x93\x92PPPV[`\0\x82a\x02pWcNH{q`\xE0\x1B`\0R`\x12`\x04R`$`\0\xFD[P\x06\x90V\xFE\xA2dipfsX\"\x12 \xF4eo\x01\xC2\xF1\xB7\xB0\xA3\x94\x83&W\x16`y\xD3\x8E\xFE\xB8\x86\xAB\xD17E8\xF1.\x1B\xDC\xE6\x90dsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`\x046\x10a\x006W`\x005`\xE0\x1C\x80c3p N\x14a\0;W\x80c\x9D\xB3\x1Dw\x14a\0cW[`\0\x80\xFD[a\0Na\0I6`\x04a\x02\xDCV[a\0\xA8V[`@Q\x90\x15\x15\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[`\0Ta\0\x83\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01a\0ZV[`\x0023\x03a\0\xB6W`\0\x80\xFD[a\x1F\xFFZa\0\xC4\x91\x90a\x03%V[\x15a\0\xCEW`\0\x80\xFD[\x81\x80`\xC0\x1Ca\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x01sW`@Q\x7F\x08\xC3y\xA0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01R\x7F part one\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`d\x82\x01R`\x84\x01[`@Q\x80\x91\x03\x90\xFD[`\xC0\x81\x90\x1Cc\xFF\xFF\xFF\xFF\x81\x16\x03a\x02\x0CW`@Q\x7F\x08\xC3y\xA0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81R` `\x04\x82\x01R`)`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01R\x7F part two\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`d\x82\x01R`\x84\x01a\x01jV[2a\xFF\xFF\x16\x81`\xC0\x1Cc\xFF\xFF\xFF\xFF\x16\x14a\x02\xA8W`@Q\x7F\x08\xC3y\xA0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81R` `\x04\x82\x01R`+`$\x82\x01R\x7FGatekeeperOne: invalid gateThree`D\x82\x01R\x7F part three\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`d\x82\x01R`\x84\x01a\x01jV[`\0\x80T\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x162\x17\x90U`\x01\x91PP\x91\x90PV[`\0` \x82\x84\x03\x12\x15a\x02\xEEW`\0\x80\xFD[\x815\x7F\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x81\x16\x81\x14a\x03\x1EW`\0\x80\xFD[\x93\x92PPPV[`\0\x82a\x03[W\x7FNH{q\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0`\0R`\x12`\x04R`$`\0\xFD[P\x06\x90V\xFE\xA2dipfsX\"\x12 \x1AsP\x12k\x0EU\xA9f\xFD(\x1B\x16'7\xE4\xE7_<\xFDS\xE4>X\xC0\x0C\xCF>{p\x02\x16dsolcC\0\x08\x14\x003";
     /// The deployed bytecode of the contract.
-    pub static GATEKEEPERONECLONE_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes = ::ethers::core::types::Bytes::from_static(
-        __DEPLOYED_BYTECODE,
-    );
+    pub static GATEKEEPERONECLONE_DEPLOYED_BYTECODE:
+        ::ethers::core::types::Bytes =
+        ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);
     pub struct GatekeeperOneClone<M>(::ethers::contract::Contract<M>);
     impl<M> ::core::clone::Clone for GatekeeperOneClone<M> {
-        fn clone(&self) -> Self {
-            Self(::core::clone::Clone::clone(&self.0))
-        }
+        fn clone(&self) -> Self { Self(::core::clone::Clone::clone(&self.0)) }
     }
     impl<M> ::core::ops::Deref for GatekeeperOneClone<M> {
         type Target = ::ethers::contract::Contract<M>;
-        fn deref(&self) -> &Self::Target {
-            &self.0
-        }
+        fn deref(&self) -> &Self::Target { &self.0 }
     }
     impl<M> ::core::ops::DerefMut for GatekeeperOneClone<M> {
-        fn deref_mut(&mut self) -> &mut Self::Target {
-            &mut self.0
-        }
+        fn deref_mut(&mut self) -> &mut Self::Target { &mut self.0 }
     }
     impl<M> ::core::fmt::Debug for GatekeeperOneClone<M> {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+        fn fmt(
+            &self,
+            f: &mut ::core::fmt::Formatter<'_>,
+        ) -> ::core::fmt::Result {
             f.debug_tuple(::core::stringify!(GatekeeperOneClone))
                 .field(&self.address())
                 .finish()
         }
     }
     impl<M: ::ethers::providers::Middleware> GatekeeperOneClone<M> {
-        /// Creates a new contract instance with the specified `ethers` client at
-        /// `address`. The contract derefs to a `ethers::Contract` object.
+        /// Creates a new contract instance with the
+        /// specified `ethers` client at `address`.
+        /// The contract derefs to a `ethers::Contract`
+        /// object.
         pub fn new<T: Into<::ethers::core::types::Address>>(
             address: T,
             client: ::std::sync::Arc<M>,
         ) -> Self {
-            Self(
-                ::ethers::contract::Contract::new(
-                    address.into(),
-                    GATEKEEPERONECLONE_ABI.clone(),
-                    client,
-                ),
-            )
+            Self(::ethers::contract::Contract::new(
+                address.into(),
+                GATEKEEPERONECLONE_ABI.clone(),
+                client,
+            ))
         }
-        /// Constructs the general purpose `Deployer` instance based on the provided constructor arguments and sends it.
-        /// Returns a new instance of a deployer that returns an instance of this contract after sending the transaction
+        /// Constructs the general purpose `Deployer`
+        /// instance based on the provided constructor
+        /// arguments and sends it. Returns a new
+        /// instance of a deployer that returns an instance
+        /// of this contract after sending the transaction
         ///
         /// Notes:
-        /// - If there are no constructor arguments, you should pass `()` as the argument.
+        /// - If there are no constructor arguments, you
+        ///   should pass `()` as the argument.
         /// - The default poll duration is 7 seconds.
-        /// - The default number of confirmations is 1 block.
+        /// - The default number of confirmations is 1
+        ///   block.
         ///
         ///
         /// # Example
         ///
-        /// Generate contract bindings with `abigen!` and deploy a new contract instance.
+        /// Generate contract bindings with `abigen!` and
+        /// deploy a new contract instance.
         ///
-        /// *Note*: this requires a `bytecode` and `abi` object in the `greeter.json` artifact.
+        /// *Note*: this requires a `bytecode` and `abi`
+        /// object in the `greeter.json` artifact.
         ///
         /// ```ignore
         /// # async fn deploy<M: ethers::providers::Middleware>(client: ::std::sync::Arc<M>) {
@@ -166,7 +169,8 @@ pub mod gatekeeper_one_clone {
             let deployer = ::ethers::contract::ContractDeployer::new(deployer);
             Ok(deployer)
         }
-        ///Calls the contract's `enter` (0x3370204e) function
+        ///Calls the contract's `enter` (0x3370204e)
+        /// function
         pub fn enter(
             &self,
             gate_key: [u8; 8],
@@ -175,7 +179,8 @@ pub mod gatekeeper_one_clone {
                 .method_hash([51, 112, 32, 78], gate_key)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `entrant` (0x9db31d77) function
+        ///Calls the contract's `entrant` (0x9db31d77)
+        /// function
         pub fn entrant(
             &self,
         ) -> ::ethers::contract::builders::ContractCall<
@@ -187,13 +192,16 @@ pub mod gatekeeper_one_clone {
                 .expect("method not found (this should never happen)")
         }
     }
-    impl<M: ::ethers::providers::Middleware> From<::ethers::contract::Contract<M>>
-    for GatekeeperOneClone<M> {
+    impl<M: ::ethers::providers::Middleware>
+        From<::ethers::contract::Contract<M>> for GatekeeperOneClone<M>
+    {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
         }
     }
-    ///Container type for all input parameters for the `enter` function with signature `enter(bytes8)` and selector `0x3370204e`
+    ///Container type for all input parameters for the
+    /// `enter` function with signature `enter(bytes8)` and
+    /// selector `0x3370204e`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -202,13 +210,15 @@ pub mod gatekeeper_one_clone {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     #[ethcall(name = "enter", abi = "enter(bytes8)")]
     pub struct EnterCall {
         pub gate_key: [u8; 8],
     }
-    ///Container type for all input parameters for the `entrant` function with signature `entrant()` and selector `0x9db31d77`
+    ///Container type for all input parameters for the
+    /// `entrant` function with signature `entrant()` and
+    /// selector `0x9db31d77`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -217,12 +227,14 @@ pub mod gatekeeper_one_clone {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     #[ethcall(name = "entrant", abi = "entrant()")]
     pub struct EntrantCall;
     ///Container type for all of the contract's call
-    #[derive(Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash)]
+    #[derive(
+        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+    )]
     pub enum GatekeeperOneCloneCalls {
         Enter(EnterCall),
         Entrant(EntrantCall),
@@ -230,14 +242,17 @@ pub mod gatekeeper_one_clone {
     impl ::ethers::core::abi::AbiDecode for GatekeeperOneCloneCalls {
         fn decode(
             data: impl AsRef<[u8]>,
-        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError> {
+        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
+        {
             let data = data.as_ref();
-            if let Ok(decoded)
-                = <EnterCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+            if let Ok(decoded) =
+                <EnterCall as ::ethers::core::abi::AbiDecode>::decode(data)
+            {
                 return Ok(Self::Enter(decoded));
             }
-            if let Ok(decoded)
-                = <EntrantCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+            if let Ok(decoded) =
+                <EntrantCall as ::ethers::core::abi::AbiDecode>::decode(data)
+            {
                 return Ok(Self::Entrant(decoded));
             }
             Err(::ethers::core::abi::Error::InvalidData.into())
@@ -246,13 +261,20 @@ pub mod gatekeeper_one_clone {
     impl ::ethers::core::abi::AbiEncode for GatekeeperOneCloneCalls {
         fn encode(self) -> Vec<u8> {
             match self {
-                Self::Enter(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::Entrant(element) => ::ethers::core::abi::AbiEncode::encode(element),
+                Self::Enter(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Entrant(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
             }
         }
     }
     impl ::core::fmt::Display for GatekeeperOneCloneCalls {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+        fn fmt(
+            &self,
+            f: &mut ::core::fmt::Formatter<'_>,
+        ) -> ::core::fmt::Result {
             match self {
                 Self::Enter(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Entrant(element) => ::core::fmt::Display::fmt(element, f),
@@ -260,16 +282,14 @@ pub mod gatekeeper_one_clone {
         }
     }
     impl ::core::convert::From<EnterCall> for GatekeeperOneCloneCalls {
-        fn from(value: EnterCall) -> Self {
-            Self::Enter(value)
-        }
+        fn from(value: EnterCall) -> Self { Self::Enter(value) }
     }
     impl ::core::convert::From<EntrantCall> for GatekeeperOneCloneCalls {
-        fn from(value: EntrantCall) -> Self {
-            Self::Entrant(value)
-        }
+        fn from(value: EntrantCall) -> Self { Self::Entrant(value) }
     }
-    ///Container type for all return fields from the `enter` function with signature `enter(bytes8)` and selector `0x3370204e`
+    ///Container type for all return fields from the
+    /// `enter` function with signature `enter(bytes8)` and
+    /// selector `0x3370204e`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -278,10 +298,12 @@ pub mod gatekeeper_one_clone {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     pub struct EnterReturn(pub bool);
-    ///Container type for all return fields from the `entrant` function with signature `entrant()` and selector `0x9db31d77`
+    ///Container type for all return fields from the
+    /// `entrant` function with signature `entrant()` and
+    /// selector `0x9db31d77`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -290,7 +312,7 @@ pub mod gatekeeper_one_clone {
         Debug,
         PartialEq,
         Eq,
-        Hash
+        Hash,
     )]
     pub struct EntrantReturn(pub ::ethers::core::types::Address);
 }

@@ -34,9 +34,7 @@ impl ctf::Exploit for Exploit {
     ) -> eyre::Result<()> {
         let five = H256::from_low_u64_be(5);
         println!("{five:?}");
-        let slot = offender
-            .get_storage_at(target.address, five, None)
-            .await?;
+        let slot = offender.get_storage_at(target.address, five, None).await?;
         let mut key = [0; 16];
         key.copy_from_slice(&slot.0[0..16]);
 

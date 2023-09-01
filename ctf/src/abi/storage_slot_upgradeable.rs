@@ -26,12 +26,12 @@ pub mod storage_slot_upgradeable {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xCA\xCA\x85\x8Df\x9A\xD3g2:\xEBz\x02\x93\xDD\x96\xF6LA\xAE\xC8\"'\x8Di\x12\xE0X\xA7\x7F\xC2ndsolcC\0\x08\x14\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xB4\xEB\xF0\x10<\xE4lFc+\xDB\xF5)t\xDB\xBAJ}\x8E\xEB\x16\x8D5\xE3+\xC89\xAC\xE7\x07\xF4QdsolcC\0\x08\x15\x003";
     /// The bytecode of the contract.
     pub static STORAGESLOTUPGRADEABLE_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xCA\xCA\x85\x8Df\x9A\xD3g2:\xEBz\x02\x93\xDD\x96\xF6LA\xAE\xC8\"'\x8Di\x12\xE0X\xA7\x7F\xC2ndsolcC\0\x08\x14\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xB4\xEB\xF0\x10<\xE4lFc+\xDB\xF5)t\xDB\xBAJ}\x8E\xEB\x16\x8D5\xE3+\xC89\xAC\xE7\x07\xF4QdsolcC\0\x08\x15\x003";
     /// The deployed bytecode of the contract.
     pub static STORAGESLOTUPGRADEABLE_DEPLOYED_BYTECODE:
         ::ethers::core::types::Bytes =

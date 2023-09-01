@@ -7,6 +7,7 @@ Things that might help:
 > Shop expects to be used from a Buyer
 > Understanding restrictions of view functions
 */
+
 interface Buyer {
     function price() external view returns (uint256);
 }

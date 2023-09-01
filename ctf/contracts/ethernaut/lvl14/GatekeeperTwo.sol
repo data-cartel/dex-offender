@@ -14,6 +14,7 @@ See here for more information. The extcodesize call in this gate will get the si
 and is used here to apply another common bitwise operation (see here). 
 The Coin Flip level is also a good place to start when approaching this challenge.
 */
+
 contract GatekeeperTwo {
     address public entrant;
 

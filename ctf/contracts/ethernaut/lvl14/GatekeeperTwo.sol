@@ -7,7 +7,7 @@ pragma solidity ^0.8.0;
  * This gatekeeper introduces a few new challenges. Register as an entrant to pass this level.
  *
  * Things that might help:
- * 
+ *
  * - Remember what you've learned from getting past
  *     the first gatekeeper - the first gate is the same.
  *

@@ -26,12 +26,12 @@ pub mod full_math {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xAD\xE8\xE9\xF8\xD2\x08H\xDB\x94\xB4x\xA7\xCE\xA0\x07]T*;,tZ\x14r\xF1\xC1\xD8\xEF:\xA4\xEAmdsolcC\0\x07\x06\x003";
+    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD1\x15Z\xAE~\x04g\xE6J\r\xC74\xC5\x9A\xA3\x01\xBB\x84Q>\x06\xA0\xCE\xE4N\xBEM\x94\xCF\xBA\x1FgdsolcC\0\x07\x06\x003";
     /// The bytecode of the contract.
     pub static FULLMATH_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xAD\xE8\xE9\xF8\xD2\x08H\xDB\x94\xB4x\xA7\xCE\xA0\x07]T*;,tZ\x14r\xF1\xC1\xD8\xEF:\xA4\xEAmdsolcC\0\x07\x06\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD1\x15Z\xAE~\x04g\xE6J\r\xC74\xC5\x9A\xA3\x01\xBB\x84Q>\x06\xA0\xCE\xE4N\xBEM\x94\xCF\xBA\x1FgdsolcC\0\x07\x06\x003";
     /// The deployed bytecode of the contract.
     pub static FULLMATH_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);

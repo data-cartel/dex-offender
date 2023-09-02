@@ -14,7 +14,6 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
-        // let gatexploit_two =
         GatexploitTwo::deploy(offender.to_owned(), target.address)?
             .send()
             .await?;

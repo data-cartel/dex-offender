@@ -20,6 +20,7 @@ pub mod gatexploit_two;
 pub mod i_preservation;
 pub mod king;
 pub mod king_exploit;
+pub mod magic_num_exploit;
 pub mod preservation_exploit;
 pub mod reentrance;
 pub mod std_invariant;

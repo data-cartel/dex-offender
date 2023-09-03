@@ -2,8 +2,7 @@ use crate::{abi::recovery_solution::RecoverySolution, roles::*, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
-pub use crate::abi::recovery::Recovery;
-pub use crate::abi::simple_token::SimpleToken;
+pub use crate::abi::{recovery::Recovery, simple_token::SimpleToken};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -17,9 +16,7 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level17)
     }
 
-    fn name(&self) -> &'static str {
-        "Recovery"
-    }
+    fn name(&self) -> &'static str { "Recovery" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender: _, some_user: _ } = roles;

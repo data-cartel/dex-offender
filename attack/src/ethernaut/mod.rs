@@ -14,6 +14,7 @@ pub mod hack13_gatekeeper_one;
 pub mod hack14_gatekeeper_two;
 pub mod hack15_naught_coin;
 pub mod hack16_preservation;
+pub mod hack17_recovery;
 
 #[cfg(test)]
 mod tests {
@@ -36,6 +37,7 @@ mod tests {
     use hack14_gatekeeper_two as hack14;
     use hack15_naught_coin as hack15;
     use hack16_preservation as hack16;
+    use hack17_recovery as hack17;
 
     #[tokio::test]
     async fn test() -> eyre::Result<()> {
@@ -60,6 +62,7 @@ mod tests {
         ctf::check_exploit(&roles, hack14::Exploit).await?;
         ctf::check_exploit(&roles, hack15::Exploit).await?;
         ctf::check_exploit(&roles, hack16::Exploit).await?;
+        ctf::check_exploit(&roles, hack17::Exploit).await?;
 
         Ok(())
     }

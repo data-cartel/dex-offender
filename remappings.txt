@@ -1,2 +1,3 @@
+@forge-std/=lib/forge-std/src/
 @openzeppelin-solc06/contracts/=lib/openzeppelin-contracts-06/contracts/
 @openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/

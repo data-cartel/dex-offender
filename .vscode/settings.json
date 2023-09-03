@@ -5,9 +5,9 @@
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "solidity.packageDefaultDependenciesContractsDirectory": "attack/contracts",
+  "solidity.packageDefaultDependenciesContractsDirectory": "contracts",
   "solidity.packageDefaultDependenciesDirectory": "lib",
-  "solidity.monoRepoSupport": true,
+  "solidity.monoRepoSupport": false,
   "solidity.formatter": "forge",
   "solidity.linter": "",
   "[solidity]": {

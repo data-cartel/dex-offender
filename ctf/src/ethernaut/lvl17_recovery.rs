@@ -2,7 +2,7 @@ use crate::{abi::recovery_solution::RecoverySolution, roles::*, Level};
 use async_trait::async_trait;
 use ethers::prelude::*;
 
-pub use crate::abi::recovery::Recovery;
+pub use crate::abi::{recovery::Recovery, simple_token::SimpleToken};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {

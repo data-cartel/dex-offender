@@ -26,12 +26,12 @@ pub mod uniswap_v2_library {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD1Q\x86t.\xD1Yf\x0F\xAB\xCA\xEAS\xF4\x82\x92\\/j%#4&\xEC\x86\xC1\x05\xE8\x07=\x0F\x17dsolcC\0\x06\x06\x003";
+    const __BYTECODE: &[u8] = b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 s\x021\xD57f\xC6S\xF4\x06\x1D\xD2u\x06Qq\xB2mW\xF2\x1A\x12\x16\xFA\xB6\xCA|^\xF9\x99\xCA8dsolcC\0\x06\x06\x003";
     /// The bytecode of the contract.
     pub static UNISWAPV2LIBRARY_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD1Q\x86t.\xD1Yf\x0F\xAB\xCA\xEAS\xF4\x82\x92\\/j%#4&\xEC\x86\xC1\x05\xE8\x07=\x0F\x17dsolcC\0\x06\x06\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 s\x021\xD57f\xC6S\xF4\x06\x1D\xD2u\x06Qq\xB2mW\xF2\x1A\x12\x16\xFA\xB6\xCA|^\xF9\x99\xCA8dsolcC\0\x06\x06\x003";
     /// The deployed bytecode of the contract.
     pub static UNISWAPV2LIBRARY_DEPLOYED_BYTECODE:
         ::ethers::core::types::Bytes =

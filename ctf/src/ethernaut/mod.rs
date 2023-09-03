@@ -82,29 +82,53 @@ pub async fn set_up_ethernaut(
 ) -> eyre::Result<Ethernaut> {
     let roles = Roles::new(provider)?;
 
-    let level01 = lvl01::Target::set_up(&roles).await?;
-    let level02 = lvl02::Target::set_up(&roles).await?;
-    let level03 = lvl03::Target::set_up(&roles).await?;
-    let level04 = lvl04::Target::set_up(&roles).await?;
-    let level05 = lvl05::Target::set_up(&roles).await?;
-    let level06 = lvl06::Target::set_up(&roles).await?;
-    let level07 = lvl07::Target::set_up(&roles).await?;
-    let level08 = lvl08::Target::set_up(&roles).await?;
-    let level09 = lvl09::Target::set_up(&roles).await?;
-    let level10 = lvl10::Target::set_up(&roles).await?;
-    let level11 = lvl11::Target::set_up(&roles).await?;
-    let level12 = lvl12::Target::set_up(&roles).await?;
-    let level13 = lvl13::Target::set_up(&roles).await?;
-    let level14 = lvl14::Target::set_up(&roles).await?;
-    let level15 = lvl15::Target::set_up(&roles).await?;
-    let level16 = lvl16::Target::set_up(&roles).await?;
-    let level17 = lvl17::Target::set_up(&roles).await?;
-    let level18 = lvl18::Target::set_up(&roles).await?;
-    let level19 = lvl19::Target::set_up(&roles).await?;
-    let level20 = lvl20::Target::set_up(&roles).await?;
-    let level21 = lvl21::Target::set_up(&roles).await?;
-    let level22 = lvl22::Target::set_up(&roles).await?;
-    let level23 = lvl23::Target::set_up(&roles).await?;
+    let level01 = lvl01::Target::set_up(&roles);
+    let level02 = lvl02::Target::set_up(&roles);
+    let level03 = lvl03::Target::set_up(&roles);
+    let level04 = lvl04::Target::set_up(&roles);
+    let level05 = lvl05::Target::set_up(&roles);
+    let level06 = lvl06::Target::set_up(&roles);
+    let level07 = lvl07::Target::set_up(&roles);
+    let level08 = lvl08::Target::set_up(&roles);
+    let level09 = lvl09::Target::set_up(&roles);
+    let level10 = lvl10::Target::set_up(&roles);
+    let level11 = lvl11::Target::set_up(&roles);
+    let level12 = lvl12::Target::set_up(&roles);
+    let level13 = lvl13::Target::set_up(&roles);
+    let level14 = lvl14::Target::set_up(&roles);
+    let level15 = lvl15::Target::set_up(&roles);
+    let level16 = lvl16::Target::set_up(&roles);
+    let level17 = lvl17::Target::set_up(&roles);
+    let level18 = lvl18::Target::set_up(&roles);
+    let level19 = lvl19::Target::set_up(&roles);
+    let level20 = lvl20::Target::set_up(&roles);
+    let level21 = lvl21::Target::set_up(&roles);
+    let level22 = lvl22::Target::set_up(&roles);
+    let level23 = lvl23::Target::set_up(&roles);
+
+    let level01 = level01.await?;
+    let level02 = level02.await?;
+    let level03 = level03.await?;
+    let level04 = level04.await?;
+    let level05 = level05.await?;
+    let level06 = level06.await?;
+    let level07 = level07.await?;
+    let level08 = level08.await?;
+    let level09 = level09.await?;
+    let level10 = level10.await?;
+    let level11 = level11.await?;
+    let level12 = level12.await?;
+    let level13 = level13.await?;
+    let level14 = level14.await?;
+    let level15 = level15.await?;
+    let level16 = level16.await?;
+    let level17 = level17.await?;
+    let level18 = level18.await?;
+    let level19 = level19.await?;
+    let level20 = level20.await?;
+    let level21 = level21.await?;
+    let level22 = level22.await?;
+    let level23 = level23.await?;
 
     Ok(Ethernaut {
         level01,

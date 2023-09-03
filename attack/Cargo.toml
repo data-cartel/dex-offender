@@ -10,3 +10,4 @@ eyre = { workspace = true }
 async-trait = { workspace = true }
 ethers = { workspace = true }
 tokio = { workspace = true }
+tqdm = "0.5.2"

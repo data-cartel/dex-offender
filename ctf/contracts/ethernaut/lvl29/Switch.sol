@@ -1,6 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+/*
+Just have to flip the switch. Can't be that hard, right?
+
+Things that might help:
+
+> Understanding how CALLDATA is encoded.
+*/
+
 contract Switch {
     bool public switchOn; // switch is off
     bytes4 public offSelector = bytes4(keccak256("turnSwitchOff()"));

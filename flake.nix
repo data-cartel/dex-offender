@@ -1,7 +1,7 @@
 {
   inputs = {
     devenv.url = "github:cachix/devenv";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
     fenix = {
       url = "github:nix-community/fenix";
@@ -30,6 +30,7 @@
                 libiconv
                 frameworks.Security
                 frameworks.CoreFoundation
+                frameworks.SystemConfiguration
               ]);
 
             dotenv.enable = true;
@@ -78,6 +79,7 @@
               nixfmt = {
                 enable = true;
                 fail_fast = true;
+                package = pkgs.nixfmt-classic;
               };
               cargo-fmt = {
                 enable = true;

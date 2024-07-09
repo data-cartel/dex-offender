@@ -48,14 +48,14 @@
               ${forge} install
               ${forge} fmt
               ${forge} bind -b ./attack/src/abi --module --force --overwrite
-              cargo fmt
+              pre-commit run rustfmt -a > /dev/null || true
             '';
 
             scripts.bind-ctf.exec = ''
               ${forge} install --root ctf
               ${forge} fmt --root ctf
               ${forge} bind --root ctf -b ./ctf/src/abi --module --skip-cargo-toml --force --overwrite
-              cargo fmt
+              pre-commit run rustfmt -a > /dev/null || true
             '';
 
             scripts.deploy-levels.exec = ''

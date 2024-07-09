@@ -7,11 +7,10 @@ edition = "2021"
 exclude = [".github/", "**/tests/", "**/contracts/", "**/cache/", "**/out/"]
 
 [workspace.dependencies]
-async-trait = "0.1.68"
-ethers = "2.0.8"
+async-trait = "0.1.81"
+ethers = "2.0.14"
 eyre = "0.6"
 rand = "0.8.5"
-serde = "1.0.164"
-serde_json = "1.0.99"
-tokio = { version = "1.19", features = ["macros", "rt-multi-thread", "time"] }
-tqdm = "0.5.2"
+serde = "1.0.204"
+serde_json = "1.0.120"
+tokio = { version = "1.38", features = ["macros", "rt-multi-thread", "time"] }

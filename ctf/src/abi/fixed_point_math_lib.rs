@@ -96,12 +96,12 @@ pub mod fixed_point_math_lib {
         ::ethers::core::abi::Abi,
     > = ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 }\0\xF3P\xE4\xCBA\x9FDY9C!\x9F\xD10\xBC\0\xD6=e:\xC8\x82\"\x95\x07\xCA\xC8\xA5\x96\x16dsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`V`7`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`*WcNH{q`\xE0\x1B`\0R`\0`\x04R`$`\0\xFD[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xA9(\xCEP\x86\xC8~ak\xCC#g\xBA\xB4U\xC5\xCE\"\xA6K\xE5\x17\xCCy\x1BH+=I\xB5\x86\xBAdsolcC\0\x08\x19\x003";
     /// The bytecode of the contract.
     pub static FIXEDPOINTMATHLIB_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 }\0\xF3P\xE4\xCBA\x9FDY9C!\x9F\xD10\xBC\0\xD6=e:\xC8\x82\"\x95\x07\xCA\xC8\xA5\x96\x16dsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xA9(\xCEP\x86\xC8~ak\xCC#g\xBA\xB4U\xC5\xCE\"\xA6K\xE5\x17\xCCy\x1BH+=I\xB5\x86\xBAdsolcC\0\x08\x19\x003";
     /// The deployed bytecode of the contract.
     pub static FIXEDPOINTMATHLIB_DEPLOYED_BYTECODE:
         ::ethers::core::types::Bytes =
@@ -202,6 +202,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -216,6 +218,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -230,6 +234,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -244,6 +250,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -258,6 +266,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -272,6 +282,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -286,6 +298,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -300,6 +314,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -314,6 +330,8 @@ pub mod fixed_point_math_lib {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -325,7 +343,14 @@ pub mod fixed_point_math_lib {
     ///Container type for all of the contract's custom
     /// errors
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum FixedPointMathLibErrors {
         DivFailed(DivFailed),
@@ -347,10 +372,9 @@ pub mod fixed_point_math_lib {
         ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
         {
             let data = data.as_ref();
-            if let Ok(decoded)
-                = <::std::string::String as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
+            if let Ok(decoded) = <::std::string::String as ::ethers::core::abi::AbiDecode>::decode(
+                data,
+            ) {
                 return Ok(Self::RevertString(decoded));
             }
             if let Ok(decoded) =

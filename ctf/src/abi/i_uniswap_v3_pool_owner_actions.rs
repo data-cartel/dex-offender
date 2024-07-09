@@ -193,6 +193,8 @@ pub mod i_uniswap_v3_pool_owner_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -216,6 +218,8 @@ pub mod i_uniswap_v3_pool_owner_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -229,7 +233,14 @@ pub mod i_uniswap_v3_pool_owner_actions {
     }
     ///Container type for all of the contract's call
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum IUniswapV3PoolOwnerActionsCalls {
         CollectProtocol(CollectProtocolCall),
@@ -307,6 +318,8 @@ pub mod i_uniswap_v3_pool_owner_actions {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,

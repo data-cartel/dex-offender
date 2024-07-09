@@ -35,7 +35,6 @@ impl Level for Target {
         .send()
         .await?;
 
-
         let target = Target { address: contract.address() };
 
         let check = target.check(roles).await?;

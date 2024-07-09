@@ -252,6 +252,8 @@ pub mod guard {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -275,6 +277,8 @@ pub mod guard {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -301,7 +305,14 @@ pub mod guard {
     }
     ///Container type for all of the contract's call
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum GuardCalls {
         CheckAfterExecution(CheckAfterExecutionCall),
@@ -313,10 +324,9 @@ pub mod guard {
         ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
         {
             let data = data.as_ref();
-            if let Ok(decoded)
-                = <CheckAfterExecutionCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
+            if let Ok(decoded) = <CheckAfterExecutionCall as ::ethers::core::abi::AbiDecode>::decode(
+                data,
+            ) {
                 return Ok(Self::CheckAfterExecution(decoded));
             }
             if let Ok(decoded) =

@@ -484,6 +484,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -500,6 +502,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -516,6 +520,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -530,6 +536,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -547,6 +555,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -558,7 +568,14 @@ pub mod i_simple_governance {
     ///Container type for all of the contract's custom
     /// errors
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum ISimpleGovernanceErrors {
         ActionFailed(ActionFailed),
@@ -576,10 +593,9 @@ pub mod i_simple_governance {
         ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError>
         {
             let data = data.as_ref();
-            if let Ok(decoded)
-                = <::std::string::String as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
+            if let Ok(decoded) = <::std::string::String as ::ethers::core::abi::AbiDecode>::decode(
+                data,
+            ) {
                 return Ok(Self::RevertString(decoded));
             }
             if let Ok(decoded) =
@@ -711,6 +727,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthEvent,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -730,6 +748,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthEvent,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -744,7 +764,14 @@ pub mod i_simple_governance {
     }
     ///Container type for all of the contract's events
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum ISimpleGovernanceEvents {
         ActionExecutedFilter(ActionExecutedFilter),
@@ -799,6 +826,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -816,6 +845,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -833,6 +864,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -848,6 +881,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -863,6 +898,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -879,6 +916,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -893,7 +932,14 @@ pub mod i_simple_governance {
     }
     ///Container type for all of the contract's call
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum ISimpleGovernanceCalls {
         ExecuteAction(ExecuteActionCall),
@@ -935,10 +981,9 @@ pub mod i_simple_governance {
             {
                 return Ok(Self::GetActionDelay(decoded));
             }
-            if let Ok(decoded)
-                = <GetGovernanceTokenCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
+            if let Ok(decoded) = <GetGovernanceTokenCall as ::ethers::core::abi::AbiDecode>::decode(
+                data,
+            ) {
                 return Ok(Self::GetGovernanceToken(decoded));
             }
             if let Ok(decoded) =
@@ -1033,6 +1078,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -1049,6 +1096,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -1065,6 +1114,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -1079,6 +1130,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -1095,6 +1148,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -1112,6 +1167,8 @@ pub mod i_simple_governance {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,

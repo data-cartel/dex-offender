@@ -114,7 +114,15 @@ impl ctf::Exploit for Exploit {
 }
 ```
 
-If you then run `cargo test -p attack -- --nocapture` you should see something like this
+If you then run
+
+```sh
+cargo test -p attack -- --nocapture
+```
+
+cargo test -p attack -- --nocapture`
+
+you should see something like this
 
 ``` text
 $ cargo test -p attack -- --nocapture
@@ -155,7 +163,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 If you're using the dev container then you already have a local blockchain running in one of the VS code terminals. If not, you can start it by running `anvil`. I would recommend turning on tracing to make debugging easier.
 
-``` sh
+```sh
 anvil --steps-tracing --load-state state.json
 ```
 

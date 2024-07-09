@@ -25,7 +25,6 @@ impl Level for Target {
         let contract =
             MagicNum::deploy(deployer.to_owned(), ())?.send().await?;
 
-
         let target = Target { address: contract.address() };
 
         let check = target.check(roles).await?;

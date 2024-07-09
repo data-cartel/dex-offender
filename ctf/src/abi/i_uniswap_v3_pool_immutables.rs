@@ -263,6 +263,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -278,6 +280,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -293,6 +297,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -308,6 +314,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -323,6 +331,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -338,6 +348,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -348,7 +360,14 @@ pub mod i_uniswap_v3_pool_immutables {
     pub struct Token1Call;
     ///Container type for all of the contract's call
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum IUniswapV3PoolImmutablesCalls {
         Factory(FactoryCall),
@@ -374,10 +393,9 @@ pub mod i_uniswap_v3_pool_immutables {
             {
                 return Ok(Self::Fee(decoded));
             }
-            if let Ok(decoded)
-                = <MaxLiquidityPerTickCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
+            if let Ok(decoded) = <MaxLiquidityPerTickCall as ::ethers::core::abi::AbiDecode>::decode(
+                data,
+            ) {
                 return Ok(Self::MaxLiquidityPerTick(decoded));
             }
             if let Ok(decoded) =
@@ -472,6 +490,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -486,6 +506,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -500,6 +522,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -514,6 +538,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -528,6 +554,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -542,6 +570,8 @@ pub mod i_uniswap_v3_pool_immutables {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,

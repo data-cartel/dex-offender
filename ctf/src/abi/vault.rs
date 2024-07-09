@@ -80,12 +80,12 @@ pub mod vault {
     pub static VAULT_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> =
         ::ethers::contract::Lazy::new(__abi);
     #[rustfmt::skip]
-    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15a\0\x10W`\0\x80\xFD[P`@Qa\x0188\x03\x80a\x018\x839\x81\x01`@\x81\x90Ra\0/\x91a\0EV[`\0\x80T`\xFF\x19\x16`\x01\x90\x81\x17\x90\x91UUa\0^V[`\0` \x82\x84\x03\x12\x15a\0WW`\0\x80\xFD[PQ\x91\x90PV[`\xCC\x80a\0l`\09`\0\xF3\xFE`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`2W`\x005`\xE0\x1C\x80c\xCF0\x90\x12\x14`7W\x80c\xEC\x9B[:\x14`WW[`\0\x80\xFD[`\0T`C\x90`\xFF\x16\x81V[`@Q\x90\x15\x15\x81R` \x01`@Q\x80\x91\x03\x90\xF3[`f`b6`\x04`~V[`hV[\0[\x80`\x01T\x03`{W`\0\x80T`\xFF\x19\x16\x90U[PV[`\0` \x82\x84\x03\x12\x15`\x8FW`\0\x80\xFD[P5\x91\x90PV\xFE\xA2dipfsX\"\x12 q\xC9~B\xA1\xD9s(\xA2\x99\xF8\xD3\xCB#\xA8\xCB\x10\xED\xE7C\x8F$:<g\xD1\x86\xDE\xE5\xA6\x1A~dsolcC\0\x08\x15\x003";
+    const __BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`@Qa\x0138\x03\x80a\x013\x839\x81\x01`@\x81\x90R`,\x91`AV[`\0\x80T`\xFF\x19\x16`\x01\x90\x81\x17\x90\x91UU`YV[`\0` \x82\x84\x03\x12\x15`RW`\0\x80\xFD[PQ\x91\x90PV[`\xCC\x80a\0g`\09`\0\xF3\xFE`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`2W`\x005`\xE0\x1C\x80c\xCF0\x90\x12\x14`7W\x80c\xEC\x9B[:\x14`WW[`\0\x80\xFD[`\0T`C\x90`\xFF\x16\x81V[`@Q\x90\x15\x15\x81R` \x01`@Q\x80\x91\x03\x90\xF3[`f`b6`\x04`~V[`hV[\0[\x80`\x01T\x03`{W`\0\x80T`\xFF\x19\x16\x90U[PV[`\0` \x82\x84\x03\x12\x15`\x8FW`\0\x80\xFD[P5\x91\x90PV\xFE\xA2dipfsX\"\x12 \xDDJQ\xCC\x19Y\x01\x90\xBC\x86BDE\xDD\xA2}\xFD\x01S\"*\x94g\xCF\xD1l\xC8a\x93\xAF\x9F9dsolcC\0\x08\x19\x003";
     /// The bytecode of the contract.
     pub static VAULT_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__BYTECODE);
     #[rustfmt::skip]
-    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`2W`\x005`\xE0\x1C\x80c\xCF0\x90\x12\x14`7W\x80c\xEC\x9B[:\x14`WW[`\0\x80\xFD[`\0T`C\x90`\xFF\x16\x81V[`@Q\x90\x15\x15\x81R` \x01`@Q\x80\x91\x03\x90\xF3[`f`b6`\x04`~V[`hV[\0[\x80`\x01T\x03`{W`\0\x80T`\xFF\x19\x16\x90U[PV[`\0` \x82\x84\x03\x12\x15`\x8FW`\0\x80\xFD[P5\x91\x90PV\xFE\xA2dipfsX\"\x12 q\xC9~B\xA1\xD9s(\xA2\x99\xF8\xD3\xCB#\xA8\xCB\x10\xED\xE7C\x8F$:<g\xD1\x86\xDE\xE5\xA6\x1A~dsolcC\0\x08\x15\x003";
+    const __DEPLOYED_BYTECODE: &[u8] = b"`\x80`@R4\x80\x15`\x0FW`\0\x80\xFD[P`\x046\x10`2W`\x005`\xE0\x1C\x80c\xCF0\x90\x12\x14`7W\x80c\xEC\x9B[:\x14`WW[`\0\x80\xFD[`\0T`C\x90`\xFF\x16\x81V[`@Q\x90\x15\x15\x81R` \x01`@Q\x80\x91\x03\x90\xF3[`f`b6`\x04`~V[`hV[\0[\x80`\x01T\x03`{W`\0\x80T`\xFF\x19\x16\x90U[PV[`\0` \x82\x84\x03\x12\x15`\x8FW`\0\x80\xFD[P5\x91\x90PV\xFE\xA2dipfsX\"\x12 \xDDJQ\xCC\x19Y\x01\x90\xBC\x86BDE\xDD\xA2}\xFD\x01S\"*\x94g\xCF\xD1l\xC8a\x93\xAF\x9F9dsolcC\0\x08\x19\x003";
     /// The deployed bytecode of the contract.
     pub static VAULT_DEPLOYED_BYTECODE: ::ethers::core::types::Bytes =
         ::ethers::core::types::Bytes::from_static(__DEPLOYED_BYTECODE);
@@ -205,6 +205,8 @@ pub mod vault {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -220,6 +222,8 @@ pub mod vault {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -232,7 +236,14 @@ pub mod vault {
     }
     ///Container type for all of the contract's call
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum VaultCalls {
         Locked(LockedCall),
@@ -293,6 +304,8 @@ pub mod vault {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,

@@ -214,6 +214,8 @@ pub mod i_uniswap_v3_pool_derived_state {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -232,6 +234,8 @@ pub mod i_uniswap_v3_pool_derived_state {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -248,7 +252,14 @@ pub mod i_uniswap_v3_pool_derived_state {
     }
     ///Container type for all of the contract's call
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum IUniswapV3PoolDerivedStateCalls {
         Observe(ObserveCall),
@@ -265,10 +276,9 @@ pub mod i_uniswap_v3_pool_derived_state {
             {
                 return Ok(Self::Observe(decoded));
             }
-            if let Ok(decoded)
-                = <SnapshotCumulativesInsideCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
+            if let Ok(decoded) = <SnapshotCumulativesInsideCall as ::ethers::core::abi::AbiDecode>::decode(
+                data,
+            ) {
                 return Ok(Self::SnapshotCumulativesInside(decoded));
             }
             Err(::ethers::core::abi::Error::InvalidData.into())
@@ -316,6 +326,8 @@ pub mod i_uniswap_v3_pool_derived_state {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -335,6 +347,8 @@ pub mod i_uniswap_v3_pool_derived_state {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,

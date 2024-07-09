@@ -556,6 +556,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -576,6 +578,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -601,6 +605,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -622,6 +628,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -642,6 +650,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -660,6 +670,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -682,6 +694,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthCall,
         ::ethers::contract::EthDisplay,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -698,7 +712,14 @@ pub mod i_uniswap_v3_pool_actions {
     }
     ///Container type for all of the contract's call
     #[derive(
-        Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash,
+        Clone,
+        ::ethers::contract::EthAbiType,
+        serde::Serialize,
+        serde::Deserialize,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
     )]
     pub enum IUniswapV3PoolActionsCalls {
         Burn(BurnCall),
@@ -732,10 +753,9 @@ pub mod i_uniswap_v3_pool_actions {
             {
                 return Ok(Self::Flash(decoded));
             }
-            if let Ok(decoded)
-                = <IncreaseObservationCardinalityNextCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
+            if let Ok(decoded) = <IncreaseObservationCardinalityNextCall as ::ethers::core::abi::AbiDecode>::decode(
+                data,
+            ) {
                 return Ok(Self::IncreaseObservationCardinalityNext(decoded));
             }
             if let Ok(decoded) =
@@ -835,6 +855,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -853,6 +875,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -871,6 +895,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,
@@ -889,6 +915,8 @@ pub mod i_uniswap_v3_pool_actions {
         Clone,
         ::ethers::contract::EthAbiType,
         ::ethers::contract::EthAbiCodec,
+        serde::Serialize,
+        serde::Deserialize,
         Default,
         Debug,
         PartialEq,

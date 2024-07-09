@@ -19,13 +19,14 @@
         pkgs = import nixpkgs { inherit system; };
         foundry-pkg = foundry.defaultPackage.${system};
         forge = "${foundry-pkg}/bin/forge";
+        channel = inputs.fenix.packages.${pkgs.system}.latest;
       in {
         devShell = devenv.lib.mkShell {
           inherit inputs pkgs;
 
           modules = [{
             packages = with pkgs;
-              [ solc gcc foundry-pkg go-ethereum tldr bat ]
+              [ solc gcc foundry-pkg go-ethereum cargo-watch ]
               ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk; [
                 libiconv
                 frameworks.Security
@@ -40,18 +41,8 @@
             languages.nix.enable = true;
             languages.rust = {
               enable = true;
-              channel = "stable";
-              toolchain = {
-                rustfmt = inputs.fenix.packages.${pkgs.system}.latest.rustfmt;
-                clippy = inputs.fenix.packages.${pkgs.system}.latest.clippy;
-              };
+              toolchain = channel.toolchain;
             };
-
-            enterShell = ''
-              if ! command -v cargo watch &> /dev/null; then
-                cargo install cargo-watch
-              fi
-            '';
 
             scripts.bind-attack.exec = ''
               ${forge} install
@@ -81,14 +72,9 @@
                 fail_fast = true;
                 package = pkgs.nixfmt-classic;
               };
-              cargo-fmt = {
+              rustfmt = {
                 enable = true;
-                name = "Format Rust code";
-                entry = "cargo fmt";
-                files = ".*/src/.*.rs$";
-                excludes = [ "target/.*" "lib/.*" ];
-                pass_filenames = false;
-                verbose = true;
+                packageOverrides = { inherit (channel) cargo rustfmt; };
               };
               # bind-attack-contracts = {
               #   enable = true;

@@ -4,12 +4,6 @@ A compilation of smart contract wargames (currently only Ethernaut and DamnVulne
 
 ## Smart contracts
 
-Install smart contract dependencies
-
-```sh
-forge install
-```
-
 Build attack contracts and generate Rust bindings for their ABIs
 
 ```sh

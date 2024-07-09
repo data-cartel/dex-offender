@@ -2,11 +2,15 @@
 name = "attack"
 version = "0.1.0"
 edition = "2021"
+resolver = "2"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ctf = { path = "../ctf" }
-eyre = { workspace = true }
-async-trait = { workspace = true }
-ethers = { workspace = true }
-tokio = { workspace = true }
+ctf.path = "../ctf"
+
+async-trait.workspace = true
+ethers.workspace = true
+eyre.workspace = true
+serde.workspace = true
+tokio.workspace = true
+tqdm.workspace = true

@@ -1,6 +1,6 @@
 use crate::{roles::*, Level};
+use alloy::primitives::{keccak256, Address, FixedBytes};
 use async_trait::async_trait;
-use ethers::{prelude::*, utils::keccak256};
 use rand::Rng;
 
 pub use crate::abi::vault::Vault;
@@ -17,7 +17,9 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level08)
     }
 
-    fn name(&self) -> &'static str { "Vault" }
+    fn name(&self) -> &'static str {
+        "Vault"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
@@ -25,7 +27,7 @@ impl Level for Target {
         println!("Deploying the Vault contract...");
         let random = rand::thread_rng().gen::<[u8; 32]>();
         let psswd = keccak256(random);
-        let vault = Vault::deploy(deployer.to_owned(), psswd)?.send().await?;
+        let vault = Vault::deploy(deployer, FixedBytes::from(psswd)).await?;
 
         let target = Target { address: vault.address() };
 
@@ -37,10 +39,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Vault::new(self.address, deployer.clone());
+        let contract = Vault::new(self.address, deployer);
 
         println!("Checking that the contract is unlocked...");
-        let unlocked = !contract.locked().await?;
+        let unlocked = !contract.locked().call().await?._0;
 
         Ok(unlocked)
     }

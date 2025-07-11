@@ -1,7 +1,7 @@
 {
   inputs = {
     devenv.url = "github:cachix/devenv";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
     fenix = {
       url = "github:nix-community/fenix";
@@ -23,89 +23,41 @@
       in {
         devShell = devenv.lib.mkShell {
           inherit inputs pkgs;
+          modules = [
+            {
+              packages = with pkgs; [
+                foundry-pkg
+                channel.rustc
+                channel.cargo
+                channel.rustfmt
+                channel.clippy
+                rust-analyzer
+              ];
 
-          modules = [{
-            packages = with pkgs;
-              [ solc gcc foundry-pkg go-ethereum cargo-watch ]
-              ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk; [
-                libiconv
-                frameworks.Security
-                frameworks.CoreFoundation
-                frameworks.SystemConfiguration
-              ]);
+              languages.rust.enable = true;
+              languages.rust.channel = "stable";
 
-            dotenv.enable = true;
-            difftastic.enable = true;
+              env.FORGE = forge;
 
-            # https://devenv.sh/languages/
-            languages.nix.enable = true;
-            languages.rust = {
-              enable = true;
-              toolchain = channel.toolchain;
-            };
+              scripts.deploy.exec = ''
+                cargo run --bin deploy_levels
+              '';
 
-            scripts.bind-attack.exec = ''
-              ${forge} install
-              ${forge} fmt
-              ${forge} bind -b ./attack/src/abi --module --force --overwrite
-              pre-commit run rustfmt -a > /dev/null || true
-            '';
+              scripts.test.exec = ''
+                cargo test -p attack
+              '';
 
-            scripts.bind-ctf.exec = ''
-              ${forge} install --root ctf
-              ${forge} fmt --root ctf
-              ${forge} bind --root ctf -b ./ctf/src/abi --module --skip-cargo-toml --force --overwrite
-              pre-commit run rustfmt -a > /dev/null || true
-            '';
+              scripts.check.exec = ''
+                cargo clippy --all-targets --all-features -- -D warnings
+                cargo fmt --all -- --check
+              '';
 
-            scripts.deploy-levels.exec = ''
-              if [ -f state.json ]; then
-                rm -v state.json
-              fi
-              cargo run --bin deploy_levels
-            '';
-
-            # https://devenv.sh/pre-commit-hooks/
-            pre-commit.hooks = {
-              nixfmt = {
-                enable = true;
-                fail_fast = true;
-                package = pkgs.nixfmt-classic;
+              pre-commit.hooks = {
+                rustfmt.enable = true;
+                clippy.enable = true;
               };
-              rustfmt = {
-                enable = true;
-                packageOverrides = { inherit (channel) cargo rustfmt; };
-              };
-              # bind-attack-contracts = {
-              #   enable = true;
-              #   name = "Bind attack contracts";
-              #   description =
-              #     "Build attack/contracts/ contracts and generate Rust ABI bindings";
-              #   files = "attack/contracts/.*.sol$";
-              #   entry = ".devenv/profile/bin/bind-attack";
-              #   pass_filenames = false;
-              #   verbose = true;
-              # };
-              # bind-ctf-contracts = {
-              #   enable = true;
-              #   name = "Bind CTF contracts";
-              #   description =
-              #     "Compile CTF smart contracts and generate Rust ABI bindings";
-              #   files = "ctf/contracts/.*.sol$";
-              #   entry = ".devenv/profile/bin/bind-ctfs";
-              #   pass_filenames = false;
-              #   verbose = true;
-              # };
-              # deploy-levels = {
-              #   enable = true;
-              #   name = "Deploy levels";
-              #   files = "ctf/src/.*.rs";
-              #   entry = ".devenv/profile/bin/deploy-levels";
-              #   pass_filenames = false;
-              #   verbose = true;
-              # };
-            };
-          }];
+            }
+          ];
         };
       });
 }

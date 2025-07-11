@@ -1,6 +1,6 @@
 use crate::{roles::*, Level};
+use alloy::primitives::Address;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::elevator::Elevator;
 
@@ -16,14 +16,15 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level11)
     }
 
-    fn name(&self) -> &'static str { "Elevator" }
+    fn name(&self) -> &'static str {
+        "Elevator"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
 
         println!("Deploying the Elevator contract...");
-        let contract =
-            Elevator::deploy(deployer.to_owned(), ())?.send().await?;
+        let contract = Elevator::deploy(deployer, ()).await?;
 
         let target = Target { address: contract.address() };
 
@@ -35,10 +36,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Elevator::new(self.address, deployer.clone());
+        let contract = Elevator::new(self.address, deployer);
 
         println!("Checking if the elevator is at the top floor...");
-        let top = contract.top().await?;
+        let top = contract.top().call().await?._0;
 
         Ok(top)
     }

@@ -1,4 +1,4 @@
-use alloy::primitives::{Address, U256};
+use alloy::primitives::Address;
 use async_trait::async_trait;
 
 pub use crate::abi::telephone::Telephone;
@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, deployer_address, .. } = roles;
 
         println!("Deploying the Telephone contract...");
-        let contract = Telephone::deploy(deployer, ()).await?;
+        let contract = Telephone::deploy(deployer).await?;
 
         let owner = contract.owner().call().await?._0;
         assert_eq!(owner, *deployer_address);
@@ -38,7 +38,7 @@ impl Level for Target {
         let Roles { deployer, offender_address, .. } = roles;
         let contract = Telephone::new(self.address, deployer);
 
-        println!("Checking that you became the owner...");
+        println!("Checking that you claimed ownership of the contract...");
         let owner = contract.owner().call().await?._0;
         let is_owner = owner == *offender_address;
 

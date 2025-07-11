@@ -1,4 +1,4 @@
-use alloy::primitives::{Address, U256};
+use alloy::primitives::Address;
 use async_trait::async_trait;
 
 pub use crate::abi::fallout::Fallout;
@@ -24,10 +24,7 @@ impl Level for Target {
         let Roles { deployer, deployer_address, .. } = roles;
 
         println!("Deploying the Fallout contract...");
-        let contract = Fallout::deploy(deployer, ()).await?;
-
-        let receipt = contract.Fal1out().send().await?.get_receipt().await?;
-        println!("Called Fal1out: {:?}", receipt.transaction_hash);
+        let contract = Fallout::deploy(deployer).await?;
 
         let owner = contract.owner().call().await?._0;
         assert_eq!(owner, *deployer_address);

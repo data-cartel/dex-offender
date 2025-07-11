@@ -1,6 +1,6 @@
 use crate::{roles::*, Level};
+use alloy::primitives::Address;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::gatekeeper_one::GatekeeperOne;
 
@@ -16,14 +16,15 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level13)
     }
 
-    fn name(&self) -> &'static str { "GatekeeperOne" }
+    fn name(&self) -> &'static str {
+        "GatekeeperOne"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
 
         println!("Deploying the GatekeeperOne contract...");
-        let contract =
-            GatekeeperOne::deploy(deployer.to_owned(), ())?.send().await?;
+        let contract = GatekeeperOne::deploy(deployer, ()).await?;
 
         let target = Target { address: contract.address() };
 
@@ -35,10 +36,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = GatekeeperOne::new(self.address, deployer.clone());
+        let contract = GatekeeperOne::new(self.address, deployer);
 
         println!("Checking the entrant...");
-        let entrant = contract.entrant().await?;
+        let entrant = contract.entrant().call().await?._0;
         let pass = entrant == roles.offender.address();
 
         Ok(pass)

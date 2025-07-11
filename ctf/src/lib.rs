@@ -1,9 +1,4 @@
-use alloy::{
-    network::Ethereum,
-    primitives::U256,
-    providers::{Provider, ProviderBuilder},
-    transports::http::{Client, Http},
-};
+use alloy::primitives::U256;
 
 // pub mod damn_vulnerable_defi;
 pub mod abi;

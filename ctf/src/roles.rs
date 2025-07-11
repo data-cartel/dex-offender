@@ -1,13 +1,12 @@
 use alloy::{
-    providers::{ProviderBuilder, RootProvider},
+    providers::{Provider, ProviderBuilder, RootProvider},
     network::Ethereum,
     signers::{local::PrivateKeySigner, Signer},
-    transports::http::{Http, Client},
     primitives::Address,
 };
 use std::sync::Arc;
 
-pub type Actor = Arc<RootProvider<Http<Client>>>;
+pub type Actor = Arc<RootProvider<Ethereum>>;
 
 #[derive(Debug, Clone)]
 pub struct Roles {
@@ -26,9 +25,10 @@ impl Roles {
         let deployer_address = deployer_key.address();
         let deployer = Arc::new(
             ProviderBuilder::new()
-                .with_recommended_fillers()
+                .with_gas_estimation()
                 .wallet(deployer_key)
                 .on_http(rpc_url.parse()?)
+                .root().clone()
         );
 
         let some_user_key: PrivateKeySigner =
@@ -36,9 +36,10 @@ impl Roles {
         let some_user_address = some_user_key.address();
         let some_user = Arc::new(
             ProviderBuilder::new()
-                .with_recommended_fillers()
+                .with_gas_estimation()
                 .wallet(some_user_key)
                 .on_http(rpc_url.parse()?)
+                .root().clone()
         );
 
         let offender_key: PrivateKeySigner =
@@ -46,9 +47,10 @@ impl Roles {
         let offender_address = offender_key.address();
         let offender = Arc::new(
             ProviderBuilder::new()
-                .with_recommended_fillers()
+                .with_gas_estimation()
                 .wallet(offender_key)
                 .on_http(rpc_url.parse()?)
+                .root().clone()
         );
 
         Ok(Self {

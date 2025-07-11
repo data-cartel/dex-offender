@@ -1,6 +1,6 @@
 use crate::{roles::*, Level};
+use alloy::primitives::{Address, FixedBytes};
 use async_trait::async_trait;
-use ethers::{prelude::*, utils::keccak256};
 use rand::Rng;
 
 pub use crate::abi::privacy::Privacy;
@@ -17,7 +17,9 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level12)
     }
 
-    fn name(&self) -> &'static str { "Privacy" }
+    fn name(&self) -> &'static str {
+        "Privacy"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
@@ -26,13 +28,12 @@ impl Level for Target {
 
         let mk_element = || {
             let random = rand::thread_rng().gen::<[u8; 32]>();
-            keccak256(random)
+            alloy::primitives::keccak256(random)
         };
 
         let data = [mk_element(), mk_element(), mk_element()];
 
-        let contract =
-            Privacy::deploy(deployer.to_owned(), data)?.send().await?;
+        let contract = Privacy::deploy(deployer, data).await?;
 
         let target = Target { address: contract.address() };
 
@@ -44,10 +45,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Privacy::new(self.address, deployer.clone());
+        let contract = Privacy::new(self.address, deployer);
 
         println!("Checking that you became the owner...");
-        let locked = contract.locked().await?;
+        let locked = contract.locked().call().await?._0;
 
         Ok(!locked)
     }

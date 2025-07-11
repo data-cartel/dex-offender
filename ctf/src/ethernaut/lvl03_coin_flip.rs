@@ -1,4 +1,4 @@
-use alloy::primitives::{Address, U256};
+use alloy::primitives::Address;
 use async_trait::async_trait;
 
 pub use crate::abi::coin_flip::CoinFlip;
@@ -17,17 +17,14 @@ impl Level for Target {
     }
 
     fn name(&self) -> &'static str {
-        "Coin Flip"
+        "CoinFlip"
     }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the CoinFlip contract...");
-        let contract = CoinFlip::deploy(deployer, ()).await?;
-
-        let consecutive_wins = contract.consecutiveWins().call().await?._0;
-        assert_eq!(consecutive_wins, U256::from(0));
+        let contract = CoinFlip::deploy(deployer).await?;
 
         let target = Target { address: contract.address() };
 
@@ -38,10 +35,10 @@ impl Level for Target {
         let Roles { deployer, .. } = roles;
         let contract = CoinFlip::new(self.address, deployer);
 
-        println!("Checking that you won 10 times in a row...");
+        println!("Checking that you won 10 coin flips in a row...");
         let consecutive_wins = contract.consecutiveWins().call().await?._0;
-        let ten_wins = consecutive_wins >= U256::from(10);
+        let solved = consecutive_wins >= 10;
 
-        Ok(ten_wins)
+        Ok(solved)
     }
 }

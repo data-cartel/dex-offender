@@ -28,7 +28,7 @@ impl Level for Target {
         let Roles { deployer, deployer_address, offender_address, .. } = roles;
 
         println!("Deploying the Fallback contract...");
-        let contract = Fallback::deploy(deployer, ()).await?;
+        let contract = Fallback::deploy(deployer).await?;
 
         let balance =
             contract.contributions(*deployer_address).call().await?._0;

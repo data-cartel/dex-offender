@@ -166,6 +166,6 @@ pub mod unstoppable_vault;
 pub mod upgradeable_proxy;
 pub mod uups_upgradeable;
 pub mod vault;
-pub mod wallet;
-pub mod wallet_deployer;
-pub mod wallet_registry;
+// pub mod wallet; // Commented out - ethers-generated ABI not yet migrated to alloy
+// pub mod wallet_deployer; // Commented out - ethers-generated ABI not yet migrated to alloy
+// pub mod wallet_registry; // Commented out - ethers-generated ABI not yet migrated to alloy

@@ -1,5 +1,5 @@
+use alloy::primitives::{Address, U256};
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::token::Token;
 use crate::{roles::*, Level};
@@ -16,17 +16,23 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level05)
     }
 
-    fn name(&self) -> &'static str { "Token" }
+    fn name(&self) -> &'static str {
+        "Token"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender, .. } = roles;
+        let Roles { deployer, offender_address, .. } = roles;
 
         println!("Deploying the Token contract...");
-        let contract = Token::deploy(deployer.clone(), U256::from(21_000_000))?
-            .send()
-            .await?;
+        let contract = Token::deploy(deployer, U256::from(21_000_000)).await?;
 
-        contract.transfer(offender.address(), 20.into()).send().await?;
+        let receipt = contract
+            .transfer(*offender_address, U256::from(20))
+            .send()
+            .await?
+            .get_receipt()
+            .await?;
+        println!("Transferred 20 tokens: {:?}", receipt.transaction_hash);
 
         let target = Target { address: contract.address() };
 
@@ -34,12 +40,12 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Token::new(self.address, deployer.clone());
+        let Roles { deployer, offender_address, .. } = roles;
+        let contract = Token::new(self.address, deployer);
 
         println!("Checking that got more tokens...");
-        let balance = contract.balance_of(offender.address()).call().await?;
+        let balance = contract.balanceOf(*offender_address).call().await?._0;
 
-        Ok(balance > 20.into())
+        Ok(balance > U256::from(20))
     }
 }

@@ -1,13 +1,15 @@
-use crate::roles::*;
+use alloy::primitives::Address;
 use async_trait::async_trait;
 
-#[async_trait]
-pub trait Level {
-    fn name(&self) -> &'static str;
+use crate::roles::Roles;
 
+#[async_trait]
+pub trait Level: Send + Sync + Clone {
     fn from_file() -> eyre::Result<Self>
     where
         Self: Sized;
+
+    fn name(&self) -> &'static str;
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self>
     where
@@ -17,12 +19,12 @@ pub trait Level {
 }
 
 #[async_trait]
-pub trait Exploit {
+pub trait Exploit: Send + Sync {
     type Target: Level;
 
     async fn attack(
         self,
         target: &Self::Target,
-        offender: &Actor,
+        offender: &crate::Actor,
     ) -> eyre::Result<()>;
 }

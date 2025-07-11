@@ -1,5 +1,5 @@
+use alloy::primitives::{Address, U256};
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::telephone::Telephone;
 use crate::{roles::*, Level};
@@ -16,17 +16,18 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level04)
     }
 
-    fn name(&self) -> &'static str { "Telephone" }
+    fn name(&self) -> &'static str {
+        "Telephone"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, .. } = roles;
+        let Roles { deployer, deployer_address, .. } = roles;
 
         println!("Deploying the Telephone contract...");
-        let contract =
-            Telephone::deploy(deployer.to_owned(), ())?.send().await?;
+        let contract = Telephone::deploy(deployer, ()).await?;
 
-        let owner = contract.owner().await?;
-        assert_eq!(owner, deployer.address());
+        let owner = contract.owner().call().await?._0;
+        assert_eq!(owner, *deployer_address);
 
         let target = Target { address: contract.address() };
 
@@ -34,12 +35,12 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, .. } = roles;
-        let contract = Telephone::new(self.address, deployer.clone());
+        let Roles { deployer, offender_address, .. } = roles;
+        let contract = Telephone::new(self.address, deployer);
 
         println!("Checking that you became the owner...");
-        let owner = contract.owner().await?;
-        let is_owner = owner == roles.offender.address();
+        let owner = contract.owner().call().await?._0;
+        let is_owner = owner == *offender_address;
 
         Ok(is_owner)
     }

@@ -9,7 +9,7 @@ resolver = "2"
 ctf.path = "../ctf"
 
 async-trait.workspace = true
-ethers.workspace = true
+alloy.workspace = true
 eyre.workspace = true
 serde.workspace = true
 tokio.workspace = true

@@ -1,5 +1,3 @@
-use ethers::providers::{Http, Provider};
-
 use crate::{level::Level, roles::Roles};
 
 pub mod lvl01_fallback;
@@ -77,10 +75,8 @@ pub struct Ethernaut {
     pub level23: lvl23::Target,
 }
 
-pub async fn set_up_ethernaut(
-    provider: Provider<Http>,
-) -> eyre::Result<Ethernaut> {
-    let roles = Roles::new(provider)?;
+pub async fn set_up_ethernaut(rpc_url: &str) -> eyre::Result<Ethernaut> {
+    let roles = Roles::new(rpc_url).await?;
 
     let level01 = lvl01::Target::set_up(&roles).await?;
     let level02 = lvl02::Target::set_up(&roles).await?;

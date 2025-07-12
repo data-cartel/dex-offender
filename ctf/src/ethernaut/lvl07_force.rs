@@ -1,6 +1,6 @@
 use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::force::Force;
 
@@ -16,13 +16,15 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level07)
     }
 
-    fn name(&self) -> &'static str { "Force" }
+    fn name(&self) -> &'static str {
+        "Force"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the Force contract...");
-        let force = Force::deploy(deployer.to_owned(), ())?.send().await?;
+        let force = Force::deploy(deployer, ()).await?;
 
         let target = Target { address: force.address() };
 
@@ -34,11 +36,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Force::new(self.address, deployer.clone());
 
         println!("Checking the contract balance...");
-        let balance = deployer.get_balance(contract.address(), None).await?;
+        let balance = deployer.get_balance(self.address).await?;
 
-        Ok(balance > 0.into())
+        Ok(balance > U256::from(0))
     }
 }

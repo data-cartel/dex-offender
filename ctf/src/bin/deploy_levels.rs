@@ -1,4 +1,4 @@
-use ethers::{prelude::*, utils::Anvil};
+use alloy::node_bindings::Anvil;
 
 #[tokio::main]
 async fn main() -> eyre::Result<()> {
@@ -11,7 +11,7 @@ async fn main() -> eyre::Result<()> {
         .spawn();
 
     println!("Connecting to Anvil...");
-    let provider = Provider::<Http>::try_from(anvil.endpoint())?;
+    let rpc_url = anvil.endpoint();
 
-    ctf::deploy(provider, "ctfs.json").await
+    ctf::deploy(&rpc_url, "ctfs.json").await
 }

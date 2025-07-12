@@ -1,5 +1,5 @@
+use alloy::primitives::Address;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::fallout::Fallout;
 use crate::{roles::*, Level};
@@ -16,18 +16,18 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level02)
     }
 
-    fn name(&self) -> &'static str { "Fallout" }
+    fn name(&self) -> &'static str {
+        "Fallout"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_address, .. } = roles;
 
         println!("Deploying the Fallout contract...");
-        let contract = Fallout::deploy(deployer.to_owned(), ())?.send().await?;
+        let contract = Fallout::deploy(deployer).await?;
 
-        contract.fal_1out().send().await?;
-
-        let owner = contract.owner().await?;
-        assert_eq!(owner, deployer.address());
+        let owner = contract.owner().call().await?._0;
+        assert_eq!(owner, *deployer_address);
 
         let target = Target { address: contract.address() };
 
@@ -35,12 +35,12 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Fallout::new(self.address, deployer.clone());
+        let Roles { deployer, offender_address, .. } = roles;
+        let contract = Fallout::new(self.address, deployer);
 
         println!("Checking that you claimed ownership of the contract...");
-        let owner = contract.owner().await?;
-        let is_owner = owner == offender.address();
+        let owner = contract.owner().call().await?._0;
+        let is_owner = owner == *offender_address;
 
         Ok(is_owner)
     }

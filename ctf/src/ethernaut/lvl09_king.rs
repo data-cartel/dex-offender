@@ -1,6 +1,6 @@
 use crate::{roles::*, to_ether, Level};
+use alloy::{primitives::Address, rpc::types::TransactionRequest};
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::king::King;
 
@@ -16,16 +16,15 @@ impl Level for Target {
         Ok(ctfs.ethernaut.level09)
     }
 
-    fn name(&self) -> &'static str { "King" }
+    fn name(&self) -> &'static str {
+        "King"
+    }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the King contract...");
-        let king = King::deploy(deployer.to_owned(), ())?
-            .value(to_ether(10))
-            .send()
-            .await?;
+        let king = King::deploy(deployer, ()).value(to_ether(10)).await?;
 
         let target = Target { address: king.address() };
 
@@ -37,23 +36,19 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = King::new(self.address, deployer.clone());
 
         println!("Attempting to reclaim the kingdom...");
-        let result = deployer
-            .send_transaction(
-                TransactionRequest::new()
-                    .to(contract.address())
-                    .value(to_ether(10)),
-                None,
-            )
-            .await;
+        let tx_request =
+            TransactionRequest::default().to(self.address).value(to_ether(10));
+
+        let result = deployer.send_transaction(tx_request).await;
 
         if result.is_err() {
             return Ok(true);
         }
 
-        let result = result?.await;
+        let pending_tx = result?;
+        let result = pending_tx.get_receipt().await;
 
         Ok(result.is_err())
     }

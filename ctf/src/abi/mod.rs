@@ -9,12 +9,28 @@
 pub mod coin_flip;
 pub mod delegate;
 pub mod delegation;
+pub mod elevator;
+pub mod gatekeeper_one;
+pub mod privacy;
+pub mod reentrance;
 pub mod fallback;
 pub mod fallout;
 pub mod force;
 pub mod king;
 pub mod telephone;
 pub mod token;
+pub mod alien_codex;
+pub mod denial;
+pub mod dex;
+pub mod dex_two;
+pub mod gatekeeper_two;
+pub mod magic_num;
+pub mod naught_coin;
+pub mod preservation;
+pub mod recovery;
+pub mod shop;
+pub mod swappable_token;
+pub mod swappable_token_two;
 pub mod vault;
 
 // Unmigrated ABI files - commented out until migration to alloy is complete

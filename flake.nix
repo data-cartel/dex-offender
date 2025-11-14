@@ -1,7 +1,7 @@
 {
   inputs = {
     devenv.url = "github:cachix/devenv";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     fenix = {
       url = "github:nix-community/fenix";
@@ -47,14 +47,14 @@
             scripts.bind-attack.exec = ''
               ${forge} install
               ${forge} fmt
-              ${forge} bind -b ./attack/src/abi --module --force --overwrite
+              ${forge} bind -b ./attack/src/abi --module --alloy --force --overwrite
               pre-commit run rustfmt -a > /dev/null || true
             '';
 
             scripts.bind-ctf.exec = ''
               ${forge} install --root ctf
               ${forge} fmt --root ctf
-              ${forge} bind --root ctf -b ./ctf/src/abi --module --skip-cargo-toml --force --overwrite
+              ${forge} bind --root ctf -b ./ctf/src/abi --module --alloy --skip-cargo-toml --force --overwrite
               pre-commit run rustfmt -a > /dev/null || true
             '';
 

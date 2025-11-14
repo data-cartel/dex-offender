@@ -8,8 +8,8 @@ resolver = "2"
 [dependencies]
 ctf.path = "../ctf"
 
+alloy.workspace = true
 async-trait.workspace = true
-ethers.workspace = true
 eyre.workspace = true
 serde.workspace = true
 tokio.workspace = true

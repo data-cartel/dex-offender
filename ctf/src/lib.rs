@@ -1,4 +1,4 @@
-use ethers::prelude::*;
+use alloy::primitives::U256;
 
 // pub mod damn_vulnerable_defi;
 pub mod abi;
@@ -17,9 +17,9 @@ pub struct CTFs {
     // pub damn_vulnerable_defi: DamnVulnerableDeFi,
 }
 
-pub async fn deploy(provider: Provider<Http>, path: &str) -> eyre::Result<()> {
+pub async fn deploy(rpc_url: &str, path: &str) -> eyre::Result<()> {
     println!("Setting up Ethernaut...");
-    let ethernaut = set_up_ethernaut(provider).await?;
+    let ethernaut = set_up_ethernaut(rpc_url).await?;
 
     // we need to wait for at least a second for Anvil to save
     // the state

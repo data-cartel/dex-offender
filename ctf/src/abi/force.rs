@@ -22,22 +22,22 @@ pub mod Force {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea264697066735822122076430a608ac0f754a1864c91aca775023f46b7dbab73bacc5e70796631f4adad64736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea2646970667358221220d0c90b41c32bcbf7ca6d5e4205fb67c5e0806e04dd2967e1e82b55c4675d437664736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 vC\n`\x8A\xC0\xF7T\xA1\x86L\x91\xAC\xA7u\x02?F\xB7\xDB\xABs\xBA\xCC^pyf1\xF4\xAD\xADdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xD0\xC9\x0BA\xC3+\xCB\xF7\xCAm^B\x05\xFBg\xC5\xE0\x80n\x04\xDD)g\xE1\xE8+U\xC4g]CvdsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f5ffdfea264697066735822122076430a608ac0f754a1864c91aca775023f46b7dbab73bacc5e70796631f4adad64736f6c634300081e0033
+    ///0x60806040525f5ffdfea2646970667358221220d0c90b41c32bcbf7ca6d5e4205fb67c5e0806e04dd2967e1e82b55c4675d437664736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 vC\n`\x8A\xC0\xF7T\xA1\x86L\x91\xAC\xA7u\x02?F\xB7\xDB\xABs\xBA\xCC^pyf1\xF4\xAD\xADdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xD0\xC9\x0BA\xC3+\xCB\xF7\xCAm^B\x05\xFBg\xC5\xE0\x80n\x04\xDD)g\xE1\xE8+U\xC4g]CvdsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`Force`](self) contract instance.

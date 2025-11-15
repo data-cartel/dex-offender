@@ -1,9 +1,11 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{keccak256, Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::{prelude::*, utils::keccak256};
 use rand::Rng;
 
 pub use crate::abi::privacy::Privacy;
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -26,15 +28,15 @@ impl Level for Target {
 
         let mk_element = || {
             let random = rand::thread_rng().gen::<[u8; 32]>();
-            keccak256(random)
+            keccak256(random).into()
         };
 
         let data = [mk_element(), mk_element(), mk_element()];
 
         let contract =
-            Privacy::deploy(deployer.to_owned(), data)?.send().await?;
+            Privacy::deploy(deployer.as_ref(), data).await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -44,10 +46,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Privacy::new(self.address, deployer.clone());
+        let contract = Privacy::new(self.address, deployer.as_ref());
 
         println!("Checking that you became the owner...");
-        let locked = contract.locked().await?;
+        let locked = contract.locked().call().await?._0;
 
         Ok(!locked)
     }

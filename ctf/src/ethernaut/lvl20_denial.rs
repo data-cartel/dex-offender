@@ -1,8 +1,10 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::denial::Denial;
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -22,19 +24,15 @@ impl Level for Target {
         let Roles { deployer, offender: _, some_user: _ } = roles;
 
         println!("Deploying the Denial contract...");
-        let contract = Denial::deploy(deployer.to_owned(), ())?.send().await?;
+        let contract = Denial::deploy(deployer.as_ref(), ()).await?;
 
-        deployer
-            .send_transaction(
-                TransactionRequest::new()
-                    .to(contract.address())
-                    .value(1_000_000),
-                None,
-            )
-            .await?
-            .await?;
+        let tx = TransactionRequest::default()
+            .to(*contract.address())
+            .value(U256::from(1_000_000));
+        let pending = deployer.send_transaction(tx).await?;
+        let _receipt = pending.get_receipt().await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -44,22 +42,17 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = Denial::new(self.address, deployer.clone());
+        let contract = Denial::new(self.address, deployer.as_ref());
         println!("Checking that the contract has more than 100 wei...");
         let hundred = U256::from(100_u8);
-        if deployer.get_balance(contract.address(), None).await? <= hundred {
+        if deployer.get_balance(*contract.address()).await? <= hundred {
             // cheating otherwise
             return Ok(false);
         }
         println!("Checking that the owner cannot call withdraw()...");
-        let tx = contract.withdraw().gas(1_000_000).send().await?.await?;
+        let pending = contract.withdraw().gas(1_000_000).send().await?;
+        let receipt = pending.get_receipt().await?;
 
-        if let Some(receipt) = tx {
-            if let Some(status) = receipt.status {
-                return Ok(status == 0.into());
-            }
-        }
-
-        Ok(false)
+        return Ok(!receipt.status());
     }
 }

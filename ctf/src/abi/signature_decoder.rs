@@ -22,22 +22,22 @@ pub mod SignatureDecoder {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea2646970667358221220e106ce098ff5d3c7986e1c7dca547dbc409d114a324e962fdf2a3fde02f4c6e664736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea26469706673582212204d44b50307330d379420cd64edb64de14db906a4b166e81c8d9363ba0b0e2ce464736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xE1\x06\xCE\t\x8F\xF5\xD3\xC7\x98n\x1C}\xCAT}\xBC@\x9D\x11J2N\x96/\xDF*?\xDE\x02\xF4\xC6\xE6dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 MD\xB5\x03\x073\r7\x94 \xCDd\xED\xB6M\xE1M\xB9\x06\xA4\xB1f\xE8\x1C\x8D\x93c\xBA\x0B\x0E,\xE4dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f5ffdfea2646970667358221220e106ce098ff5d3c7986e1c7dca547dbc409d114a324e962fdf2a3fde02f4c6e664736f6c634300081e0033
+    ///0x60806040525f5ffdfea26469706673582212204d44b50307330d379420cd64edb64de14db906a4b166e81c8d9363ba0b0e2ce464736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xE1\x06\xCE\t\x8F\xF5\xD3\xC7\x98n\x1C}\xCAT}\xBC@\x9D\x11J2N\x96/\xDF*?\xDE\x02\xF4\xC6\xE6dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 MD\xB5\x03\x073\r7\x94 \xCDd\xED\xB6M\xE1M\xB9\x06\xA4\xB1f\xE8\x1C\x8D\x93c\xBA\x0B\x0E,\xE4dsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`SignatureDecoder`](self) contract instance.

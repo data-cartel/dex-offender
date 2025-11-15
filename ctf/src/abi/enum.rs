@@ -22,22 +22,22 @@ pub mod Enum {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea264697066735822122082a06e3846dba2bc9e1513e543e0e910b34cc948ff966380dcdc08e8c83f7a0b64736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea26469706673582212206331791b353880bdec4b7bf61c861756b6b72e418383c7d6501aba7b15e6f5c664736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \x82\xA0n8F\xDB\xA2\xBC\x9E\x15\x13\xE5C\xE0\xE9\x10\xB3L\xC9H\xFF\x96c\x80\xDC\xDC\x08\xE8\xC8?z\x0BdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 c1y\x1B58\x80\xBD\xECK{\xF6\x1C\x86\x17V\xB6\xB7.A\x83\x83\xC7\xD6P\x1A\xBA{\x15\xE6\xF5\xC6dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f5ffdfea264697066735822122082a06e3846dba2bc9e1513e543e0e910b34cc948ff966380dcdc08e8c83f7a0b64736f6c634300081e0033
+    ///0x60806040525f5ffdfea26469706673582212206331791b353880bdec4b7bf61c861756b6b72e418383c7d6501aba7b15e6f5c664736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \x82\xA0n8F\xDB\xA2\xBC\x9E\x15\x13\xE5C\xE0\xE9\x10\xB3L\xC9H\xFF\x96c\x80\xDC\xDC\x08\xE8\xC8?z\x0BdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 c1y\x1B58\x80\xBD\xECK{\xF6\x1C\x86\x17V\xB6\xB7.A\x83\x83\xC7\xD6P\x1A\xBA{\x15\xE6\xF5\xC6dsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`Enum`](self) contract instance.

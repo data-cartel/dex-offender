@@ -45,22 +45,22 @@ pub mod Example {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b505f80546001600160a01b0319163317905560a780602b5f395ff3fe6080604052348015600e575f5ffd5b50600436106026575f3560e01c80638da5cb5b14602a575b5f5ffd5b5f5460489073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f3fea2646970667358221220fbab8e92204a7d4833930cb29cd755ddb03cf14aa554521cc286275b90f10b1e64736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b505f80546001600160a01b0319163317905560a780602b5f395ff3fe6080604052348015600e575f5ffd5b50600436106026575f3560e01c80638da5cb5b14602a575b5f5ffd5b5f5460489073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f3fea264697066735822122010b0f3901b48274cc352b8f2b62690a1fdf66e173f99100a4bbdf324ec97436b64736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P_\x80T`\x01`\x01`\xA0\x1B\x03\x19\x163\x17\x90U`\xA7\x80`+_9_\xF3\xFE`\x80`@R4\x80\x15`\x0EW__\xFD[P`\x046\x10`&W_5`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`*W[__\xFD[_T`H\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \xFB\xAB\x8E\x92 J}H3\x93\x0C\xB2\x9C\xD7U\xDD\xB0<\xF1J\xA5TR\x1C\xC2\x86'[\x90\xF1\x0B\x1EdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P_\x80T`\x01`\x01`\xA0\x1B\x03\x19\x163\x17\x90U`\xA7\x80`+_9_\xF3\xFE`\x80`@R4\x80\x15`\x0EW__\xFD[P`\x046\x10`&W_5`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`*W[__\xFD[_T`H\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \x10\xB0\xF3\x90\x1BH'L\xC3R\xB8\xF2\xB6&\x90\xA1\xFD\xF6n\x17?\x99\x10\nK\xBD\xF3$\xEC\x97CkdsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50600436106026575f3560e01c80638da5cb5b14602a575b5f5ffd5b5f5460489073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f3fea2646970667358221220fbab8e92204a7d4833930cb29cd755ddb03cf14aa554521cc286275b90f10b1e64736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b50600436106026575f3560e01c80638da5cb5b14602a575b5f5ffd5b5f5460489073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f3fea264697066735822122010b0f3901b48274cc352b8f2b62690a1fdf66e173f99100a4bbdf324ec97436b64736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`\x046\x10`&W_5`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`*W[__\xFD[_T`H\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \xFB\xAB\x8E\x92 J}H3\x93\x0C\xB2\x9C\xD7U\xDD\xB0<\xF1J\xA5TR\x1C\xC2\x86'[\x90\xF1\x0B\x1EdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`\x046\x10`&W_5`\xE0\x1C\x80c\x8D\xA5\xCB[\x14`*W[__\xFD[_T`H\x90s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x81V[`@Qs\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x90\x91\x16\x81R` \x01`@Q\x80\x91\x03\x90\xF3\xFE\xA2dipfsX\"\x12 \x10\xB0\xF3\x90\x1BH'L\xC3R\xB8\xF2\xB6&\x90\xA1\xFD\xF6n\x17?\x99\x10\nK\xBD\xF3$\xEC\x97CkdsolcC\0\x08\x1E\x003",
     );
     /**Constructor`.
 ```solidity

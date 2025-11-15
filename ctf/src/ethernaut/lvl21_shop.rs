@@ -1,8 +1,10 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::shop::Shop;
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -22,8 +24,8 @@ impl Level for Target {
         let Roles { deployer, offender: _, some_user: _ } = roles;
 
         println!("Deploying the Shop contract...");
-        let contract = Shop::deploy(deployer.to_owned(), ())?.send().await?;
-        let target = Target { address: contract.address() };
+        let contract = Shop::deploy(deployer.as_ref(), ()).await?;
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -33,8 +35,8 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = Shop::new(self.address, deployer.clone());
+        let contract = Shop::new(self.address, deployer.as_ref());
         println!("Checking that you bought the item for less than 100 wei...");
-        Ok(contract.price().await? < 100.into())
+        Ok(contract.price().call().await?._0 < U256::from(100))
     }
 }

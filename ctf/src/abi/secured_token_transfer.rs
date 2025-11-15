@@ -22,22 +22,22 @@ pub mod SecuredTokenTransfer {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea2646970667358221220f717ca9ae93886debec722092da5fcc3ce9349b014904f322c2966cae24a879064736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea264697066735822122054121e2a80c8678300f4a9ea5a031830c62cd7d683afe7125c6023ea0afe9b3f64736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xF7\x17\xCA\x9A\xE98\x86\xDE\xBE\xC7\"\t-\xA5\xFC\xC3\xCE\x93I\xB0\x14\x90O2,)f\xCA\xE2J\x87\x90dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 T\x12\x1E*\x80\xC8g\x83\0\xF4\xA9\xEAZ\x03\x180\xC6,\xD7\xD6\x83\xAF\xE7\x12\\`#\xEA\n\xFE\x9B?dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f5ffdfea2646970667358221220f717ca9ae93886debec722092da5fcc3ce9349b014904f322c2966cae24a879064736f6c634300081e0033
+    ///0x60806040525f5ffdfea264697066735822122054121e2a80c8678300f4a9ea5a031830c62cd7d683afe7125c6023ea0afe9b3f64736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xF7\x17\xCA\x9A\xE98\x86\xDE\xBE\xC7\"\t-\xA5\xFC\xC3\xCE\x93I\xB0\x14\x90O2,)f\xCA\xE2J\x87\x90dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 T\x12\x1E*\x80\xC8g\x83\0\xF4\xA9\xEAZ\x03\x180\xC6,\xD7\xD6\x83\xAF\xE7\x12\\`#\xEA\n\xFE\x9B?dsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`SecuredTokenTransfer`](self) contract instance.

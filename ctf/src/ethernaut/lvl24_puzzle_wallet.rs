@@ -1,8 +1,10 @@
-use crate::{roles::*, to_ether, Level};
+use alloy::primitives::{keccak256, Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::{prelude::*, utils::keccak256};
 
 pub use crate::abi::{puzzle_proxy::PuzzleProxy, puzzle_wallet::PuzzleWallet};
+use crate::{roles::*, to_ether, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -23,30 +25,31 @@ impl Level for Target {
 
         println!("Deploying the PuzzleWallet contract...");
         let contract =
-            PuzzleWallet::deploy(deployer.to_owned(), ())?.send().await?;
+            PuzzleWallet::deploy(deployer.as_ref(), ()).await?;
 
         let data = keccak256("init(uint256)")
             .into_iter()
             .take(4)
             .chain({
-                let mut buff = Vec::with_capacity(8);
+                let mut buff = [0u8; 32];
                 to_ether(100).to_little_endian(&mut buff);
                 buff
             })
             .collect::<Vec<u8>>();
         println!("data: {:?}", data);
         let proxy = PuzzleProxy::deploy(
-            deployer.to_owned(),
-            (deployer.address(), contract.address(), data),
-        )?
-        .send()
-        .await?;
-        let contract2 = PuzzleWallet::new(proxy.address(), deployer.to_owned());
+            deployer.as_ref(),
+            (deployer.default_signer_address(), *contract.address(), data.into()),
+        ).await?;
+        let contract2 = PuzzleWallet::new(*proxy.address(), deployer.as_ref());
 
-        contract2.add_to_whitelist(deployer.address()).await?;
-        contract2.deposit().value(100_000_000_000_u128).send().await?;
+        let pending = contract2.add_to_whitelist(deployer.default_signer_address()).send().await?;
+        let _receipt = pending.get_receipt().await?;
 
-        let target = Target { address: contract.address() };
+        let pending = contract2.deposit().value(U256::from(100_000_000_000_u128)).send().await?;
+        let _receipt = pending.get_receipt().await?;
+
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -56,9 +59,9 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = PuzzleProxy::new(self.address, deployer.clone());
+        let contract = PuzzleProxy::new(self.address, deployer.as_ref());
         println!("Checking that you have become the admin of the contract...");
 
-        Ok(contract.admin().await? == offender.address())
+        Ok(contract.admin().call().await?._0 == offender.default_signer_address())
     }
 }

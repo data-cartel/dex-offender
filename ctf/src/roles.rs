@@ -1,33 +1,14 @@
 use alloy::{
     network::EthereumWallet,
-    providers::ProviderBuilder,
+    providers::{Provider, ProviderBuilder},
     signers::local::PrivateKeySigner,
 };
 use std::sync::Arc;
 
-// Type alias for our provider with wallet
-pub type Actor = Arc<
-    alloy::providers::fillers::FillProvider<
-        alloy::providers::fillers::JoinFill<
-            alloy::providers::Identity,
-            alloy::providers::fillers::JoinFill<
-                alloy::providers::fillers::GasFiller,
-                alloy::providers::fillers::JoinFill<
-                    alloy::providers::fillers::BlobGasFiller,
-                    alloy::providers::fillers::JoinFill<
-                        alloy::providers::fillers::NonceFiller,
-                        alloy::providers::fillers::ChainIdFiller,
-                    >,
-                >,
-            >,
-        >,
-        alloy::providers::RootProvider<alloy::transports::http::Http<alloy::transports::http::Client>>,
-        alloy::transports::http::Http<alloy::transports::http::Client>,
-        alloy::network::Ethereum,
-    >,
->;
+// Use dynamic dispatch to avoid complex type matching
+pub type Actor = Arc<dyn Provider + Send + Sync>;
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Roles {
     pub deployer: Actor,
     pub some_user: Actor,
@@ -61,5 +42,5 @@ fn mk_signer(
         .with_recommended_fillers()
         .wallet(wallet)
         .on_http(rpc_url.parse()?);
-    Ok(Arc::new(provider))
+    Ok(Arc::new(provider) as Actor)
 }

@@ -22,22 +22,22 @@ pub mod OracleLibrary {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220d8335c4de98d511e2ff0afb76a717b55e70ec339cd309835b1486cf0e867be0464736f6c63430007060033
+    ///0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212200aae3231e3913c44811e467b29dbfe2f4f4a96db5d8bcc276f43cf00deceecfa64736f6c63430007060033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD83\\M\xE9\x8DQ\x1E/\xF0\xAF\xB7jq{U\xE7\x0E\xC39\xCD0\x985\xB1Hl\xF0\xE8g\xBE\x04dsolcC\0\x07\x06\x003",
+        b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \n\xAE21\xE3\x91<D\x81\x1EF{)\xDB\xFE/OJ\x96\xDB]\x8B\xCC'oC\xCF\0\xDE\xCE\xEC\xFAdsolcC\0\x07\x06\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220d8335c4de98d511e2ff0afb76a717b55e70ec339cd309835b1486cf0e867be0464736f6c63430007060033
+    ///0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212200aae3231e3913c44811e467b29dbfe2f4f4a96db5d8bcc276f43cf00deceecfa64736f6c63430007060033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \xD83\\M\xE9\x8DQ\x1E/\xF0\xAF\xB7jq{U\xE7\x0E\xC39\xCD0\x985\xB1Hl\xF0\xE8g\xBE\x04dsolcC\0\x07\x06\x003",
+        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 \n\xAE21\xE3\x91<D\x81\x1EF{)\xDB\xFE/OJ\x96\xDB]\x8B\xCC'oC\xCF\0\xDE\xCE\xEC\xFAdsolcC\0\x07\x06\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`OracleLibrary`](self) contract instance.

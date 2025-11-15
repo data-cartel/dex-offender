@@ -1,5 +1,7 @@
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::coin_flip::CoinFlip;
 use crate::{roles::*, Level};
@@ -23,23 +25,23 @@ impl Level for Target {
 
         println!("Deploying the CoinFlip contract...");
         let contract =
-            CoinFlip::deploy(deployer.to_owned(), ())?.send().await?;
+            CoinFlip::deploy(deployer.as_ref(), ()).await?;
 
-        let consecutive_wins = contract.consecutive_wins().await?;
-        assert_eq!(consecutive_wins, 0.into());
+        let consecutive_wins = contract.consecutive_wins().call().await?._0;
+        assert_eq!(consecutive_wins, U256::from(0));
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = CoinFlip::new(self.address, deployer.clone());
+        let contract = CoinFlip::new(self.address, deployer.as_ref());
 
         println!("Checking that you won 10 times in a row...");
-        let consecutive_wins = contract.consecutive_wins().await?;
-        let ten_wins = consecutive_wins >= 10.into();
+        let consecutive_wins = contract.consecutive_wins().call().await?._0;
+        let ten_wins = consecutive_wins >= U256::from(10);
 
         Ok(ten_wins)
     }

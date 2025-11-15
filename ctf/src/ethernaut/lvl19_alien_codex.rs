@@ -1,8 +1,10 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::alien_codex::AlienCodex;
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -23,9 +25,9 @@ impl Level for Target {
 
         println!("Deploying the Alien Codex contract...");
         let contract =
-            AlienCodex::deploy(deployer.to_owned(), ())?.send().await?;
+            AlienCodex::deploy(deployer.as_ref(), ()).await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -35,10 +37,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = AlienCodex::new(self.address, deployer.clone());
+        let contract = AlienCodex::new(self.address, deployer.as_ref());
 
         println!("Checking that you claimed ownership of the contract...");
-        let owner = contract.owner().await?;
-        Ok(owner == offender.address())
+        let owner = contract.owner().call().await?._0;
+        Ok(owner == offender.default_signer_address())
     }
 }

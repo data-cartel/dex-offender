@@ -22,22 +22,22 @@ pub mod GnosisSafeMath {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6055604b600b8282823980515f1a607314603f577f4e487b71000000000000000000000000000000000000000000000000000000005f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122031728cea3bd16dc868e8b901083b3edb34b5e4b214c4671abc89f864038e220264736f6c634300081e0033
+    ///0x6055604b600b8282823980515f1a607314603f577f4e487b71000000000000000000000000000000000000000000000000000000005f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea2646970667358221220d29eceb499331afed8268a49d6b2cba4dab53173a32931c8aa841c375c6d712164736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`U`K`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`?W\x7FNH{q\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 1r\x8C\xEA;\xD1m\xC8h\xE8\xB9\x01\x08;>\xDB4\xB5\xE4\xB2\x14\xC4g\x1A\xBC\x89\xF8d\x03\x8E\"\x02dsolcC\0\x08\x1E\x003",
+        b"`U`K`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`?W\x7FNH{q\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xD2\x9E\xCE\xB4\x993\x1A\xFE\xD8&\x8AI\xD6\xB2\xCB\xA4\xDA\xB51s\xA3)1\xC8\xAA\x84\x1C7\\mq!dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122031728cea3bd16dc868e8b901083b3edb34b5e4b214c4671abc89f864038e220264736f6c634300081e0033
+    ///0x730000000000000000000000000000000000000000301460806040525f5ffdfea2646970667358221220d29eceb499331afed8268a49d6b2cba4dab53173a32931c8aa841c375c6d712164736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 1r\x8C\xEA;\xD1m\xC8h\xE8\xB9\x01\x08;>\xDB4\xB5\xE4\xB2\x14\xC4g\x1A\xBC\x89\xF8d\x03\x8E\"\x02dsolcC\0\x08\x1E\x003",
+        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xD2\x9E\xCE\xB4\x993\x1A\xFE\xD8&\x8AI\xD6\xB2\xCB\xA4\xDA\xB51s\xA3)1\xC8\xAA\x84\x1C7\\mq!dsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`GnosisSafeMath`](self) contract instance.

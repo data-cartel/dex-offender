@@ -1,8 +1,10 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::elevator::Elevator;
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -23,9 +25,9 @@ impl Level for Target {
 
         println!("Deploying the Elevator contract...");
         let contract =
-            Elevator::deploy(deployer.to_owned(), ())?.send().await?;
+            Elevator::deploy(deployer.as_ref(), ()).await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -35,10 +37,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Elevator::new(self.address, deployer.clone());
+        let contract = Elevator::new(self.address, deployer.as_ref());
 
         println!("Checking if the elevator is at the top floor...");
-        let top = contract.top().await?;
+        let top = contract.top().call().await?._0;
 
         Ok(top)
     }

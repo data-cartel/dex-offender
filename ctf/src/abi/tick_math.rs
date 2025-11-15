@@ -22,22 +22,22 @@ pub mod TickMath {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122068a00788625d95ae854f76d2bbe7bedc8efb17d7b6d08b3b9ae5421553086ad964736f6c63430007060033
+    ///0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212203bf9f777e098d687846c7bf71934ae5d0b4cf947ee4516544ea7802853f1e5dd64736f6c63430007060033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 h\xA0\x07\x88b]\x95\xAE\x85Ov\xD2\xBB\xE7\xBE\xDC\x8E\xFB\x17\xD7\xB6\xD0\x8B;\x9A\xE5B\x15S\x08j\xD9dsolcC\0\x07\x06\x003",
+        b"`V`#`\x0B\x82\x82\x829\x80Q`\0\x1A`s\x14`\x16W\xFE[0`\0R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 ;\xF9\xF7w\xE0\x98\xD6\x87\x84l{\xF7\x194\xAE]\x0BL\xF9G\xEEE\x16TN\xA7\x80(S\xF1\xE5\xDDdsolcC\0\x07\x06\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122068a00788625d95ae854f76d2bbe7bedc8efb17d7b6d08b3b9ae5421553086ad964736f6c63430007060033
+    ///0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212203bf9f777e098d687846c7bf71934ae5d0b4cf947ee4516544ea7802853f1e5dd64736f6c63430007060033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 h\xA0\x07\x88b]\x95\xAE\x85Ov\xD2\xBB\xE7\xBE\xDC\x8E\xFB\x17\xD7\xB6\xD0\x8B;\x9A\xE5B\x15S\x08j\xD9dsolcC\0\x07\x06\x003",
+        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\0\x80\xFD\xFE\xA2dipfsX\"\x12 ;\xF9\xF7w\xE0\x98\xD6\x87\x84l{\xF7\x194\xAE]\x0BL\xF9G\xEEE\x16TN\xA7\x80(S\xF1\xE5\xDDdsolcC\0\x07\x06\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`TickMath`](self) contract instance.

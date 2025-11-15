@@ -22,22 +22,22 @@ pub mod Singleton {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea26469706673582212202640be583fce5669c87e0ea96d6261b011a9469605cc3a070e6f642ceb2a677164736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea2646970667358221220dbbcc584a0ffbc26db41cdee6642b6b7144aacaeddaf154bf658813e198e3a9664736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 &@\xBEX?\xCEVi\xC8~\x0E\xA9mba\xB0\x11\xA9F\x96\x05\xCC:\x07\x0Eod,\xEB*gqdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xDB\xBC\xC5\x84\xA0\xFF\xBC&\xDBA\xCD\xEEfB\xB6\xB7\x14J\xAC\xAE\xDD\xAF\x15K\xF6X\x81>\x19\x8E:\x96dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f5ffdfea26469706673582212202640be583fce5669c87e0ea96d6261b011a9469605cc3a070e6f642ceb2a677164736f6c634300081e0033
+    ///0x60806040525f5ffdfea2646970667358221220dbbcc584a0ffbc26db41cdee6642b6b7144aacaeddaf154bf658813e198e3a9664736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 &@\xBEX?\xCEVi\xC8~\x0E\xA9mba\xB0\x11\xA9F\x96\x05\xCC:\x07\x0Eod,\xEB*gqdsolcC\0\x08\x1E\x003",
+        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xDB\xBC\xC5\x84\xA0\xFF\xBC&\xDBA\xCD\xEEfB\xB6\xB7\x14J\xAC\xAE\xDD\xAF\x15K\xF6X\x81>\x19\x8E:\x96dsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`Singleton`](self) contract instance.

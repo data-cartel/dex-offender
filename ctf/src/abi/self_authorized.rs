@@ -22,22 +22,22 @@ pub mod SelfAuthorized {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea26469706673582212207a5f4cfb86a3cd76dc9bd274362935b54304f57bbfedf931cb34c9498efdc8e464736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea2646970667358221220421a08cb09b8a6f5816e24abaaefe021a7559b621b0dda7cc4c4057023462d8964736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 z_L\xFB\x86\xA3\xCDv\xDC\x9B\xD2t6)5\xB5C\x04\xF5{\xBF\xED\xF91\xCB4\xC9I\x8E\xFD\xC8\xE4dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 B\x1A\x08\xCB\t\xB8\xA6\xF5\x81n$\xAB\xAA\xEF\xE0!\xA7U\x9Bb\x1B\r\xDA|\xC4\xC4\x05p#F-\x89dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f5ffdfea26469706673582212207a5f4cfb86a3cd76dc9bd274362935b54304f57bbfedf931cb34c9498efdc8e464736f6c634300081e0033
+    ///0x60806040525f5ffdfea2646970667358221220421a08cb09b8a6f5816e24abaaefe021a7559b621b0dda7cc4c4057023462d8964736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 z_L\xFB\x86\xA3\xCDv\xDC\x9B\xD2t6)5\xB5C\x04\xF5{\xBF\xED\xF91\xCB4\xC9I\x8E\xFD\xC8\xE4dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 B\x1A\x08\xCB\t\xB8\xA6\xF5\x81n$\xAB\xAA\xEF\xE0!\xA7U\x9Bb\x1B\r\xDA|\xC4\xC4\x05p#F-\x89dsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`SelfAuthorized`](self) contract instance.

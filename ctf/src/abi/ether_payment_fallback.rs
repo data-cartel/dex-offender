@@ -50,22 +50,22 @@ pub mod EtherPaymentFallback {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b5060bd80601a5f395ff3fe6080604052366056573373ffffffffffffffffffffffffffffffffffffffff167f3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d34604051604c91906070565b60405180910390a2005b5f5ffd5b5f819050919050565b606a81605a565b82525050565b5f60208201905060815f8301846063565b9291505056fea2646970667358221220b58c51a68da6b4f826605c3090a5d8495d325c098d212f0277770634822e970764736f6c634300081e0033
+    ///0x6080604052348015600e575f5ffd5b5060bd80601a5f395ff3fe6080604052366056573373ffffffffffffffffffffffffffffffffffffffff167f3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d34604051604c91906070565b60405180910390a2005b5f5ffd5b5f819050919050565b606a81605a565b82525050565b5f60208201905060815f8301846063565b9291505056fea2646970667358221220d9bc3fb5b3e6d3a31f47066c5db0d3ffee07989ddde4c20cada7d99370eae67e64736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`\xBD\x80`\x1A_9_\xF3\xFE`\x80`@R6`VW3s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x7F=\x0C\xE9\xBF\xC3\xED}hb\xDB\xB2\x8B-\xEA\x94V\x1F\xE7\x14\xA1\xB4\xD0\x19\xAA\x8A\xF3\x970\xD1\xAD|=4`@Q`L\x91\x90`pV[`@Q\x80\x91\x03\x90\xA2\0[__\xFD[_\x81\x90P\x91\x90PV[`j\x81`ZV[\x82RPPV[_` \x82\x01\x90P`\x81_\x83\x01\x84`cV[\x92\x91PPV\xFE\xA2dipfsX\"\x12 \xB5\x8CQ\xA6\x8D\xA6\xB4\xF8&`\\0\x90\xA5\xD8I]2\\\t\x8D!/\x02ww\x064\x82.\x97\x07dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`\xBD\x80`\x1A_9_\xF3\xFE`\x80`@R6`VW3s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x7F=\x0C\xE9\xBF\xC3\xED}hb\xDB\xB2\x8B-\xEA\x94V\x1F\xE7\x14\xA1\xB4\xD0\x19\xAA\x8A\xF3\x970\xD1\xAD|=4`@Q`L\x91\x90`pV[`@Q\x80\x91\x03\x90\xA2\0[__\xFD[_\x81\x90P\x91\x90PV[`j\x81`ZV[\x82RPPV[_` \x82\x01\x90P`\x81_\x83\x01\x84`cV[\x92\x91PPV\xFE\xA2dipfsX\"\x12 \xD9\xBC?\xB5\xB3\xE6\xD3\xA3\x1FG\x06l]\xB0\xD3\xFF\xEE\x07\x98\x9D\xDD\xE4\xC2\x0C\xAD\xA7\xD9\x93p\xEA\xE6~dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x6080604052366056573373ffffffffffffffffffffffffffffffffffffffff167f3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d34604051604c91906070565b60405180910390a2005b5f5ffd5b5f819050919050565b606a81605a565b82525050565b5f60208201905060815f8301846063565b9291505056fea2646970667358221220b58c51a68da6b4f826605c3090a5d8495d325c098d212f0277770634822e970764736f6c634300081e0033
+    ///0x6080604052366056573373ffffffffffffffffffffffffffffffffffffffff167f3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d34604051604c91906070565b60405180910390a2005b5f5ffd5b5f819050919050565b606a81605a565b82525050565b5f60208201905060815f8301846063565b9291505056fea2646970667358221220d9bc3fb5b3e6d3a31f47066c5db0d3ffee07989ddde4c20cada7d99370eae67e64736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R6`VW3s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x7F=\x0C\xE9\xBF\xC3\xED}hb\xDB\xB2\x8B-\xEA\x94V\x1F\xE7\x14\xA1\xB4\xD0\x19\xAA\x8A\xF3\x970\xD1\xAD|=4`@Q`L\x91\x90`pV[`@Q\x80\x91\x03\x90\xA2\0[__\xFD[_\x81\x90P\x91\x90PV[`j\x81`ZV[\x82RPPV[_` \x82\x01\x90P`\x81_\x83\x01\x84`cV[\x92\x91PPV\xFE\xA2dipfsX\"\x12 \xB5\x8CQ\xA6\x8D\xA6\xB4\xF8&`\\0\x90\xA5\xD8I]2\\\t\x8D!/\x02ww\x064\x82.\x97\x07dsolcC\0\x08\x1E\x003",
+        b"`\x80`@R6`VW3s\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x16\x7F=\x0C\xE9\xBF\xC3\xED}hb\xDB\xB2\x8B-\xEA\x94V\x1F\xE7\x14\xA1\xB4\xD0\x19\xAA\x8A\xF3\x970\xD1\xAD|=4`@Q`L\x91\x90`pV[`@Q\x80\x91\x03\x90\xA2\0[__\xFD[_\x81\x90P\x91\x90PV[`j\x81`ZV[\x82RPPV[_` \x82\x01\x90P`\x81_\x83\x01\x84`cV[\x92\x91PPV\xFE\xA2dipfsX\"\x12 \xD9\xBC?\xB5\xB3\xE6\xD3\xA3\x1FG\x06l]\xB0\xD3\xFF\xEE\x07\x98\x9D\xDD\xE4\xC2\x0C\xAD\xA7\xD9\x93p\xEA\xE6~dsolcC\0\x08\x1E\x003",
     );
     #[derive(serde::Serialize, serde::Deserialize)]
     #[derive(Default, Debug, PartialEq, Eq, Hash)]

@@ -22,22 +22,22 @@ pub mod FixedPointMathLib {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6055604b600b8282823980515f1a607314603f577f4e487b71000000000000000000000000000000000000000000000000000000005f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea2646970667358221220b595020b1c3f9a67bf54538953b3a00bcf35d6236b28be20a32b25b86ef952bd64736f6c634300081e0033
+    ///0x6055604b600b8282823980515f1a607314603f577f4e487b71000000000000000000000000000000000000000000000000000000005f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122046a30e074c0a104f2d3a62f2088c416613ce34270f07958e471aa642c606b52164736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`U`K`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`?W\x7FNH{q\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xB5\x95\x02\x0B\x1C?\x9Ag\xBFTS\x89S\xB3\xA0\x0B\xCF5\xD6#k(\xBE \xA3+%\xB8n\xF9R\xBDdsolcC\0\x08\x1E\x003",
+        b"`U`K`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`?W\x7FNH{q\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 F\xA3\x0E\x07L\n\x10O-:b\xF2\x08\x8CAf\x13\xCE4'\x0F\x07\x95\x8EG\x1A\xA6B\xC6\x06\xB5!dsolcC\0\x08\x1E\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x730000000000000000000000000000000000000000301460806040525f5ffdfea2646970667358221220b595020b1c3f9a67bf54538953b3a00bcf35d6236b28be20a32b25b86ef952bd64736f6c634300081e0033
+    ///0x730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122046a30e074c0a104f2d3a62f2088c416613ce34270f07958e471aa642c606b52164736f6c634300081e0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \xB5\x95\x02\x0B\x1C?\x9Ag\xBFTS\x89S\xB3\xA0\x0B\xCF5\xD6#k(\xBE \xA3+%\xB8n\xF9R\xBDdsolcC\0\x08\x1E\x003",
+        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 F\xA3\x0E\x07L\n\x10O-:b\xF2\x08\x8CAf\x13\xCE4'\x0F\x07\x95\x8EG\x1A\xA6B\xC6\x06\xB5!dsolcC\0\x08\x1E\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`FixedPointMathLib`](self) contract instance.

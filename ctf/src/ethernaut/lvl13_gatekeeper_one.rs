@@ -1,8 +1,10 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::gatekeeper_one::GatekeeperOne;
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -23,9 +25,9 @@ impl Level for Target {
 
         println!("Deploying the GatekeeperOne contract...");
         let contract =
-            GatekeeperOne::deploy(deployer.to_owned(), ())?.send().await?;
+            GatekeeperOne::deploy(deployer.as_ref(), ()).await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -35,11 +37,11 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = GatekeeperOne::new(self.address, deployer.clone());
+        let contract = GatekeeperOne::new(self.address, deployer.as_ref());
 
         println!("Checking the entrant...");
-        let entrant = contract.entrant().await?;
-        let pass = entrant == roles.offender.address();
+        let entrant = contract.entrant().call().await?._0;
+        let pass = entrant == roles.offender.default_signer_address();
 
         Ok(pass)
     }

@@ -1,8 +1,10 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::naught_coin::NaughtCoin;
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -23,11 +25,9 @@ impl Level for Target {
 
         println!("Deploying the NaughtCoin contract...");
         let contract =
-            NaughtCoin::deploy(deployer.to_owned(), offender.address())?
-                .send()
-                .await?;
+            NaughtCoin::deploy(deployer.as_ref(), offender.default_signer_address()).await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -37,10 +37,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = NaughtCoin::new(self.address, deployer.clone());
+        let contract = NaughtCoin::new(self.address, deployer.as_ref());
 
         println!("Checking that you transfered all tokens...");
-        let balance = contract.balance_of(offender.address()).await?;
+        let balance = contract.balance_of(offender.default_signer_address()).call().await?._0;
         let zero = U256::from(0_u8);
         Ok(balance == zero)
     }

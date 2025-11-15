@@ -23,6 +23,6 @@ pub trait Exploit {
     async fn attack(
         self,
         target: &Self::Target,
-        offender: &Actor,
+        offender: &ActorProvider,
     ) -> eyre::Result<()>;
 }

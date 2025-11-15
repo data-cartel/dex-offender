@@ -7,7 +7,7 @@ edition = "2021"
 exclude = [".github/", "**/tests/", "**/contracts/", "**/cache/", "**/out/"]
 
 [workspace.dependencies]
-alloy = { version = "=0.8.3", features = ["full", "node-bindings", "signer-local"] }
+alloy = { version = "1", features = ["full", "node-bindings", "signer-local"] }
 async-trait = "0.1.81"
 eyre = "0.6"
 rand = "0.8.5"

@@ -23,7 +23,6 @@ pub type ActorProvider = FillProvider<
         WalletFiller<EthereumWallet>,
     >,
     RootProvider<Http<Client>>,
-    Http<Client>,
     alloy::network::Ethereum,
 >;
 
@@ -59,7 +58,6 @@ impl Roles {
 fn mk_signer(rpc_url: &str, signer: PrivateKeySigner) -> eyre::Result<ActorProvider> {
     let wallet = EthereumWallet::from(signer);
     let provider = ProviderBuilder::new()
-        .with_recommended_fillers()
         .wallet(wallet)
         .on_http(rpc_url.parse()?);
     Ok(provider)

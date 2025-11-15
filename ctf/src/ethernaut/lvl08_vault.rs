@@ -42,7 +42,7 @@ impl Level for Target {
         let contract = Vault::new(self.address, deployer);
 
         println!("Checking that the contract is unlocked...");
-        let unlocked = !contract.locked().call().await?._0;
+        let unlocked = !contract.locked().call().await?;
 
         Ok(unlocked)
     }

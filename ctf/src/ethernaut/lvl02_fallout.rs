@@ -21,16 +21,16 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Fallout" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Fallout contract...");
-        let contract = Fallout::deploy(deployer, ()).await?;
+        let contract = Fallout::deploy(deployer).await?;
 
-        let pending = contract.fal_1out().send().await?;
+        let pending = contract.Fal1out().send().await?;
         let _receipt = pending.get_receipt().await?;
 
-        let owner = contract.owner().call().await?._0;
-        assert_eq!(owner, deployer.default_signer_address());
+        let owner = contract.owner().call().await?;
+        assert_eq!(owner, roles.deployer_addr);
 
         let target = Target { address: *contract.address() };
 
@@ -38,12 +38,12 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
         let contract = Fallout::new(self.address, deployer);
 
         println!("Checking that you claimed ownership of the contract...");
-        let owner = contract.owner().call().await?._0;
-        let is_owner = owner == offender.default_signer_address();
+        let owner = contract.owner().call().await?;
+        let is_owner = owner == roles.offender_addr;
 
         Ok(is_owner)
     }

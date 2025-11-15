@@ -25,9 +25,9 @@ impl Level for Target {
 
         println!("Deploying the CoinFlip contract...");
         let contract =
-            CoinFlip::deploy(deployer, ()).await?;
+            CoinFlip::deploy(deployer).await?;
 
-        let consecutive_wins = contract.consecutive_wins().call().await?._0;
+        let consecutive_wins = contract.consecutiveWins().call().await?;
         assert_eq!(consecutive_wins, U256::from(0));
 
         let target = Target { address: *contract.address() };
@@ -40,7 +40,7 @@ impl Level for Target {
         let contract = CoinFlip::new(self.address, deployer);
 
         println!("Checking that you won 10 times in a row...");
-        let consecutive_wins = contract.consecutive_wins().call().await?._0;
+        let consecutive_wins = contract.consecutiveWins().call().await?;
         let ten_wins = consecutive_wins >= U256::from(10);
 
         Ok(ten_wins)

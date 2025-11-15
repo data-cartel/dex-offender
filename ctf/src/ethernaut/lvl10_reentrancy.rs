@@ -21,11 +21,11 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Re-entrancy" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user, some_user_addr: _ } = roles;
 
         println!("Deploying the Reentrance contract...");
         let contract =
-            Reentrance::deploy(deployer, ()).await?;
+            Reentrance::deploy(deployer).await?;
 
         let tx = TransactionRequest::default()
             .to(*contract.address())
@@ -34,7 +34,7 @@ impl Level for Target {
         let _receipt = pending.get_receipt().await?;
 
         let pending = contract
-            .donate(some_user.default_signer_address())
+            .donate(roles.some_user_addr)
             .value(to_ether(20))
             .send()
             .await?;
@@ -43,7 +43,7 @@ impl Level for Target {
         let contract =
             Reentrance::new(*contract.address(), some_user);
         let pending = contract
-            .donate(deployer.default_signer_address())
+            .donate(roles.deployer_addr)
             .value(to_ether(100))
             .send()
             .await?;

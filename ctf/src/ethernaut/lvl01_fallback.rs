@@ -21,18 +21,18 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Fallback" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Fallback contract...");
         let contract = Fallback::deploy(deployer).await?;
 
-        let deployer_addr = deployer.default_signer_address();
-        let offender_addr = offender.default_signer_address();
+        let deployer_addr = roles.deployer_addr;
+        let offender_addr = roles.offender_addr;
 
-        let balance = contract.contributions(deployer_addr).call().await?._0;
+        let balance = contract.contributions(deployer_addr).call().await?;
         assert_eq!(balance, to_ether(1000));
 
-        let balance = contract.contributions(offender_addr).call().await?._0;
+        let balance = contract.contributions(offender_addr).call().await?;
         assert_eq!(balance, U256::from(0));
 
         let tx = TransactionRequest::default()
@@ -44,7 +44,7 @@ impl Level for Target {
         let contract_balance = deployer.get_balance(*contract.address()).await?;
         assert_eq!(contract_balance, to_ether(5));
 
-        let owner = contract.owner().call().await?._0;
+        let owner = contract.owner().call().await?;
         assert_eq!(owner, deployer_addr);
 
         let target = Target { address: *contract.address() };
@@ -53,13 +53,13 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
         let contract = Fallback::new(self.address, deployer);
 
-        let offender_addr = offender.default_signer_address();
+        let offender_addr = roles.offender_addr;
 
         println!("Checking that you claimed ownership of the contract...");
-        let owner = contract.owner().call().await?._0;
+        let owner = contract.owner().call().await?;
         let is_owner = owner == offender_addr;
 
         println!("Checking that you reduced its balance to 0...");

@@ -21,11 +21,11 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Magic Number" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Magic Number contract...");
         let contract =
-            MagicNum::deploy(deployer, ()).await?;
+            MagicNum::deploy(deployer).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -36,21 +36,21 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
         let contract = MagicNum::new(self.address, deployer);
         println!("Verifying that the solver variable is not empty...");
-        let hack_contract_address = contract.solver().call().await?._0;
+        let hack_contract_address = contract.solver().call().await?;
         println!("Check if TheMeaningOfLife() is 42...");
         let hack_contract =
             MeaningOfLife::new(hack_contract_address, deployer);
-        let magic = hack_contract.what_is_the_meaning_of_life().call().await;
+        let magic = hack_contract.whatIsTheMeaningOfLife().call().await;
         match magic {
             Err(_) => {
                 return Ok(false);
             }
             Ok(magic) => {
                 let ft = U256::from(42_u8);
-                if magic._0 != ft {
+                if magic != ft {
                     println!("It's not 42");
                     return Ok(false);
                 }

@@ -26,7 +26,7 @@ impl Level for Target {
         println!("Deploying the Token contract...");
         let contract = Token::deploy(deployer, U256::from(21_000_000)).await?;
 
-        let pending = contract.transfer(offender.default_signer_address(), U256::from(20)).send().await?;
+        let pending = contract.transfer(roles.offender_addr, U256::from(20)).send().await?;
         let _receipt = pending.get_receipt().await?;
 
         let target = Target { address: *contract.address() };
@@ -35,11 +35,11 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
         let contract = Token::new(self.address, deployer);
 
         println!("Checking that got more tokens...");
-        let balance = contract.balance_of(offender.default_signer_address()).call().await?._0;
+        let balance = contract.balanceOf(roles.offender_addr).call().await?;
 
         Ok(balance > U256::from(20))
     }

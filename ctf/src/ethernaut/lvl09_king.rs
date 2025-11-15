@@ -24,9 +24,9 @@ impl Level for Target {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the King contract...");
-        let king = King::deploy(deployer, ()).value(to_ether(10)).await?;
+        let king = King::deploy_builder(deployer).value(to_ether(10)).deploy().await?;
 
-        let target = Target { address: *king.address() };
+        let target = Target { address: king };
 
         let check = target.check(roles).await?;
         assert!(!check);

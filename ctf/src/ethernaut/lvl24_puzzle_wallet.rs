@@ -21,11 +21,11 @@ impl Level for Target {
     fn name(&self) -> &'static str { "PuzzleWallet" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the PuzzleWallet contract...");
         let contract =
-            PuzzleWallet::deploy(deployer, ()).await?;
+            PuzzleWallet::deploy(deployer).await?;
 
         let data = keccak256("init(uint256)")
             .into_iter()
@@ -39,11 +39,11 @@ impl Level for Target {
         println!("data: {:?}", data);
         let proxy = PuzzleProxy::deploy(
             deployer,
-            (deployer.default_signer_address(), *contract.address(), data.into()),
+            (roles.deployer_addr, *contract.address(), data.into()),
         ).await?;
         let contract2 = PuzzleWallet::new(*proxy.address(), deployer);
 
-        let pending = contract2.add_to_whitelist(deployer.default_signer_address()).send().await?;
+        let pending = contract2.add_to_whitelist(roles.deployer_addr).send().await?;
         let _receipt = pending.get_receipt().await?;
 
         let pending = contract2.deposit().value(U256::from(100_000_000_000_u128)).send().await?;
@@ -58,10 +58,10 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
         let contract = PuzzleProxy::new(self.address, deployer);
         println!("Checking that you have become the admin of the contract...");
 
-        Ok(contract.admin().call().await?._0 == offender.default_signer_address())
+        Ok(contract.admin().call().await? == roles.offender_addr)
     }
 }

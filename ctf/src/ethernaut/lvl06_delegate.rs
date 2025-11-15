@@ -25,14 +25,14 @@ impl Level for Target {
 
         println!("Deploying the Delegate contract...");
         let delegate =
-            Delegate::deploy(deployer, deployer.default_signer_address()).await?;
+            Delegate::deploy(deployer, roles.deployer_addr).await?;
 
         println!("Deploying the Delegation contract...");
         let delegation =
             Delegation::deploy(deployer, *delegate.address()).await?;
 
-        let owner = delegate.owner().call().await?._0;
-        assert_eq!(owner, deployer.default_signer_address());
+        let owner = delegate.owner().call().await?;
+        assert_eq!(owner, roles.deployer_addr);
 
         let target = Target { delegation_address: *delegation.address() };
 
@@ -45,8 +45,8 @@ impl Level for Target {
             Delegation::new(self.delegation_address, deployer);
 
         println!("Checking that you became the owner...");
-        let owner = delegation.owner().call().await?._0;
-        let is_owner = owner == roles.offender.default_signer_address();
+        let owner = delegation.owner().call().await?;
+        let is_owner = owner == roles.offender_addr;
 
         Ok(is_owner)
     }

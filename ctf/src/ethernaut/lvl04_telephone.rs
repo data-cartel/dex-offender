@@ -25,10 +25,10 @@ impl Level for Target {
 
         println!("Deploying the Telephone contract...");
         let contract =
-            Telephone::deploy(deployer, ()).await?;
+            Telephone::deploy(deployer).await?;
 
-        let owner = contract.owner().call().await?._0;
-        assert_eq!(owner, deployer.default_signer_address());
+        let owner = contract.owner().call().await?;
+        assert_eq!(owner, roles.deployer_addr);
 
         let target = Target { address: *contract.address() };
 
@@ -40,8 +40,8 @@ impl Level for Target {
         let contract = Telephone::new(self.address, deployer);
 
         println!("Checking that you became the owner...");
-        let owner = contract.owner().call().await?._0;
-        let is_owner = owner == roles.offender.default_signer_address();
+        let owner = contract.owner().call().await?;
+        let is_owner = owner == roles.offender_addr;
 
         Ok(is_owner)
     }

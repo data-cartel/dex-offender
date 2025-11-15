@@ -21,36 +21,32 @@ impl Level for Target {
     fn name(&self) -> &'static str { "DexTwo" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the DexTwo contract...");
-        let contract = DexTwo::deploy(deployer, ()).await?;
+        let contract = DexTwo::deploy(deployer).await?;
         let token1 = SwappableTokenTwo::deploy(
             deployer,
-            (
-                *contract.address(),
-                String::from("Token 1"),
-                String::from("TKN1"),
-                U256::from(110),
-            ),
+            *contract.address(),
+            String::from("Token 1"),
+            String::from("TKN1"),
+            U256::from(110),
         ).await?;
         let token2 = SwappableTokenTwo::deploy(
             deployer,
-            (
-                *contract.address(),
-                String::from("Token 2"),
-                String::from("TKN2"),
-                U256::from(110),
-            ),
+            *contract.address(),
+            String::from("Token 2"),
+            String::from("TKN2"),
+            U256::from(110),
         ).await?;
 
-        let pending = contract.set_tokens(*token1.address(), *token2.address()).send().await?;
+        let pending = contract.setTokens(*token1.address(), *token2.address()).send().await?;
         let _receipt = pending.get_receipt().await?;
 
-        let pending = token1.approve(*contract.address(), U256::from(100)).send().await?;
+        let pending = token1.approve_0(*contract.address(), U256::from(100)).send().await?;
         let _receipt = pending.get_receipt().await?;
 
-        let pending = token2.approve(*contract.address(), U256::from(100)).send().await?;
+        let pending = token2.approve_0(*contract.address(), U256::from(100)).send().await?;
         let _receipt = pending.get_receipt().await?;
 
         let pending = contract
@@ -66,13 +62,13 @@ impl Level for Target {
         let _receipt = pending.get_receipt().await?;
 
         let pending = token1
-            .transfer(offender.default_signer_address(), U256::from(10))
+            .transfer(roles.offender_addr, U256::from(10))
             .send()
             .await?;
         let _receipt = pending.get_receipt().await?;
 
         let pending = token2
-            .transfer(offender.default_signer_address(), U256::from(10))
+            .transfer(roles.offender_addr, U256::from(10))
             .send()
             .await?;
         let _receipt = pending.get_receipt().await?;
@@ -86,20 +82,20 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
         let contract = DexTwo::new(self.address, deployer);
         println!("Checking that you have stolen all tokens of both types...");
 
         let token1 = SwappableTokenTwo::new(
-            contract.token_1().call().await?._0,
+            contract.token1().call().await?,
             deployer,
         );
         let token2 = SwappableTokenTwo::new(
-            contract.token_2().call().await?._0,
+            contract.token2().call().await?,
             deployer,
         );
 
-        Ok(token1.balance_of(*contract.address()).call().await?._0 == U256::from(0)
-            && token2.balance_of(*contract.address()).call().await?._0 == U256::from(0))
+        Ok(token1.balanceOf(*contract.address()).call().await? == U256::from(0)
+            && token2.balanceOf(*contract.address()).call().await? == U256::from(0))
     }
 }

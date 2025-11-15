@@ -44,11 +44,8 @@ impl CTFs {
     }
 }
 
-pub fn to_ether<U>(amount: U) -> U256
-where
-    U: Into<U256>,
-{
-    amount.into() * U256::from(10).pow(U256::from(18))
+pub fn to_ether(amount: u64) -> U256 {
+    U256::from(amount) * U256::from(10).pow(U256::from(18))
 }
 
 pub async fn check_exploit<E: Exploit>(

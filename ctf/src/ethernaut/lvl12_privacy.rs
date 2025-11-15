@@ -22,7 +22,7 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Privacy" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Privacy contract...");
 
@@ -49,7 +49,7 @@ impl Level for Target {
         let contract = Privacy::new(self.address, deployer);
 
         println!("Checking that you became the owner...");
-        let locked = contract.locked().call().await?._0;
+        let locked = contract.locked().call().await?;
 
         Ok(!locked)
     }

@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the Force contract...");
-        let force = Force::deploy(deployer, ()).await?;
+        let force = Force::deploy(deployer).await?;
 
         let target = Target { address: *force.address() };
 

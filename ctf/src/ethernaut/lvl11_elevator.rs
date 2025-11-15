@@ -21,11 +21,11 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Elevator" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Elevator contract...");
         let contract =
-            Elevator::deploy(deployer, ()).await?;
+            Elevator::deploy(deployer).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -40,7 +40,7 @@ impl Level for Target {
         let contract = Elevator::new(self.address, deployer);
 
         println!("Checking if the elevator is at the top floor...");
-        let top = contract.top().call().await?._0;
+        let top = contract.top().call().await?;
 
         Ok(top)
     }

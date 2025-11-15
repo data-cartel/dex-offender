@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the GatekeeperTwo contract...");
         let contract =
-            GatekeeperTwo::deploy(deployer.as_ref(), ()).await?;
+            GatekeeperTwo::deploy(deployer, ()).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -37,7 +37,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = GatekeeperTwo::new(self.address, deployer.as_ref());
+        let contract = GatekeeperTwo::new(self.address, deployer);
 
         println!("Checking the entrant...");
         let entrant = contract.entrant().call().await?._0;

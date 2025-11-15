@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
 
         println!("Deploying the Fallback contract...");
-        let contract = Fallback::deploy(deployer.as_ref()).await?;
+        let contract = Fallback::deploy(deployer).await?;
 
         let deployer_addr = deployer.default_signer_address();
         let offender_addr = offender.default_signer_address();
@@ -54,7 +54,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Fallback::new(self.address, deployer.as_ref());
+        let contract = Fallback::new(self.address, deployer);
 
         let offender_addr = offender.default_signer_address();
 

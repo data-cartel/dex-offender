@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, offender: _, some_user: _ } = roles;
 
         println!("Deploying the Fallout contract...");
-        let contract = Fallout::deploy(deployer.as_ref(), ()).await?;
+        let contract = Fallout::deploy(deployer, ()).await?;
 
         let pending = contract.fal_1out().send().await?;
         let _receipt = pending.get_receipt().await?;
@@ -39,7 +39,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Fallout::new(self.address, deployer.as_ref());
+        let contract = Fallout::new(self.address, deployer);
 
         println!("Checking that you claimed ownership of the contract...");
         let owner = contract.owner().call().await?._0;

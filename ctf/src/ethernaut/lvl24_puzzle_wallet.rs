@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the PuzzleWallet contract...");
         let contract =
-            PuzzleWallet::deploy(deployer.as_ref(), ()).await?;
+            PuzzleWallet::deploy(deployer, ()).await?;
 
         let data = keccak256("init(uint256)")
             .into_iter()
@@ -38,10 +38,10 @@ impl Level for Target {
             .collect::<Vec<u8>>();
         println!("data: {:?}", data);
         let proxy = PuzzleProxy::deploy(
-            deployer.as_ref(),
+            deployer,
             (deployer.default_signer_address(), *contract.address(), data.into()),
         ).await?;
-        let contract2 = PuzzleWallet::new(*proxy.address(), deployer.as_ref());
+        let contract2 = PuzzleWallet::new(*proxy.address(), deployer);
 
         let pending = contract2.add_to_whitelist(deployer.default_signer_address()).send().await?;
         let _receipt = pending.get_receipt().await?;
@@ -59,7 +59,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = PuzzleProxy::new(self.address, deployer.as_ref());
+        let contract = PuzzleProxy::new(self.address, deployer);
         println!("Checking that you have become the admin of the contract...");
 
         Ok(contract.admin().call().await?._0 == offender.default_signer_address())

@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the Alien Codex contract...");
         let contract =
-            AlienCodex::deploy(deployer.as_ref(), ()).await?;
+            AlienCodex::deploy(deployer, ()).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -37,7 +37,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = AlienCodex::new(self.address, deployer.as_ref());
+        let contract = AlienCodex::new(self.address, deployer);
 
         println!("Checking that you claimed ownership of the contract...");
         let owner = contract.owner().call().await?._0;

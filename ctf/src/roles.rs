@@ -1,18 +1,37 @@
 use alloy::{
     network::EthereumWallet,
-    providers::{Provider, ProviderBuilder},
+    providers::{
+        fillers::{
+            BlobGasFiller, ChainIdFiller, FillProvider, GasFiller, JoinFill,
+            NonceFiller, WalletFiller,
+        },
+        Identity, ProviderBuilder, RootProvider,
+    },
     signers::local::PrivateKeySigner,
+    transports::http::{Client, Http},
 };
-use std::sync::Arc;
 
-// Use dynamic dispatch to avoid complex type matching
-pub type Actor = Arc<dyn Provider + Send + Sync>;
+pub type ActorProvider = FillProvider<
+    JoinFill<
+        JoinFill<
+            Identity,
+            JoinFill<
+                GasFiller,
+                JoinFill<BlobGasFiller, JoinFill<NonceFiller, ChainIdFiller>>,
+            >,
+        >,
+        WalletFiller<EthereumWallet>,
+    >,
+    RootProvider<Http<Client>>,
+    Http<Client>,
+    alloy::network::Ethereum,
+>;
 
 #[derive(Clone)]
 pub struct Roles {
-    pub deployer: Actor,
-    pub some_user: Actor,
-    pub offender: Actor,
+    pub deployer: ActorProvider,
+    pub some_user: ActorProvider,
+    pub offender: ActorProvider,
 }
 
 impl Roles {
@@ -29,18 +48,19 @@ impl Roles {
             "0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6".parse()?;
         let offender = mk_signer(rpc_url, offender)?;
 
-        Ok(Roles { deployer, some_user, offender })
+        Ok(Roles {
+            deployer,
+            some_user,
+            offender,
+        })
     }
 }
 
-fn mk_signer(
-    rpc_url: &str,
-    signer: PrivateKeySigner,
-) -> eyre::Result<Actor> {
+fn mk_signer(rpc_url: &str, signer: PrivateKeySigner) -> eyre::Result<ActorProvider> {
     let wallet = EthereumWallet::from(signer);
     let provider = ProviderBuilder::new()
         .with_recommended_fillers()
         .wallet(wallet)
         .on_http(rpc_url.parse()?);
-    Ok(Arc::new(provider) as Actor)
+    Ok(provider)
 }

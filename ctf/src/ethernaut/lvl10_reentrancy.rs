@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the Reentrance contract...");
         let contract =
-            Reentrance::deploy(deployer.as_ref(), ()).await?;
+            Reentrance::deploy(deployer, ()).await?;
 
         let tx = TransactionRequest::default()
             .to(*contract.address())
@@ -41,7 +41,7 @@ impl Level for Target {
         let _receipt = pending.get_receipt().await?;
 
         let contract =
-            Reentrance::new(*contract.address(), some_user.as_ref());
+            Reentrance::new(*contract.address(), some_user);
         let pending = contract
             .donate(deployer.default_signer_address())
             .value(to_ether(100))
@@ -58,7 +58,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Reentrance::new(self.address, deployer.as_ref());
+        let contract = Reentrance::new(self.address, deployer);
 
         println!("Checking the contract balance...");
         let balance = deployer.get_balance(*contract.address()).await?;

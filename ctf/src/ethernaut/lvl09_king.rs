@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the King contract...");
-        let king = King::deploy(deployer.as_ref(), ()).value(to_ether(10)).await?;
+        let king = King::deploy(deployer, ()).value(to_ether(10)).await?;
 
         let target = Target { address: *king.address() };
 
@@ -36,7 +36,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = King::new(self.address, deployer.as_ref());
+        let contract = King::new(self.address, deployer);
 
         println!("Attempting to reclaim the kingdom...");
         let tx = TransactionRequest::default()

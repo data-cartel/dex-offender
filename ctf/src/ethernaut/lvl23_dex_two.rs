@@ -24,9 +24,9 @@ impl Level for Target {
         let Roles { deployer, offender, some_user: _ } = roles;
 
         println!("Deploying the DexTwo contract...");
-        let contract = DexTwo::deploy(deployer.as_ref(), ()).await?;
+        let contract = DexTwo::deploy(deployer, ()).await?;
         let token1 = SwappableTokenTwo::deploy(
-            deployer.as_ref(),
+            deployer,
             (
                 *contract.address(),
                 String::from("Token 1"),
@@ -35,7 +35,7 @@ impl Level for Target {
             ),
         ).await?;
         let token2 = SwappableTokenTwo::deploy(
-            deployer.as_ref(),
+            deployer,
             (
                 *contract.address(),
                 String::from("Token 2"),
@@ -87,16 +87,16 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = DexTwo::new(self.address, deployer.as_ref());
+        let contract = DexTwo::new(self.address, deployer);
         println!("Checking that you have stolen all tokens of both types...");
 
         let token1 = SwappableTokenTwo::new(
             contract.token_1().call().await?._0,
-            deployer.as_ref(),
+            deployer,
         );
         let token2 = SwappableTokenTwo::new(
             contract.token_2().call().await?._0,
-            deployer.as_ref(),
+            deployer,
         );
 
         Ok(token1.balance_of(*contract.address()).call().await?._0 == U256::from(0)

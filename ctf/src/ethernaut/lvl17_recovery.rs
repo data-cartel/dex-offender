@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the Recovery contract...");
         let contract =
-            Recovery::deploy(deployer.as_ref(), ()).await?;
+            Recovery::deploy(deployer, ()).await?;
 
         let pending = contract
             .generate_token(String::from("InitialToken"), U256::from(100000))
@@ -34,7 +34,7 @@ impl Level for Target {
         let _receipt = pending.get_receipt().await?;
 
         let solution_contract =
-            RecoverySolution::deploy(deployer.as_ref(), ()).await?;
+            RecoverySolution::deploy(deployer, ()).await?;
         let token_address =
             solution_contract.solution(*contract.address()).call().await?._0;
         let tx = TransactionRequest::default().to(token_address).value(U256::from(100000));
@@ -51,10 +51,10 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = Recovery::new(self.address, deployer.as_ref());
+        let contract = Recovery::new(self.address, deployer);
 
         let solution_contract =
-            RecoverySolution::deploy(deployer.as_ref(), ()).await?;
+            RecoverySolution::deploy(deployer, ()).await?;
 
         let token_address =
             solution_contract.solution(*contract.address()).call().await?._0;

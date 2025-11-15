@@ -27,7 +27,7 @@ impl Level for Target {
         println!("Deploying the Vault contract...");
         let random = rand::thread_rng().gen::<[u8; 32]>();
         let psswd = keccak256(random);
-        let vault = Vault::deploy(deployer.as_ref(), psswd.into()).await?;
+        let vault = Vault::deploy(deployer, psswd.into()).await?;
 
         let target = Target { address: *vault.address() };
 
@@ -39,7 +39,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Vault::new(self.address, deployer.as_ref());
+        let contract = Vault::new(self.address, deployer);
 
         println!("Checking that the contract is unlocked...");
         let unlocked = !contract.locked().call().await?._0;

@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the Elevator contract...");
         let contract =
-            Elevator::deploy(deployer.as_ref(), ()).await?;
+            Elevator::deploy(deployer, ()).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -37,7 +37,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Elevator::new(self.address, deployer.as_ref());
+        let contract = Elevator::new(self.address, deployer);
 
         println!("Checking if the elevator is at the top floor...");
         let top = contract.top().call().await?._0;

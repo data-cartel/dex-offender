@@ -1,72 +1,139 @@
 # Ethers-rs to Alloy Migration Progress
 
-## Completed
-✅ Updated nix flake to nixos-unstable for latest Rust toolchain
-✅ Updated workspace dependencies from ethers 2.0.14 to alloy 0.8 with full features
-✅ Updated both attack and ctf Cargo.toml to use alloy
-✅ Migrated roles.rs core types to alloy (Provider, Signer, Wallet)
-✅ Updated lib.rs imports and deploy function signature
-✅ Updated ethernaut/mod.rs to pass RPC URL instead of Provider
-✅ Updated deploy_levels binary to use alloy::node_bindings::Anvil
-✅ Modified forge bind scripts to use --alloy flag
-✅ Regenerated all contract ABI bindings with alloy (164 contracts in ctf, 1 in attack)
+## Status: Infrastructure Complete, Bindings Issue Blocking Final Compilation
 
-## Remaining Work
+### ✅ Completed Work
 
-### Actor Type
-The Actor type needs to be finalized. Current approach uses a complex nested type.
-Consider using a simpler approach or trait object:
+**Infrastructure & Dependencies:**
+- Updated nix flake from `nixos-24.05` to `nixos-unstable` (latest Rust)
+- Migrated from `ethers 2.0.14` to `alloy 0.8.3`
+- Updated `serde` to `1.0.215` with derive feature
+- Updated all workspace dependencies to latest compatible versions
+
+**Code Migration:**
+- **All 24 Ethernaut level implementations** (lvl01-lvl23 + lvl24_puzzle_wallet) migrated to alloy patterns
+- **roles.rs**: Complete migration with correct `ActorProvider` type matching `ProviderBuilder` output
+- **lib.rs**: Updated to use `alloy::primitives::U256` and accept RPC URLs
+- **ethernaut/mod.rs**: Updated `set_up_ethernaut()` to accept `rpc_url` parameter
+- **deploy_levels.rs**: Migrated to `alloy::node_bindings::Anvil`
+- **Removed all `.as_ref()` calls** from level implementations (provider is used directly)
+
+**Build Configuration:**
+- Updated forge bind scripts to use `--alloy --alloy-version 0.8.3`
+- Disabled linting in foundry.toml files
+- Generated bindings for 165 contracts (164 in ctf, 1 in attack) with matching alloy version
+
+### ⚠️ Current Blocker
+
+**Bindings Compatibility Issue:**
+The nightly forge (1.4.4-nightly) generates bindings with methods that don't exist in alloy 0.8.3's sol-types:
+- `tokenize_returns` (method not in trait)
+- `abi_decode_returns_validate` (method not in trait)
+- `abi_decode_sequence_validate` (method not found)
+- Parameter count mismatches in trait implementations
+
+**Root Cause:**
+Forge nightly is ahead of alloy 0.8.3 API. Options to resolve:
+1. Use older stable forge matching alloy 0.8.3
+2. Upgrade to alloy 1.x (but may require API changes)
+3. Wait for alloy 0.8.x patch with updated sol-types
+
+### Migration Patterns Applied
+
+**Contract Deployment:**
 ```rust
-pub type Actor = Arc<dyn alloy::providers::Provider<alloy::network::Ethereum> + Send + Sync>;
+let contract = Contract::deploy(&provider).await?;
 ```
 
-### Contract API Updates
-All level implementations need to be updated to use the new alloy contract API:
-
-**Ethers pattern:**
+**Contract Instantiation:**
 ```rust
-let contract = Fallback::new(address, provider.clone());
-let owner = contract.owner().await?;
-contract.contribute().value(1).send().await?.await?;
+let contract = Contract::new(address, &provider);
 ```
 
-**Alloy pattern:**
+**View Function Calls:**
 ```rust
-let contract = Fallback::new(address, &provider);
-let Fallback::ownerReturn { _0: owner } = contract.owner().call().await?;
-let receipt = contract.contribute().value(U256::from(1)).send().await?.get_receipt().await?;
+let result = contract.method().call().await?._0;
 ```
 
-Key differences:
-- Contract::new() takes `&Provider` not `Arc<Provider>`
-- Method calls need `.call()` for view functions
-- Returns are structs with named fields matching Solidity returns
-- `.send()` returns `PendingTransactionBuilder`, need `.get_receipt()` for receipt
-- U256 is from alloy::primitives not ethers::types
-- Address is from alloy::primitives not ethers::types
+**State-Changing Transactions:**
+```rust
+let pending = contract.method().send().await?;
+let receipt = pending.get_receipt().await?;
+```
 
-### Files Needing Updates
-**Core (partially done):**
-- [x] ctf/src/roles.rs - Provider creation (needs Actor type fix)
-- [x] ctf/src/lib.rs - Imports and signatures
-- [ ] ctf/src/level.rs - Trait definitions might need updates
+**Provider Methods:**
+- `provider.default_signer_address()` (for wallet address)
+- `provider.get_balance(address).await?`
+- `provider.send_transaction(tx).await?.get_receipt().await?`
 
-**Levels (all need updates):**
-- [ ] ctf/src/ethernaut/lvl01_fallback.rs
-- [ ] ctf/src/ethernaut/lvl02_fallout.rs
-- [ ] ctf/src/ethernaut/lvl03_coin_flip.rs
-- [ ] ... (20+ more Ethernaut levels)
-- [ ] attack/src/ethernaut/hack01_fallback.rs
-- [ ] attack/src/lib.rs
+**Transaction Building:**
+```rust
+let tx = TransactionRequest::default()
+    .to(address)
+    .value(amount);
+```
 
-## Testing
-After migration:
-1. Run `cargo build --all` to verify compilation
-2. Test `deploy_levels` binary with Anvil
-3. Run example exploit to verify end-to-end functionality
-4. Update CI/CD if present
+**Type Imports:**
+```rust
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
+use alloy::primitives::keccak256;  // for keccak usage
+```
 
-## Resources
-- Alloy documentation: https://alloy.rs
-- Alloy migration guide: https://github.com/alloy-rs/alloy/blob/main/MIGRATING.md
-- Alloy examples: https://github.com/alloy-rs/examples
+### Actor Type (Resolved)
+
+```rust
+pub type ActorProvider = FillProvider<
+    JoinFill<
+        JoinFill<
+            Identity,
+            JoinFill<GasFiller, JoinFill<BlobGasFiller, JoinFill<NonceFiller, ChainIdFiller>>>,
+        >,
+        WalletFiller<EthereumWallet>,
+    >,
+    RootProvider<Http<Client>>,
+    Http<Client>,
+    alloy::network::Ethereum,
+>;
+```
+
+This matches the exact type produced by `ProviderBuilder::new().with_recommended_fillers().wallet(wallet).on_http()`.
+
+### Remaining Work
+
+1. **Resolve bindings compatibility** - Choose approach:
+   - Option A: Install forge stable 1.3.x matching alloy 0.8.3
+   - Option B: Upgrade to alloy 1.1.x and regenerate with nightly forge
+   - Option C: Generate ethers bindings and create alloy wrappers
+
+2. **Fix `default_signer_address` calls** - This method doesn't exist on Provider in alloy 0.8.3.
+   Need to either:
+   - Store addresses separately during Roles construction
+   - Use a different approach to get signer addresses
+
+3. **Migrate attack code** - `attack/src/ethernaut/hack01_fallback.rs` and others need same patterns
+
+4. **Test compilation** - Full cargo build should succeed
+
+5. **Runtime testing** - Run deploy_levels and verify exploits work
+
+### Files Changed (3 commits)
+
+**Commit 1 - Infrastructure:**
+- 183 files (bindings regenerated)
+- Added MIGRATION_NOTES.md
+
+**Commit 2 - Level Migration:**
+- 135 files (all level implementations)
+
+**Commit 3 - Type fixes and binding regeneration:**
+- Pending commit with resolved Actor type and alloy 0.8.3 bindings
+
+### Next Steps for Completion
+
+1. Determine best path forward for bindings (likely alloy 1.x upgrade)
+2. Fix default_signer_address issue
+3. Migrate attack implementations
+4. Final build verification
+5. Runtime test with Anvil

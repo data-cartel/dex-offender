@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the Magic Number contract...");
         let contract =
-            MagicNum::deploy(deployer.as_ref(), ()).await?;
+            MagicNum::deploy(deployer, ()).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -37,12 +37,12 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = MagicNum::new(self.address, deployer.as_ref());
+        let contract = MagicNum::new(self.address, deployer);
         println!("Verifying that the solver variable is not empty...");
         let hack_contract_address = contract.solver().call().await?._0;
         println!("Check if TheMeaningOfLife() is 42...");
         let hack_contract =
-            MeaningOfLife::new(hack_contract_address, deployer.as_ref());
+            MeaningOfLife::new(hack_contract_address, deployer);
         let magic = hack_contract.what_is_the_meaning_of_life().call().await;
         match magic {
             Err(_) => {

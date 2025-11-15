@@ -27,11 +27,11 @@ impl Level for Target {
 
         println!("Deploying the Preservation contract...");
         let timezone1 =
-            LibraryContract::deploy(deployer.as_ref(), ()).await?;
+            LibraryContract::deploy(deployer, ()).await?;
         let timezone2 =
-            LibraryContract::deploy(deployer.as_ref(), ()).await?;
+            LibraryContract::deploy(deployer, ()).await?;
         let contract = Preservation::deploy(
-            deployer.as_ref(),
+            deployer,
             (*timezone1.address(), *timezone2.address()),
         ).await?;
 
@@ -45,7 +45,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Preservation::new(self.address, deployer.as_ref());
+        let contract = Preservation::new(self.address, deployer);
 
         println!("Checking that you claimed ownership of the contract...");
         let owner = contract.owner().call().await?._0;

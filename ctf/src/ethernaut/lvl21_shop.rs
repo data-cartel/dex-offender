@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, offender: _, some_user: _ } = roles;
 
         println!("Deploying the Shop contract...");
-        let contract = Shop::deploy(deployer.as_ref(), ()).await?;
+        let contract = Shop::deploy(deployer, ()).await?;
         let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
@@ -35,7 +35,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = Shop::new(self.address, deployer.as_ref());
+        let contract = Shop::new(self.address, deployer);
         println!("Checking that you bought the item for less than 100 wei...");
         Ok(contract.price().call().await?._0 < U256::from(100))
     }

@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the NaughtCoin contract...");
         let contract =
-            NaughtCoin::deploy(deployer.as_ref(), offender.default_signer_address()).await?;
+            NaughtCoin::deploy(deployer, offender.default_signer_address()).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -37,7 +37,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = NaughtCoin::new(self.address, deployer.as_ref());
+        let contract = NaughtCoin::new(self.address, deployer);
 
         println!("Checking that you transfered all tokens...");
         let balance = contract.balance_of(offender.default_signer_address()).call().await?._0;

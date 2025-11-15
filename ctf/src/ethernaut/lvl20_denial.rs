@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, offender: _, some_user: _ } = roles;
 
         println!("Deploying the Denial contract...");
-        let contract = Denial::deploy(deployer.as_ref(), ()).await?;
+        let contract = Denial::deploy(deployer, ()).await?;
 
         let tx = TransactionRequest::default()
             .to(*contract.address())
@@ -42,7 +42,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = Denial::new(self.address, deployer.as_ref());
+        let contract = Denial::new(self.address, deployer);
         println!("Checking that the contract has more than 100 wei...");
         let hundred = U256::from(100_u8);
         if deployer.get_balance(*contract.address()).await? <= hundred {

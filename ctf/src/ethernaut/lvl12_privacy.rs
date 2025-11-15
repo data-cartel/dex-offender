@@ -34,7 +34,7 @@ impl Level for Target {
         let data = [mk_element(), mk_element(), mk_element()];
 
         let contract =
-            Privacy::deploy(deployer.as_ref(), data).await?;
+            Privacy::deploy(deployer, data).await?;
 
         let target = Target { address: *contract.address() };
 
@@ -46,7 +46,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Privacy::new(self.address, deployer.as_ref());
+        let contract = Privacy::new(self.address, deployer);
 
         println!("Checking that you became the owner...");
         let locked = contract.locked().call().await?._0;

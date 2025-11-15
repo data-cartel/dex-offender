@@ -25,7 +25,7 @@ impl Level for Target {
 
         println!("Deploying the Telephone contract...");
         let contract =
-            Telephone::deploy(deployer.as_ref(), ()).await?;
+            Telephone::deploy(deployer, ()).await?;
 
         let owner = contract.owner().call().await?._0;
         assert_eq!(owner, deployer.default_signer_address());
@@ -37,7 +37,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Telephone::new(self.address, deployer.as_ref());
+        let contract = Telephone::new(self.address, deployer);
 
         println!("Checking that you became the owner...");
         let owner = contract.owner().call().await?._0;

@@ -24,7 +24,7 @@ impl Level for Target {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the Force contract...");
-        let force = Force::deploy(deployer.as_ref(), ()).await?;
+        let force = Force::deploy(deployer, ()).await?;
 
         let target = Target { address: *force.address() };
 
@@ -36,7 +36,7 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Force::new(self.address, deployer.as_ref());
+        let contract = Force::new(self.address, deployer);
 
         println!("Checking the contract balance...");
         let balance = deployer.get_balance(*contract.address()).await?;

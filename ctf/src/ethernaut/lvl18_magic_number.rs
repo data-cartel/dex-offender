@@ -1,8 +1,10 @@
-use crate::{abi::meaning_of_life::MeaningOfLife, roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::magic_num::MagicNum;
+use crate::{abi::meaning_of_life::MeaningOfLife, roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -19,13 +21,13 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Magic Number" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Magic Number contract...");
         let contract =
-            MagicNum::deploy(deployer.to_owned(), ())?.send().await?;
+            MagicNum::deploy(deployer).await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -34,14 +36,14 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = MagicNum::new(self.address, deployer.clone());
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
+        let contract = MagicNum::new(self.address, deployer);
         println!("Verifying that the solver variable is not empty...");
-        let hack_contract_address = contract.solver().await?;
+        let hack_contract_address = contract.solver().call().await?;
         println!("Check if TheMeaningOfLife() is 42...");
         let hack_contract =
-            MeaningOfLife::new(hack_contract_address, deployer.clone());
-        let magic = hack_contract.what_is_the_meaning_of_life().await;
+            MeaningOfLife::new(hack_contract_address, deployer);
+        let magic = hack_contract.whatIsTheMeaningOfLife().call().await;
         match magic {
             Err(_) => {
                 return Ok(false);
@@ -56,7 +58,7 @@ impl Level for Target {
                 println!("Check if the contract size is less than 10 bytes...");
                 // Retrieve the contract bytecode
                 let bytecode =
-                    deployer.get_code(hack_contract_address, None).await?;
+                    deployer.get_code_at(hack_contract_address).await?;
 
                 // Get the size of the bytecode in bytes
                 let bytecode_size = bytecode.len();

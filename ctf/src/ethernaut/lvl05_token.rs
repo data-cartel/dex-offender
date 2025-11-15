@@ -1,5 +1,7 @@
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::token::Token;
 use crate::{roles::*, Level};
@@ -22,24 +24,23 @@ impl Level for Target {
         let Roles { deployer, offender, .. } = roles;
 
         println!("Deploying the Token contract...");
-        let contract = Token::deploy(deployer.clone(), U256::from(21_000_000))?
-            .send()
-            .await?;
+        let contract = Token::deploy(deployer, U256::from(21_000_000)).await?;
 
-        contract.transfer(offender.address(), 20.into()).send().await?;
+        let pending = contract.transfer(roles.offender_addr, U256::from(20)).send().await?;
+        let _receipt = pending.get_receipt().await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Token::new(self.address, deployer.clone());
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
+        let contract = Token::new(self.address, deployer);
 
         println!("Checking that got more tokens...");
-        let balance = contract.balance_of(offender.address()).call().await?;
+        let balance = contract.balanceOf(roles.offender_addr).call().await?;
 
-        Ok(balance > 20.into())
+        Ok(balance > U256::from(20))
     }
 }

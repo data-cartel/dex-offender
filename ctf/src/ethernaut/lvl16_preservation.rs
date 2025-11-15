@@ -1,10 +1,12 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::{
     library_contract::LibraryContract, preservation::Preservation,
 };
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -21,21 +23,20 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Preservation" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Preservation contract...");
         let timezone1 =
-            LibraryContract::deploy(deployer.to_owned(), ())?.send().await?;
+            LibraryContract::deploy(deployer).await?;
         let timezone2 =
-            LibraryContract::deploy(deployer.to_owned(), ())?.send().await?;
+            LibraryContract::deploy(deployer).await?;
         let contract = Preservation::deploy(
-            deployer.to_owned(),
-            (timezone1.address(), timezone2.address()),
-        )?
-        .send()
-        .await?;
+            deployer,
+            *timezone1.address(),
+            *timezone2.address(),
+        ).await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -44,11 +45,11 @@ impl Level for Target {
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender, some_user: _ } = roles;
-        let contract = Preservation::new(self.address, deployer.clone());
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
+        let contract = Preservation::new(self.address, deployer);
 
         println!("Checking that you claimed ownership of the contract...");
-        let owner = contract.owner().await?;
-        Ok(owner == offender.address())
+        let owner = contract.owner().call().await?;
+        Ok(owner == roles.offender_addr)
     }
 }

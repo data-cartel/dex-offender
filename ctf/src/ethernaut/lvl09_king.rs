@@ -1,8 +1,10 @@
-use crate::{roles::*, to_ether, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::king::King;
+use crate::{roles::*, to_ether, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -22,12 +24,9 @@ impl Level for Target {
         let Roles { deployer, .. } = roles;
 
         println!("Deploying the King contract...");
-        let king = King::deploy(deployer.to_owned(), ())?
-            .value(to_ether(10))
-            .send()
-            .await?;
+        let king = King::deploy_builder(deployer).value(to_ether(10)).deploy().await?;
 
-        let target = Target { address: king.address() };
+        let target = Target { address: king };
 
         let check = target.check(roles).await?;
         assert!(!check);
@@ -37,23 +36,19 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = King::new(self.address, deployer.clone());
+        let contract = King::new(self.address, deployer);
 
         println!("Attempting to reclaim the kingdom...");
-        let result = deployer
-            .send_transaction(
-                TransactionRequest::new()
-                    .to(contract.address())
-                    .value(to_ether(10)),
-                None,
-            )
-            .await;
+        let tx = TransactionRequest::default()
+            .to(*contract.address())
+            .value(to_ether(10));
+        let result = deployer.send_transaction(tx).await;
 
         if result.is_err() {
             return Ok(true);
         }
 
-        let result = result?.await;
+        let result = result?.get_receipt().await;
 
         Ok(result.is_err())
     }

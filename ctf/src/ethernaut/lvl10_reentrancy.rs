@@ -1,8 +1,10 @@
-use crate::{roles::*, to_ether, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::reentrance::Reentrance;
+use crate::{roles::*, to_ether, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -19,38 +21,35 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Re-entrancy" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender: _, some_user } = roles;
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user, some_user_addr: _ } = roles;
 
         println!("Deploying the Reentrance contract...");
         let contract =
-            Reentrance::deploy(deployer.to_owned(), ())?.send().await?;
+            Reentrance::deploy(deployer).await?;
 
-        deployer
-            .send_transaction(
-                TransactionRequest::new()
-                    .to(contract.address())
-                    .value(to_ether(1)),
-                None,
-            )
-            .await?
-            .await?;
-        contract
-            .donate(some_user.address())
+        let tx = TransactionRequest::default()
+            .to(*contract.address())
+            .value(to_ether(1));
+        let pending = deployer.send_transaction(tx).await?;
+        let _receipt = pending.get_receipt().await?;
+
+        let pending = contract
+            .donate(roles.some_user_addr)
             .value(to_ether(20))
             .send()
-            .await?
             .await?;
+        let _receipt = pending.get_receipt().await?;
 
         let contract =
-            Reentrance::new(contract.address(), some_user.to_owned());
-        contract
-            .donate(deployer.address())
+            Reentrance::new(*contract.address(), some_user);
+        let pending = contract
+            .donate(roles.deployer_addr)
             .value(to_ether(100))
             .send()
-            .await?
             .await?;
+        let _receipt = pending.get_receipt().await?;
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
         let check = target.check(roles).await?;
         assert!(!check);
 
@@ -59,11 +58,11 @@ impl Level for Target {
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Reentrance::new(self.address, deployer.clone());
+        let contract = Reentrance::new(self.address, deployer);
 
         println!("Checking the contract balance...");
-        let balance = deployer.get_balance(contract.address(), None).await?;
+        let balance = deployer.get_balance(*contract.address()).await?;
 
-        Ok(balance == 0.into())
+        Ok(balance == U256::from(0))
     }
 }

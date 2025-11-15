@@ -10,3 +10,6 @@ ignored_error_codes = [
   6321,
   9302
 ]
+
+[lint]
+enabled = false

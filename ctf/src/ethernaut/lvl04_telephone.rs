@@ -1,5 +1,7 @@
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::telephone::Telephone;
 use crate::{roles::*, Level};
@@ -23,23 +25,23 @@ impl Level for Target {
 
         println!("Deploying the Telephone contract...");
         let contract =
-            Telephone::deploy(deployer.to_owned(), ())?.send().await?;
+            Telephone::deploy(deployer).await?;
 
-        let owner = contract.owner().await?;
-        assert_eq!(owner, deployer.address());
+        let owner = contract.owner().call().await?;
+        assert_eq!(owner, roles.deployer_addr);
 
-        let target = Target { address: contract.address() };
+        let target = Target { address: *contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
-        let contract = Telephone::new(self.address, deployer.clone());
+        let contract = Telephone::new(self.address, deployer);
 
         println!("Checking that you became the owner...");
-        let owner = contract.owner().await?;
-        let is_owner = owner == roles.offender.address();
+        let owner = contract.owner().call().await?;
+        let is_owner = owner == roles.offender_addr;
 
         Ok(is_owner)
     }

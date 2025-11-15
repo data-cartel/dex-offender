@@ -1,8 +1,10 @@
-use crate::{roles::*, Level};
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::{dex::Dex, swappable_token::SwappableToken};
+use crate::{roles::*, Level};
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Target {
@@ -19,73 +21,74 @@ impl Level for Target {
     fn name(&self) -> &'static str { "Dex" }
 
     async fn set_up(roles: &Roles) -> eyre::Result<Self> {
-        let Roles { deployer, offender, some_user: _ } = roles;
+        let Roles { deployer, deployer_addr: _, offender, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
 
         println!("Deploying the Dex contract...");
-        let contract = Dex::deploy(deployer.to_owned(), ())?.send().await?;
+        let contract = Dex::deploy(deployer).await?;
         let token1 = SwappableToken::deploy(
-            deployer.to_owned(),
-            (
-                contract.address(),
-                String::from("Token 1"),
-                String::from("TKN1"),
-                U256::from(110),
-            ),
-        )?
-        .send()
-        .await?;
+            deployer,
+            *contract.address(),
+            String::from("Token 1"),
+            String::from("TKN1"),
+            U256::from(110),
+        ).await?;
         let token2 = SwappableToken::deploy(
-            deployer.to_owned(),
-            (
-                contract.address(),
-                String::from("Token 2"),
-                String::from("TKN2"),
-                U256::from(110),
-            ),
-        )?
-        .send()
-        .await?;
+            deployer,
+            *contract.address(),
+            String::from("Token 2"),
+            String::from("TKN2"),
+            U256::from(110),
+        ).await?;
 
-        contract.set_tokens(token1.address(), token2.address()).send().await?;
-        token1.approve(contract.address(), U256::from(100)).send().await?;
-        token2.approve(contract.address(), U256::from(100)).send().await?;
+        let pending = contract.setTokens(*token1.address(), *token2.address()).send().await?;
+        let _receipt = pending.get_receipt().await?;
 
-        contract
-            .add_liquidity(token1.address(), U256::from(100))
+        let pending = token1.approve_0(*contract.address(), U256::from(100)).send().await?;
+        let _receipt = pending.get_receipt().await?;
+
+        let pending = token2.approve_0(*contract.address(), U256::from(100)).send().await?;
+        let _receipt = pending.get_receipt().await?;
+
+        let pending = contract
+            .addLiquidity(*token1.address(), U256::from(100))
             .send()
             .await?;
-        contract
-            .add_liquidity(token2.address(), U256::from(100))
-            .send()
-            .await?;
+        let _receipt = pending.get_receipt().await?;
 
-        token1
-            .transfer(offender.address(), U256::from(10))
+        let pending = contract
+            .addLiquidity(*token2.address(), U256::from(100))
             .send()
-            .await?
             .await?;
-        token2
-            .transfer(offender.address(), U256::from(10))
-            .send()
-            .await?
-            .await?;
+        let _receipt = pending.get_receipt().await?;
 
-        let target = Target { address: contract.address() };
+        let pending = token1
+            .transfer(roles.offender_addr, U256::from(10))
+            .send()
+            .await?;
+        let _receipt = pending.get_receipt().await?;
+
+        let pending = token2
+            .transfer(roles.offender_addr, U256::from(10))
+            .send()
+            .await?;
+        let _receipt = pending.get_receipt().await?;
+
+        let target = Target { address: *contract.address() };
 
         Ok(target)
     }
 
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
-        let Roles { deployer, offender: _, some_user: _ } = roles;
-        let contract = Dex::new(self.address, deployer.clone());
+        let Roles { deployer, deployer_addr: _, offender: _, offender_addr: _, some_user: _, some_user_addr: _ } = roles;
+        let contract = Dex::new(self.address, deployer);
         println!("Checking that you have stolen at least 1 whole token...");
 
         let token1 =
-            SwappableToken::new(contract.token_1().await?, deployer.to_owned());
+            SwappableToken::new(contract.token1().call().await?, deployer);
         let token2 =
-            SwappableToken::new(contract.token_2().await?, deployer.to_owned());
+            SwappableToken::new(contract.token2().call().await?, deployer);
 
-        Ok(token1.balance_of(contract.address()).await? == 0.into()
-            || token2.balance_of(contract.address()).await? == 0.into())
+        Ok(token1.balanceOf(*contract.address()).call().await? == U256::from(0)
+            || token2.balanceOf(*contract.address()).call().await? == U256::from(0))
     }
 }

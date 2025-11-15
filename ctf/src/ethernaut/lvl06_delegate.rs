@@ -1,5 +1,7 @@
+use alloy::primitives::{Address, U256};
+use alloy::providers::Provider;
+use alloy::rpc::types::TransactionRequest;
 use async_trait::async_trait;
-use ethers::prelude::*;
 
 pub use crate::abi::{delegate::Delegate, delegation::Delegation};
 use crate::{roles::*, Level};
@@ -23,20 +25,16 @@ impl Level for Target {
 
         println!("Deploying the Delegate contract...");
         let delegate =
-            Delegate::deploy(deployer.to_owned(), deployer.address())?
-                .send()
-                .await?;
+            Delegate::deploy(deployer, roles.deployer_addr).await?;
 
         println!("Deploying the Delegation contract...");
         let delegation =
-            Delegation::deploy(deployer.to_owned(), delegate.address())?
-                .send()
-                .await?;
+            Delegation::deploy(deployer, *delegate.address()).await?;
 
-        let owner = delegate.owner().await?;
-        assert_eq!(owner, deployer.address());
+        let owner = delegate.owner().call().await?;
+        assert_eq!(owner, roles.deployer_addr);
 
-        let target = Target { delegation_address: delegation.address() };
+        let target = Target { delegation_address: *delegation.address() };
 
         Ok(target)
     }
@@ -44,11 +42,11 @@ impl Level for Target {
     async fn check(&self, roles: &Roles) -> eyre::Result<bool> {
         let Roles { deployer, .. } = roles;
         let delegation =
-            Delegation::new(self.delegation_address, deployer.clone());
+            Delegation::new(self.delegation_address, deployer);
 
         println!("Checking that you became the owner...");
-        let owner = delegation.owner().await?;
-        let is_owner = owner == roles.offender.address();
+        let owner = delegation.owner().call().await?;
+        let is_owner = owner == roles.offender_addr;
 
         Ok(is_owner)
     }
